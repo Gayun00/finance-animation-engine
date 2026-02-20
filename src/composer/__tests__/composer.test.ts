@@ -75,8 +75,8 @@ describe("selectTransition", () => {
     expect(selectTransition("outro", null)).toBe("fade");
   });
 
-  it("returns null for intro", () => {
-    expect(selectTransition("intro", null)).toBeNull();
+  it("returns slide_up for intro", () => {
+    expect(selectTransition("intro", null)).toBe("slide_up");
   });
 
   it("avoids repeating the same transition", () => {
@@ -132,18 +132,18 @@ describe("matchAssets", () => {
     expect(ids).toContain("coins_drop");
   });
 
-  it("matches chart-related keywords", () => {
+  it("matches element-related keywords (charts are now elements)", () => {
     const results = matchAssets("그래프로 확인해보겠습니다", {
-      category: "chart",
+      category: "element",
     });
     expect(results.length).toBeGreaterThan(0);
-    expect(results[0].asset.category).toBe("chart");
+    expect(results[0].asset.category).toBe("element");
   });
 
   it("filters by category", () => {
-    const results = matchAssets("돈 코인 투자", { category: "chart" });
+    const results = matchAssets("돈 코인 투자", { category: "element" });
     for (const r of results) {
-      expect(r.asset.category).toBe("chart");
+      expect(r.asset.category).toBe("element");
     }
   });
 
@@ -165,9 +165,9 @@ describe("matchAssets", () => {
 
 describe("findBestAsset", () => {
   it("returns the highest-scoring asset", () => {
-    const asset = findBestAsset("복리 성장 차트를 확인해보겠습니다", "chart");
+    const asset = findBestAsset("복리 성장 차트를 확인해보겠습니다", "element");
     expect(asset).not.toBeNull();
-    expect(asset!.category).toBe("chart");
+    expect(asset!.category).toBe("element");
   });
 
   it("returns null if no match", () => {
@@ -241,31 +241,39 @@ describe("composeSequence", () => {
     }
   });
 
-  it("intro scene has TitleCard", () => {
+  it("intro scene has Lottie or decoration elements", () => {
     const intro = scenes[0];
-    const titleCards = intro.elements.filter(
-      (e) => e.component === "TitleCard"
+    const nonSubtitle = intro.elements.filter(
+      (e) => e.component !== "Subtitle"
     );
-    expect(titleCards.length).toBe(1);
+    expect(nonSubtitle.length).toBeGreaterThan(0);
   });
 
-  it("chart scene has CompoundInterestChart", () => {
-    const chart = scenes[2];
-    const charts = chart.elements.filter(
-      (e) => e.component === "CompoundInterestChart"
-    );
-    expect(charts.length).toBe(1);
-  });
-
-  it("outro scene has EndCard", () => {
-    const outro = scenes[scenes.length - 1];
-    const endCards = outro.elements.filter((e) => e.component === "EndCard");
-    expect(endCards.length).toBe(1);
-  });
-
-  it("element counts are within limits (max 5 + subtitle)", () => {
+  it("simple background scenes auto-add decoration layers", () => {
+    // Scenes without background/character assets get FloatingParticles + GradientOrb
     for (const scene of scenes) {
-      expect(scene.elements.length).toBeLessThanOrEqual(7);
+      const hasDecor = scene.elements.some(
+        (e) => e.component === "FloatingParticles" || e.component === "GradientOrb"
+      );
+      const hasBgOverlay = scene.elements.some(
+        (e) => e.component === "LottieOverlay"
+      );
+      const hasCharacter = scene.elements.some(
+        (e) =>
+          e.component === "LottieElement" &&
+          (e.animation.enter as { type: string }).type === "slide_in"
+      );
+      // Simple background mode should have decorations; other modes don't require them
+      if (!hasBgOverlay && !hasCharacter) {
+        expect(hasDecor).toBe(true);
+      }
+    }
+  });
+
+  it("element counts are within limits (max 5 fg + decorations + subtitle)", () => {
+    for (const scene of scenes) {
+      // decoration layers (GradientOrb, FloatingParticles) + fg elements + subtitle
+      expect(scene.elements.length).toBeLessThanOrEqual(9);
     }
   });
 });

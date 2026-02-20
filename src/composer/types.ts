@@ -1,4 +1,4 @@
-import type { TransitionType, BackgroundConfig, AnimationConfig } from "../types";
+import type { TransitionType, BackgroundConfig, AnimationConfig, CameraMotionConfig } from "../types";
 
 // ── Script Input Types ──
 
@@ -15,11 +15,23 @@ export interface ScriptDirective {
   params: Record<string, unknown>;
 }
 
+export interface SceneOverrides {
+  /** Override the auto-selected transition for this scene */
+  transition?: TransitionType;
+  /** Asset IDs to render as full-scene background layers */
+  bgAssetIds?: string[];
+  /** Asset IDs to exclude from this scene */
+  excludeAssetIds?: string[];
+  /** Override enter animation per foreground element index (0-based) */
+  elementEnter?: Record<number, string>;
+}
+
 export interface ScriptSection {
   type: SectionType;
   narration: string;
   duration: number; // seconds
   directive?: ScriptDirective;
+  overrides?: SceneOverrides;
 }
 
 // ── Composer Output Types ──
@@ -59,6 +71,7 @@ export interface ComposedElement {
   props: Record<string, unknown>;
   position: ElementPosition;
   enterAt: number; // frame
+  durationInFrames?: number; // if set, element disappears after this many frames
   animation: ElementAnimation;
 }
 
@@ -72,4 +85,5 @@ export interface ComposedScene {
     durationInFrames: number;
     color?: string;
   } | null;
+  cameraMotion?: CameraMotionConfig;
 }

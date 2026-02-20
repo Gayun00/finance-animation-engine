@@ -15,8 +15,13 @@ export type AnimationPreset =
   | "slide_up"
   | "slide_left"
   | "slide_right"
+  | "slide_left_far"
+  | "slide_right_far"
+  | "exit_left_far"
+  | "exit_right_far"
   | "bounce_in"
   | "pop_in"
+  | "circle_reveal"
   | "none";
 
 export interface AnimationConfig {
@@ -24,6 +29,8 @@ export interface AnimationConfig {
   delay?: number; // frames
   duration?: number; // frames
   easing?: EasingName;
+  exitPreset?: AnimationPreset; // exit animation (plays at end of element's lifetime)
+  exitDuration?: number; // frames
 }
 
 // ── Transition ──
@@ -33,6 +40,7 @@ export type TransitionType =
   | "wipe_right"
   | "color_wipe"
   | "circle_shrink"
+  | "circle_wipe"
   | "zoom_in"
   | "zoom_out"
   | "slide_up"
@@ -55,6 +63,17 @@ export interface BackgroundConfig {
   angle?: number; // degrees, for gradient
 }
 
+// ── Camera Motion ──
+export type CameraMotionType = "ken_burns" | "zoom_focus" | "drift";
+
+export interface CameraMotionConfig {
+  type: CameraMotionType;
+  endScale?: number; // ken_burns / zoom_focus (default 1.15)
+  panX?: number; // ken_burns / drift — pixels
+  panY?: number; // ken_burns — pixels
+  easing?: EasingName;
+}
+
 // ── Scene Element ──
 export interface SceneElement {
   id: string;
@@ -74,6 +93,7 @@ export interface Scene {
   background: BackgroundConfig;
   transition?: TransitionConfig;
   elements: SceneElement[];
+  cameraMotion?: CameraMotionConfig;
 }
 
 // ── Top-level Sequence ──

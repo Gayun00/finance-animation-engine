@@ -34,6 +34,9 @@ const AVAILABLE_COMPONENTS = [
   "LottieShowcase",
   "Subtitle",
   "Spotlight",
+  "FloatingParticles",
+  "GeometricDecor",
+  "GradientOrb",
 ];
 
 const AVAILABLE_LAYOUTS: LayoutType[] = [
@@ -75,7 +78,8 @@ const OUTPUT_SCHEMA = `{
       }
     }
   ],
-  "transition": { "type": "<TransitionType>", "durationInFrames": number, "color"?: string } | null
+  "transition": { "type": "<TransitionType>", "durationInFrames": number, "color"?: string } | null,
+  "cameraMotion"?: { "type": "ken_burns" | "zoom_focus" | "drift", "endScale"?: number, "panX"?: number, "panY"?: number }
 }`;
 
 // ── Prompt Assembly ──
@@ -144,6 +148,77 @@ ${JSON.stringify(ELEMENT_SIZING, null, 2)}
 
 ## Motion Recommendations
 ${JSON.stringify(RECOMMENDED_MOTION, null, 2)}
+
+## Asset Categories (5 types)
+
+| Category | Role | Scene Position |
+|----------|------|----------------|
+| background | Full-screen background animation | Behind everything |
+| effect | Atmospheric decoration (particles, sparkle) | Above background, below elements |
+| element | Information delivery (icons, charts, logos) | Content area |
+| emoji | Emotion/reaction (expressions) | Popup at emphasis points |
+| character | Action subject | Motion driver |
+
+## Scene Modes (auto-selected by asset composition)
+
+### 1. Strong Background Mode
+When a \`background\` asset is present or bgAssetIds override is set.
+- Background animation plays as full-screen LottieOverlay
+- Maximum 1-2 foreground elements (keep it clean)
+- No auto-added particles/orbs (background is already rich)
+
+### 2. Simple Background Mode
+When no background or character asset is matched.
+- Auto-adds effect layers: FloatingParticles + GradientOrb for visual density
+- 3-5 foreground elements with stagger timing
+- Best for solid-color or gradient backgrounds
+
+### 3. Character Mode
+When a \`character\` asset is matched.
+- Character placed first (left side, looping)
+- Elements stagger in/out on the right, synchronized with character presence
+- Maximum 3 supporting elements
+
+## Decoration Components (for visual density)
+
+### FloatingParticles
+Floating particle overlay for atmosphere. Props:
+- count: number (default 12) — number of particles
+- color: string (default "rgba(255,255,255,0.6)")
+- size: number (default 8) — particle size in px
+- speed: number (default 1) — drift speed multiplier
+- shape: "dot" | "star" | "ring"
+- opacity: number (default 0.2)
+- seed: number (default 42) — deterministic randomness
+
+### GeometricDecor
+SVG geometric shapes for background decoration. Props:
+- shapes: Array<{ type: "circle"|"triangle"|"hexagon"|"ring", x: number, y: number, size: number, rotationSpeed?: number, opacity?: number, color?: string }>
+- color: string (default color for all shapes)
+- opacity: number (default 0.2)
+
+### GradientOrb
+Soft bokeh/glow light orb. Props:
+- color: string (default "#4FC3F7")
+- size: number (default 300) — diameter in px
+- x: number (default 50) — percentage position
+- y: number (default 50) — percentage position
+- pulseSpeed: number (default 1)
+- opacity: number (default 0.15)
+- blur: number (default 60) — CSS blur in px
+
+## Camera Motion
+Each scene can have camera motion applied to all elements except Subtitle:
+- "ken_burns": slow zoom + pan (intro/outro). endScale, panX, panY
+- "zoom_focus": zoom into center (charts/callouts). endScale
+- "drift": gentle horizontal drift (explanations). panX
+
+## Design Guidelines — Visual Density
+- **Layer density**: Each scene MUST have at least 3 layers: background decoration + main content + particles/glow
+- **Decoration placement**: Decorations go in margins, NOT overlapping main content. Use opacity 0.1–0.3
+- **Camera selection**: intro → ken_burns, emphasis/callout → zoom_focus, explanation → drift
+- **Transition direction**: Match narration motion (upward → slide_up, etc.)
+- **Rhythm**: Minimum 6-frame stagger between element entries. Maximum 3 elements entering simultaneously
 
 ## Rules
 1. Scene duration MUST match narration duration exactly

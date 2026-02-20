@@ -16,16 +16,16 @@ import type { TransitionType } from "../types";
 import {
   selectTransition,
   selectLayout,
+  selectCameraMotion,
   suggestElementCount,
   ELEMENT_ORDERING,
-  RECOMMENDED_MOTION,
-  ELEMENT_SIZING,
   COLOR_WIPE_COLORS,
 } from "./rules";
 import {
   matchAssets,
   findBestAsset,
   SECTION_ASSET_HINTS,
+  ASSET_REGISTRY,
   type AssetEntry,
 } from "./asset-matcher";
 import { buildFullPrompt, type PromptContext } from "./prompt-builder";
@@ -35,21 +35,45 @@ import { buildFullPrompt, type PromptContext } from "./prompt-builder";
 export interface ComposeOptions {
   fps?: number;
   colorPalette?: string[];
+  mode?: "rules" | "llm";
 }
 
 const DEFAULT_FPS = 30;
 const DEFAULT_PALETTE = ["#0EA0E4", "#E92F60", "#14D1C8", "#4F28F2"];
 
 /**
- * Compose a full sequence of scenes from script sections using rule-based logic.
+ * Compose a full sequence of scenes from script sections.
+ * When mode is "llm", delegates to LLM-based composition (async).
+ * When mode is "rules" (default), uses deterministic rule-based logic (sync).
  */
 export function composeSequence(
+  sections: ScriptSection[],
+  options?: ComposeOptions & { mode?: "rules" }
+): ComposedScene[];
+export function composeSequence(
+  sections: ScriptSection[],
+  options: ComposeOptions & { mode: "llm" }
+): Promise<ComposedScene[]>;
+export function composeSequence(
+  sections: ScriptSection[],
+  options?: ComposeOptions
+): ComposedScene[] | Promise<ComposedScene[]> {
+  if (options?.mode === "llm") {
+    return import("./llm-compose").then(({ composeSequenceWithLLM }) =>
+      composeSequenceWithLLM(sections, options)
+    );
+  }
+  return composeSequenceSync(sections, options);
+}
+
+function composeSequenceSync(
   sections: ScriptSection[],
   options?: ComposeOptions
 ): ComposedScene[] {
   const fps = options?.fps ?? DEFAULT_FPS;
   const palette = options?.colorPalette ?? DEFAULT_PALETTE;
   let prevTransition: TransitionType | null = null;
+  const globalUsedIds = new Set<string>();
 
   return sections.map((section, i) => {
     const scene = composeScene(section, {
@@ -58,7 +82,17 @@ export function composeSequence(
       totalScenes: sections.length,
       fps,
       bgColor: palette[i % palette.length],
+      globalUsedIds,
     });
+
+    // Track used asset IDs to avoid repeating across scenes
+    for (const el of scene.elements) {
+      const src = (el.props as Record<string, unknown>).src as string | undefined;
+      if (src) {
+        const entry = ASSET_REGISTRY.find((a) => `animations/${a.file}` === src);
+        if (entry) globalUsedIds.add(entry.id);
+      }
+    }
 
     prevTransition = scene.transition?.type ?? null;
     return scene;
@@ -71,6 +105,7 @@ interface SceneContext {
   totalScenes: number;
   fps: number;
   bgColor: string;
+  globalUsedIds: Set<string>;
 }
 
 function composeScene(
@@ -86,16 +121,20 @@ function composeScene(
     section.directive?.type
   );
 
-  // 2. Select transition
+  // 2. Select transition (override takes precedence)
   const isLast = ctx.sceneIndex === ctx.totalScenes - 1;
   const transitionType = isLast
     ? null
-    : selectTransition(section.type, ctx.prevTransition);
+    : section.overrides?.transition
+      ?? selectTransition(section.type, ctx.prevTransition, section.narration);
 
-  // 3. Build elements
-  const elements = buildElements(section, layout, fps, totalFrames);
+  // 3. Select camera motion
+  const cameraMotion = selectCameraMotion(section.type, ctx.sceneIndex);
 
-  // 4. Build transition config
+  // 4. Build elements
+  const elements = buildElements(section, layout, fps, totalFrames, ctx.globalUsedIds);
+
+  // 5. Build transition config
   const transition = transitionType
     ? {
         type: transitionType,
@@ -111,61 +150,97 @@ function composeScene(
     background: { type: "solid", color: bgColor },
     elements,
     transition,
+    cameraMotion,
   };
+}
+
+// ── Scene Mode Types ──
+
+type SceneMode = "strong_background" | "simple_background" | "character";
+
+/**
+ * Determine scene mode based on matched assets and overrides.
+ *
+ * 1. character asset present → character mode
+ * 2. bgAssetIds override or background asset matched → strong background mode
+ * 3. otherwise → simple background mode
+ */
+function determineSceneMode(
+  assetMatches: import("./asset-matcher").AssetMatch[],
+  overrides?: ScriptSection["overrides"]
+): SceneMode {
+  const hasCharacter = assetMatches.some((m) => m.asset.category === "character");
+  if (hasCharacter) return "character";
+
+  const hasBgOverride = (overrides?.bgAssetIds ?? []).length > 0;
+  const hasBgAsset = assetMatches.some((m) => m.asset.category === "background");
+  if (hasBgOverride || hasBgAsset) return "strong_background";
+
+  return "simple_background";
 }
 
 function buildElements(
   section: ScriptSection,
   layout: LayoutType,
   fps: number,
-  totalFrames: number
+  totalFrames: number,
+  globalUsedIds: Set<string>
 ): ComposedElement[] {
   const elements: ComposedElement[] = [];
-  const { min, max } = suggestElementCount(section.duration);
-  const stagger = ELEMENT_ORDERING.staggerDelay;
+  const overrides = section.overrides;
 
-  // Get recommended asset categories for this section type
-  const categoryHints = SECTION_ASSET_HINTS[section.type] ?? ["icon"];
+  // Collect IDs to exclude
+  const excludeIds = new Set([
+    ...globalUsedIds,
+    ...(overrides?.excludeAssetIds ?? []),
+  ]);
 
-  // Find matching assets
-  const assetMatches = matchAssets(section.narration, {
-    maxResults: max,
+  // ── Background layers (explicitly specified via overrides) ──
+  const bgAssetIds = new Set(overrides?.bgAssetIds ?? []);
+  for (const id of bgAssetIds) {
+    const asset = ASSET_REGISTRY.find((a) => a.id === id);
+    if (asset) {
+      elements.push(makeBgElement(asset, totalFrames));
+      excludeIds.add(id);
+    }
+  }
+
+  // ── Match all assets by narration ──
+  const allMatches = matchAssets(section.narration, {
+    maxResults: 10,
+    excludeIds: [...excludeIds],
   });
 
-  // Build primary content element based on section type
-  switch (section.type) {
-    case "intro":
-      elements.push(makeTitleElement(section));
+  // Fallback: pick by section category hints
+  if (allMatches.length === 0) {
+    const categories = SECTION_ASSET_HINTS[section.type] ?? ["element"];
+    for (const cat of categories) {
+      const fallback = findBestAsset(section.type, cat, [...excludeIds]);
+      if (fallback) {
+        allMatches.push({ asset: fallback, score: 0 });
+        break;
+      }
+    }
+  }
+
+  // ── Determine scene mode ──
+  const mode = determineSceneMode(allMatches, overrides);
+
+  // ── Mode-specific element composition ──
+  switch (mode) {
+    case "strong_background":
+      buildStrongBgElements(allMatches, elements, totalFrames, fps, layout, overrides);
       break;
-    case "explain":
-      elements.push(makeExplainElement(section, fps));
+    case "character":
+      buildCharacterElements(allMatches, elements, totalFrames, fps, layout, overrides);
       break;
-    case "chart":
-      elements.push(makeChartElement(section, fps));
-      break;
-    case "comparison":
-      elements.push(makeComparisonElement(section, fps));
-      break;
-    case "callout":
-      elements.push(makeCalloutElement(section, fps));
-      break;
-    case "outro":
-      elements.push(makeOutroElement(section));
+    case "simple_background":
+    default:
+      buildSimpleBgElements(allMatches, elements, totalFrames, fps, layout, section.duration, overrides);
       break;
   }
 
-  // Add matched Lottie assets as supporting elements
-  const usedIds = new Set<string>();
-  for (const match of assetMatches) {
-    if (elements.length >= max) break;
-    if (usedIds.has(match.asset.id)) continue;
-    usedIds.add(match.asset.id);
-
-    const enterAt = elements.length * stagger;
-    elements.push(makeLottieElement(match.asset, enterAt, layout));
-  }
-
-  // Add subtitle
+  // Subtitle (always last)
   elements.push({
     component: "Subtitle",
     props: { text: section.narration },
@@ -179,161 +254,210 @@ function buildElements(
   return elements;
 }
 
-// ── Element Factories ──
+/**
+ * Strong background mode: background asset as LottieOverlay + max 2 foreground elements.
+ */
+function buildStrongBgElements(
+  matches: import("./asset-matcher").AssetMatch[],
+  elements: ComposedElement[],
+  totalFrames: number,
+  fps: number,
+  layout: LayoutType,
+  overrides?: ScriptSection["overrides"]
+): void {
+  const MAX_FG = 2;
 
-function makeTitleElement(section: ScriptSection): ComposedElement {
-  const motion = RECOMMENDED_MOTION.TitleCard;
-  return {
-    component: "TitleCard",
-    props: {
-      title: extractTitle(section.narration),
-      subtitle: "",
-    },
-    position: { x: 960, y: 540 },
-    enterAt: 0,
-    animation: {
-      enter: {
-        type: motion.enter,
-        durationInFrames: 18,
-        easing: "BOUNCE_IN",
-      },
-    },
-  };
-}
-
-function makeExplainElement(
-  section: ScriptSection,
-  fps: number
-): ComposedElement {
-  const motion = RECOMMENDED_MOTION.CountUpNumber;
-  const numbers = extractNumbers(section.narration);
-  if (numbers.length > 0) {
-    return {
-      component: "CountUpNumber",
-      props: {
-        from: 0,
-        to: numbers[0],
-        suffix: "만원",
-      },
-      position: { x: 960, y: 400 },
-      enterAt: Math.round(0.3 * fps),
-      animation: {
-        enter: { type: motion.enter, durationInFrames: 15 },
-        during: { type: motion.during, durationInFrames: 30 },
-      },
-    };
+  // Add background assets as overlays
+  for (const m of matches) {
+    if (m.asset.category === "background") {
+      elements.push(makeBgElement(m.asset, totalFrames));
+    }
   }
 
-  return {
-    component: "CalloutBox",
-    props: {
-      text: section.narration.slice(0, 40),
-      type: "info",
-    },
-    position: { x: 960, y: 450 },
-    enterAt: Math.round(0.3 * fps),
-    animation: {
-      enter: { type: "scale_in", durationInFrames: 15 },
-    },
-  };
+  // Foreground: non-background elements, capped at 2
+  const fgMatches = matches.filter((m) => m.asset.category !== "background");
+  const fgCount = Math.min(fgMatches.length, MAX_FG);
+  const subtitleBuffer = 15;
+  const availableFrames = totalFrames - subtitleBuffer;
+  const targetSlice = 3 * fps;
+  const sliceDuration =
+    fgCount > 0
+      ? Math.min(targetSlice, Math.floor(availableFrames / fgCount))
+      : 0;
+
+  const usedIds = new Set<string>();
+  let fgIndex = 0;
+  for (const match of fgMatches) {
+    if (fgIndex >= fgCount) break;
+    if (usedIds.has(match.asset.id)) continue;
+    usedIds.add(match.asset.id);
+
+    const enterAt = fgIndex * sliceDuration;
+    const el = makeLottieElement(match.asset, enterAt, layout, sliceDuration);
+
+    const enterOverride = overrides?.elementEnter?.[fgIndex];
+    if (enterOverride) el.animation.enter.type = enterOverride;
+
+    elements.push(el);
+    fgIndex++;
+  }
 }
 
-function makeChartElement(
-  section: ScriptSection,
-  fps: number
-): ComposedElement {
-  const motion = RECOMMENDED_MOTION.CompoundInterestChart;
-  const params = section.directive?.params ?? {};
-  return {
-    component: "CompoundInterestChart",
-    props: {
-      rate: (params.rate as number) ?? 5,
-      years: (params.years as number) ?? 30,
-      principal: (params.principal as number) ?? 1000,
-      compareSingle: true,
-    },
-    position: { x: 960, y: 500 },
-    enterAt: Math.round(0.3 * fps),
-    animation: {
-      enter: { type: motion.enter, durationInFrames: 45 },
-    },
-  };
-}
+/**
+ * Simple background mode: auto-add effect layers (FloatingParticles/GradientOrb) + 3-5 foreground elements.
+ */
+function buildSimpleBgElements(
+  matches: import("./asset-matcher").AssetMatch[],
+  elements: ComposedElement[],
+  totalFrames: number,
+  fps: number,
+  layout: LayoutType,
+  durationSec: number,
+  overrides?: ScriptSection["overrides"]
+): void {
+  const { max } = suggestElementCount(durationSec);
 
-function makeComparisonElement(
-  section: ScriptSection,
-  fps: number
-): ComposedElement {
-  const params = section.directive?.params ?? {};
-  return {
-    component: "ComparisonTable" as string,
-    props: {
-      items: [
-        {
-          label: (params.A as string) ?? "A",
-          value: "",
-          color: "#90A4AE",
-        },
-        {
-          label: (params.B as string) ?? "B",
-          value: "",
-          color: "#81C784",
-        },
-      ],
-      highlightWinner: true,
-    },
-    position: { x: 960, y: 450 },
-    enterAt: Math.round(0.3 * fps),
+  // Auto-add decoration layers for visual density
+  elements.push({
+    component: "GradientOrb",
+    props: { color: "#4FC3F7", size: 350, x: 70, y: 30, opacity: 0.12, blur: 70 },
+    position: { x: 960, y: 540 },
+    enterAt: 0,
     animation: {
-      enter: {
-        type: "slide_in",
-        direction: "up",
-        durationInFrames: 15,
-      },
+      enter: { type: "fade_in", durationInFrames: 20 },
     },
-  };
-}
-
-function makeCalloutElement(
-  section: ScriptSection,
-  fps: number
-): ComposedElement {
-  const motion = RECOMMENDED_MOTION.CalloutBox;
-  return {
-    component: "CalloutBox",
+  });
+  elements.push({
+    component: "FloatingParticles",
     props: {
-      text: section.narration.slice(0, 30),
-      type: "highlight",
-    },
-    position: { x: 960, y: 400 },
-    enterAt: Math.round(0.3 * fps),
-    animation: {
-      enter: {
-        type: motion.enter,
-        durationInFrames: 15,
-        easing: "BOUNCE_IN",
-      },
-      during: { type: motion.during, durationInFrames: 24 },
-    },
-  };
-}
-
-function makeOutroElement(section: ScriptSection): ComposedElement {
-  const motion = RECOMMENDED_MOTION.EndCard;
-  return {
-    component: "EndCard",
-    props: {
-      channelName: "금융의 정석",
-      subscribeText: "구독과 좋아요",
+      count: 12,
+      color: "rgba(255,255,255,0.5)",
+      size: 6,
+      speed: 0.8,
+      shape: "dot" as const,
+      opacity: 0.18,
     },
     position: { x: 960, y: 540 },
     enterAt: 0,
     animation: {
-      enter: {
-        type: motion.enter,
-        durationInFrames: 18,
-        easing: "KURZGESAGT",
+      enter: { type: "fade_in", durationInFrames: 15 },
+    },
+  });
+
+  // Foreground: effect + element assets
+  const fgMatches = matches.filter(
+    (m) => m.asset.category === "element" || m.asset.category === "effect" || m.asset.category === "emoji"
+  );
+  const fgCount = Math.min(fgMatches.length, max);
+  const subtitleBuffer = 15;
+  const availableFrames = totalFrames - subtitleBuffer;
+  const targetSlice = 3 * fps;
+  const sliceDuration =
+    fgCount > 0
+      ? Math.min(targetSlice, Math.floor(availableFrames / fgCount))
+      : 0;
+
+  const usedIds = new Set<string>();
+  let fgIndex = 0;
+  for (const match of fgMatches) {
+    if (fgIndex >= fgCount) break;
+    if (usedIds.has(match.asset.id)) continue;
+    usedIds.add(match.asset.id);
+
+    const enterAt = fgIndex * sliceDuration;
+    const el = makeLottieElement(match.asset, enterAt, layout, sliceDuration);
+
+    const enterOverride = overrides?.elementEnter?.[fgIndex];
+    if (enterOverride) el.animation.enter.type = enterOverride;
+
+    elements.push(el);
+    fgIndex++;
+  }
+}
+
+/**
+ * Character mode: character asset placed first, then elements stagger in/out around character actions.
+ */
+function buildCharacterElements(
+  matches: import("./asset-matcher").AssetMatch[],
+  elements: ComposedElement[],
+  totalFrames: number,
+  fps: number,
+  layout: LayoutType,
+  overrides?: ScriptSection["overrides"]
+): void {
+  const MAX_FG = 3;
+
+  // Place character first
+  const charMatch = matches.find((m) => m.asset.category === "character");
+  if (charMatch) {
+    elements.push({
+      component: "LottieElement",
+      props: {
+        src: `animations/${charMatch.asset.file}`,
+        loop: true,
+        fitDurationInFrames: totalFrames,
       },
+      position: { x: 350, y: 540 },
+      enterAt: 0,
+      durationInFrames: totalFrames,
+      animation: {
+        enter: { type: "slide_in", durationInFrames: 12 },
+      },
+    });
+  }
+
+  // Stagger remaining elements alongside character
+  const fgMatches = matches.filter((m) => m.asset.category !== "character");
+  const fgCount = Math.min(fgMatches.length, MAX_FG);
+  const subtitleBuffer = 15;
+  const availableFrames = totalFrames - subtitleBuffer;
+  const targetSlice = 3 * fps;
+  const sliceDuration =
+    fgCount > 0
+      ? Math.min(targetSlice, Math.floor(availableFrames / fgCount))
+      : 0;
+
+  const usedIds = new Set<string>();
+  let fgIndex = 0;
+  for (const match of fgMatches) {
+    if (fgIndex >= fgCount) break;
+    if (usedIds.has(match.asset.id)) continue;
+    usedIds.add(match.asset.id);
+
+    const enterAt = fgIndex * sliceDuration;
+    const el = makeLottieElement(match.asset, enterAt, layout, sliceDuration);
+    // Position elements on the right side (character is on left)
+    el.position = { x: 1200, y: 450 + fgIndex * 120 };
+
+    const enterOverride = overrides?.elementEnter?.[fgIndex];
+    if (enterOverride) el.animation.enter.type = enterOverride;
+
+    elements.push(el);
+    fgIndex++;
+  }
+}
+
+// ── Element Factories ──
+
+function makeBgElement(
+  asset: AssetEntry,
+  totalFrames: number
+): ComposedElement {
+  return {
+    component: "LottieOverlay",
+    props: {
+      src: `animations/${asset.file}`,
+      loop: true,
+      opacity: 0.25,
+      blendMode: "screen",
+      cover: true,
+    },
+    position: { x: 960, y: 540 },
+    enterAt: 0,
+    durationInFrames: totalFrames,
+    animation: {
+      enter: { type: "fade_in", durationInFrames: 15 },
     },
   };
 }
@@ -341,43 +465,30 @@ function makeOutroElement(section: ScriptSection): ComposedElement {
 function makeLottieElement(
   asset: AssetEntry,
   enterAt: number,
-  layout: LayoutType
+  layout: LayoutType,
+  durationInFrames?: number
 ): ComposedElement {
-  const isOverlay = asset.category === "decoration" || asset.category === "effect";
-  const component = isOverlay ? "LottieOverlay" : "LottieElement";
-  const motion = RECOMMENDED_MOTION[isOverlay ? "LottieElement" : "LottieElement"];
-
   return {
-    component,
+    component: "LottieElement",
     props: {
       src: `animations/${asset.file}`,
-      loop: asset.category !== "effect",
-      speed: 1,
+      loop: false,
+      fitDurationInFrames: durationInFrames,
     },
     position: { x: 960, y: 540 },
     enterAt,
+    ...(durationInFrames ? { durationInFrames } : {}),
     animation: {
       enter: {
-        type: motion.enter,
+        type: "scale_in",
         durationInFrames: 12,
+      },
+      exit: {
+        type: "fade_out",
+        durationInFrames: 9,
       },
     },
   };
-}
-
-// ── Text Extraction Helpers ──
-
-function extractTitle(narration: string): string {
-  // Take a short meaningful phrase from the narration
-  const cleaned = narration.replace(/[?？!！]/g, "");
-  if (cleaned.length <= 20) return cleaned;
-  return cleaned.slice(0, 20) + "…";
-}
-
-function extractNumbers(narration: string): number[] {
-  const matches = narration.match(/(\d+(?:,\d+)*)/g);
-  if (!matches) return [];
-  return matches.map((m) => parseInt(m.replace(/,/g, ""), 10)).filter(Boolean);
 }
 
 // ── LLM-assisted Composer ──
@@ -418,7 +529,7 @@ export function generateAllLLMPrompts(
     );
     // Use the rule-based default for tracking prev transition
     prevTransition =
-      selectTransition(section.type, prevTransition) ?? null;
+      selectTransition(section.type, prevTransition, section.narration) ?? null;
     return prompt;
   });
 }

@@ -30,7 +30,7 @@ const ColorWipePresentation: React.FC<
 
   const overlayStyle = useMemo((): React.CSSProperties => {
     const barWidth = 30;
-    const position = presentationProgress * (100 + barWidth) - barWidth;
+    const position = presentationProgress * (100 + barWidth * 2) - barWidth;
     return {
       position: "absolute",
       top: 0,

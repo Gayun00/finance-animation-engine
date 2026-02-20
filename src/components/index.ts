@@ -13,4 +13,7 @@ export { LottieElement } from "./LottieElement";
 export { LottieOverlay } from "./LottieOverlay";
 export { LottieShowcase } from "./LottieShowcase";
 export { Subtitle } from "./Subtitle";
+export { FloatingParticles } from "./FloatingParticles";
+export { GeometricDecor } from "./GeometricDecor";
+export { GradientOrb } from "./GradientOrb";
 export { COMPONENT_REGISTRY } from "./registry";

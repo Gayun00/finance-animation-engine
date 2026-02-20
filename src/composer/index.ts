@@ -45,4 +45,12 @@ export {
 } from "./composer";
 export type { ComposeOptions } from "./composer";
 
+export {
+  composeSectionWithLLM,
+  composeSequenceWithLLM,
+} from "./llm-compose";
+
 export { FEW_SHOT_EXAMPLES } from "./few-shot-examples";
+
+export { toSceneSequence } from "./to-scene-sequence";
+export type { ToSequenceOptions } from "./to-scene-sequence";

@@ -22,7 +22,7 @@ export const sampleSequence: SceneSequence = {
           id: "title-coins",
           component: "LottieElement",
           props: {
-            src: "animations/Coins drop.json",
+            src: "animations/element/Coins drop.json",
             loop: true,
             speed: 2,
             style: { width: 800, height: 800 },
@@ -67,7 +67,7 @@ export const sampleSequence: SceneSequence = {
           id: "showcase-coin",
           component: "LottieShowcase",
           props: {
-            src: "animations/Fake 3D vector coin.json",
+            src: "animations/element/Fake 3D vector coin.json",
             loop: true,
             speed: 0.8,
             bigSize: 550,
@@ -83,7 +83,7 @@ export const sampleSequence: SceneSequence = {
           id: "showcase-money",
           component: "LottieShowcase",
           props: {
-            src: "animations/Money.json",
+            src: "animations/element/Money.json",
             loop: true,
             speed: 1,
             bigSize: 550,
@@ -100,7 +100,7 @@ export const sampleSequence: SceneSequence = {
           id: "showcase-transfer",
           component: "LottieShowcase",
           props: {
-            src: "animations/Money Transfer.json",
+            src: "animations/element/Money Transfer.json",
             loop: true,
             speed: 1,
             bigSize: 550,
@@ -142,7 +142,7 @@ export const sampleSequence: SceneSequence = {
           id: "chart-growth-center",
           component: "LottieElement",
           props: {
-            src: "animations/Growth Chart.json",
+            src: "animations/element/Growth Chart.json",
             loop: true,
             speed: 0.7,
             style: { width: 1440, height: 810 },
@@ -160,7 +160,7 @@ export const sampleSequence: SceneSequence = {
           id: "chart-money-right",
           component: "LottieElement",
           props: {
-            src: "animations/Money.json",
+            src: "animations/element/Money.json",
             loop: true,
             speed: 1,
             style: { width: 320, height: 320 },
@@ -203,7 +203,7 @@ export const sampleSequence: SceneSequence = {
           id: "insight-idea-center",
           component: "LottieElement",
           props: {
-            src: "animations/Conversation Two Friend & Get Idea.json",
+            src: "animations/character/Conversation Two Friend & Get Idea.json",
             loop: true,
             speed: 0.8,
             style: { width: 700, height: 700 },
@@ -246,7 +246,7 @@ export const sampleSequence: SceneSequence = {
           id: "end-confetti",
           component: "LottieElement",
           props: {
-            src: "animations/confetti.json",
+            src: "animations/effect/confetti.json",
             loop: false,
             speed: 1,
             style: { width: 900, height: 900 },

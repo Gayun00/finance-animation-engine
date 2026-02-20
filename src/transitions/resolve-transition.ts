@@ -7,6 +7,7 @@ import { fade } from "@remotion/transitions/fade";
 import { wipe } from "@remotion/transitions/wipe";
 import { colorWipe } from "./ColorWipePresentation";
 import { circleShrink } from "./CircleShrinkPresentation";
+import { circleWipe } from "./CircleWipePresentation";
 import { zoomIn, zoomOut } from "./ZoomPresentation";
 import { slideUp } from "./SlideUpPresentation";
 import { crossDissolve } from "./CrossDissolvePresentation";
@@ -52,6 +53,11 @@ export function resolveTransition(
     case "circle_shrink":
       return {
         presentation: circleShrink() as unknown as TransitionPresentation<Record<string, unknown>>,
+        timing: linearTiming({ durationInFrames }),
+      };
+    case "circle_wipe":
+      return {
+        presentation: circleWipe() as unknown as TransitionPresentation<Record<string, unknown>>,
         timing: linearTiming({ durationInFrames }),
       };
     case "zoom_in":

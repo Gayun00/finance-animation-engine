@@ -1,10 +1,10 @@
 import type { SectionType, LayoutType } from "./types";
-import type { TransitionType } from "../types";
+import type { TransitionType, CameraMotionConfig } from "../types";
 
 // ── Transition Selection Rules ──
 
 export const TRANSITION_DEFAULTS: Record<SectionType, TransitionType | null> = {
-  intro: null,
+  intro: "slide_up",
   explain: "color_wipe",
   chart: "zoom_in",
   comparison: "slide_up",
@@ -20,18 +20,28 @@ export const COLOR_WIPE_COLORS: Record<string, string> = {
   default: "#4FC3F7",
 };
 
+// Narration-based transition overrides
+const UPWARD_MOTION = /로켓|발사|launch|rocket|상승|올라/;
+
 /**
  * Pick a transition that doesn't repeat the previous one.
+ * Narration content can override the default (e.g. upward motion → slide_up).
  */
 export function selectTransition(
   sectionType: SectionType,
-  prevTransition: TransitionType | null
+  prevTransition: TransitionType | null,
+  narration?: string
 ): TransitionType | null {
-  const defaultType = TRANSITION_DEFAULTS[sectionType];
-  if (defaultType === null) return null;
+  let chosen = TRANSITION_DEFAULTS[sectionType];
+  if (chosen === null) return null;
+
+  // Content-aware override
+  if (narration && UPWARD_MOTION.test(narration)) {
+    chosen = "slide_up";
+  }
 
   // Rule: don't repeat the same transition consecutively
-  if (defaultType === prevTransition) {
+  if (chosen === prevTransition) {
     const fallbacks: TransitionType[] = [
       "color_wipe",
       "wipe_left",
@@ -39,11 +49,12 @@ export function selectTransition(
       "zoom_in",
       "slide_up",
       "cross_dissolve",
+      "circle_wipe",
     ];
     return fallbacks.find((t) => t !== prevTransition) ?? "fade";
   }
 
-  return defaultType;
+  return chosen;
 }
 
 // ── Layout Selection Rules ──
@@ -128,6 +139,35 @@ export function suggestElementCount(durationSec: number): {
   return { min: 3, max: 5 };
 }
 
+// ── Camera Motion Rules ──
+
+const CAMERA_DEFAULTS: Record<SectionType, CameraMotionConfig> = {
+  intro: { type: "ken_burns", endScale: 1.12, panX: -30, panY: 10 },
+  explain: { type: "drift", panX: 25 },
+  chart: { type: "zoom_focus", endScale: 1.1 },
+  comparison: { type: "drift", panX: -25 },
+  callout: { type: "zoom_focus", endScale: 1.15 },
+  outro: { type: "ken_burns", endScale: 0.92, panX: 20, panY: -10 },
+};
+
+/**
+ * Select camera motion for a section.
+ * Alternates drift direction on consecutive explain/comparison sections.
+ */
+export function selectCameraMotion(
+  sectionType: SectionType,
+  sceneIndex: number
+): CameraMotionConfig {
+  const base = { ...CAMERA_DEFAULTS[sectionType] };
+
+  // Alternate drift direction for even/odd scenes
+  if (base.type === "drift" && sceneIndex % 2 === 0) {
+    base.panX = -(base.panX ?? 25);
+  }
+
+  return base;
+}
+
 // ── Motion Combination Recommendations ──
 
 export const RECOMMENDED_MOTION: Record<
@@ -147,5 +187,8 @@ export const RECOMMENDED_MOTION: Record<
   EndCard: { enter: "scale_in", during: "none", exit: "fade_out" },
   FloatingIcons: { enter: "fade_in", during: "float", exit: "fade_out" },
   LottieElement: { enter: "scale_in", during: "none", exit: "fade_out" },
+  FloatingParticles: { enter: "fade_in", during: "float", exit: "fade_out" },
+  GeometricDecor: { enter: "fade_in", during: "none", exit: "fade_out" },
+  GradientOrb: { enter: "fade_in", during: "pulse", exit: "fade_out" },
   Subtitle: { enter: "fade_in", during: "none", exit: "fade_out" },
 };
