@@ -78,7 +78,7 @@ export interface CameraMotionConfig {
 // ── Parallax ──
 export interface ParallaxConfig {
   speed: number; // 0.3 = slow bg, 1 = normal, 1.5 = fast foreground
-  direction?: "horizontal" | "vertical" | "both"; // default: horizontal
+  direction?: "horizontal" | "vertical" | "both" | "zoom"; // default: horizontal
   range?: number; // max pixel movement (default: 120)
 }
 

@@ -75,10 +75,14 @@ export function getAssetById(id: string): AssetEntry | undefined {
   return ASSET_CATALOG.find((a) => a.id === id);
 }
 
-/** Scan the animations directory and replace the catalog. Returns the new count. */
+/** Scan the animations directory and ADD only new (unregistered) files. Returns number of newly added. */
 export async function refreshCatalog(): Promise<number> {
   const res = await fetch("/api/assets/scan");
   const scanned: AssetEntry[] = await res.json();
-  ASSET_CATALOG = scanned;
-  return scanned.length;
+  const existingFiles = new Set(ASSET_CATALOG.map((a) => a.file));
+  const newEntries = scanned.filter((a) => !existingFiles.has(a.file));
+  if (newEntries.length > 0) {
+    ASSET_CATALOG = [...ASSET_CATALOG, ...newEntries];
+  }
+  return newEntries.length;
 }

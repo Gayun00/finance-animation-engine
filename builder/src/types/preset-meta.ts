@@ -53,7 +53,7 @@ export interface SlotDefinition {
   defaultProps?: Record<string, unknown>;
   parallax?: {
     speed: number;
-    direction?: "horizontal" | "vertical" | "both";
+    direction?: "horizontal" | "vertical" | "both" | "zoom";
     range?: number;
   };
 }

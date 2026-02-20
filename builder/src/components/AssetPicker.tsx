@@ -166,7 +166,7 @@ export const AssetPicker: React.FC = () => {
               opacity: refreshing ? 0.5 : 1,
             }}
           >
-            {refreshing ? "스캔 중..." : "새로고침"}
+            {refreshing ? "스캔 중..." : "새 에셋 추가"}
           </button>
         </div>
         {Object.entries(grouped).map(([cat, assets]) => (
