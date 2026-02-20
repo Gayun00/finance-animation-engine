@@ -25,7 +25,13 @@ export const ElementRenderer: React.FC<ElementRendererProps> = ({
 
   return (
     <Sequence from={startFrame} durationInFrames={duration} name={element.id}>
-      <AnimationWrapper animation={element.animation} style={element.containerStyle} totalFrames={duration}>
+      <AnimationWrapper
+        animation={element.animation}
+        parallax={element.parallax}
+        style={element.containerStyle}
+        totalFrames={duration}
+        sceneDuration={sceneDuration}
+      >
         <Component {...element.props} />
       </AnimationWrapper>
     </Sequence>

@@ -74,6 +74,13 @@ export interface CameraMotionConfig {
   easing?: EasingName;
 }
 
+// ── Parallax ──
+export interface ParallaxConfig {
+  speed: number; // 0.3 = slow bg, 1 = normal, 1.5 = fast foreground
+  direction?: "horizontal" | "vertical" | "both"; // default: horizontal
+  range?: number; // max pixel movement (default: 120)
+}
+
 // ── Scene Element ──
 export interface SceneElement {
   id: string;
@@ -83,6 +90,7 @@ export interface SceneElement {
   startFrame?: number;
   durationInFrames?: number;
   containerStyle?: React.CSSProperties;
+  parallax?: ParallaxConfig;
 }
 
 // ── Scene ──

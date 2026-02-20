@@ -2,25 +2,51 @@ import React from "react";
 import { useCurrentFrame, interpolate } from "remotion";
 import { EASINGS } from "./easings";
 import { PRESETS } from "./presets";
-import type { AnimationConfig } from "../types";
+import type { AnimationConfig, ParallaxConfig } from "../types";
 
 interface AnimationWrapperProps {
   animation?: AnimationConfig;
+  parallax?: ParallaxConfig;
   children: React.ReactNode;
   style?: React.CSSProperties;
   totalFrames?: number; // needed for exit animation timing
+  sceneDuration?: number; // total scene frames for parallax
+}
+
+function useParallax(
+  frame: number,
+  parallax: ParallaxConfig | undefined,
+  sceneDuration: number
+): { px: number; py: number } {
+  if (!parallax) return { px: 0, py: 0 };
+  const { speed, direction = "horizontal", range = 120 } = parallax;
+  const progress = interpolate(frame, [0, sceneDuration], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const offset = (speed - 1) * range * progress;
+  const horiz = direction === "horizontal" || direction === "both";
+  const vert = direction === "vertical" || direction === "both";
+  return { px: horiz ? -offset : 0, py: vert ? -offset * 0.6 : 0 };
 }
 
 export const AnimationWrapper: React.FC<AnimationWrapperProps> = ({
   animation,
+  parallax,
   children,
   style,
   totalFrames,
+  sceneDuration = totalFrames ?? 300,
 }) => {
   const frame = useCurrentFrame();
+  const { px, py } = useParallax(frame, parallax, sceneDuration);
 
   if (!animation || animation.preset === "none") {
-    return <div style={style}>{children}</div>;
+    const pTransform =
+      px !== 0 || py !== 0
+        ? `translate(${px}px, ${py}px)`
+        : undefined;
+    return <div style={{ ...style, transform: pTransform }}>{children}</div>;
   }
 
   // ── Enter animation ──
@@ -96,6 +122,7 @@ export const AnimationWrapper: React.FC<AnimationWrapperProps> = ({
     );
     tx += exitTx;
   }
+  tx += px; // parallax horizontal
   if (tx !== 0) {
     transforms.push(`translateX(${tx}px)`);
   }
@@ -117,6 +144,7 @@ export const AnimationWrapper: React.FC<AnimationWrapperProps> = ({
     );
     ty += exitTy;
   }
+  ty += py; // parallax vertical
   if (ty !== 0) {
     transforms.push(`translateY(${ty}px)`);
   }

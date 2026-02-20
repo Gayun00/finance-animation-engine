@@ -17,6 +17,8 @@ import { LottieShowcase } from "./LottieShowcase";
 import { FloatingParticles } from "./FloatingParticles";
 import { GeometricDecor } from "./GeometricDecor";
 import { GradientOrb } from "./GradientOrb";
+import { SceneLabel } from "./SceneLabel";
+import { StaticImage } from "./StaticImage";
 
 export const COMPONENT_REGISTRY: Record<string, React.ComponentType<any>> = {
   TitleCard,
@@ -37,4 +39,6 @@ export const COMPONENT_REGISTRY: Record<string, React.ComponentType<any>> = {
   FloatingParticles,
   GeometricDecor,
   GradientOrb,
+  SceneLabel,
+  StaticImage,
 };

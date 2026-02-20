@@ -27,4 +27,11 @@ export const COLORS = {
     grid: "rgba(255,255,255,0.08)",
     axis: "rgba(255,255,255,0.3)",
   },
+  scene: {
+    deepNavy: "#0B0B2B",
+    deepPurple: "#1B0B3B",
+    warmOrange: "#F5A623",
+    darkBlue: "#0A3D7A",
+    darkTeal: "#0F1923",
+  },
 } as const;
