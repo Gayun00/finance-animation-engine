@@ -43,6 +43,12 @@ export let ASSET_CATALOG: AssetEntry[] = [
   { id: "constructions_houses", file: "element/Constructions Houses.json", name: "건설 주택", tags: ["건설","주택","부동산","건물"], category: "element" },
   { id: "modern_buildings", file: "element/Modern Buildings.json", name: "현대 빌딩", tags: ["빌딩","건물","도시","부동산"], category: "element" },
 
+  // Static images (buildings/shops for parallax)
+  { id: "cake_shop", file: "element/Cake shop.webp", name: "케이크 가게", tags: ["가게","건물","상점"], category: "element" },
+  { id: "flower_shop", file: "element/Flower Shop.webp", name: "꽃집", tags: ["꽃집","가게","건물"], category: "element" },
+  { id: "office_center", file: "element/Office Center.webp", name: "오피스 센터", tags: ["오피스","건물","빌딩"], category: "element" },
+  { id: "the_mall", file: "element/The Mall.webp", name: "쇼핑몰", tags: ["쇼핑몰","건물","상점"], category: "element" },
+
   // Characters
   { id: "bearded_man_walking", file: "character/Bearded Man Walking.json", name: "걷는 남자", tags: ["사람","걷기","남자"], category: "character" },
   { id: "girl_skateboard", file: "character/girl skating on skateboard.json", name: "스케이트보드 소녀", tags: ["소녀","스케이트보드"], category: "character" },

@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, Sequence } from "remotion";
 import { SceneBackground } from "./SceneBackground";
 import { ElementRenderer } from "./ElementRenderer";
+import { ParallaxScene } from "./ParallaxScene";
 import { LottieOverlay } from "../components/LottieOverlay";
 import { CameraMotion } from "../animations/CameraMotion";
 import type { Scene } from "../types";
@@ -38,7 +39,27 @@ export const SceneRenderer: React.FC<SceneRendererProps> = ({ scene }) => {
     );
   };
 
-  // Subtitle stays fixed; everything else gets camera motion
+  // ── Parallax scene (depth preset) ──
+  if (scene.parallaxLayers && scene.parallaxLayers.length > 0) {
+    const subtitles = scene.elements.filter((el) => el.component === "Subtitle");
+    const nonSubtitles = scene.elements.filter((el) => el.component !== "Subtitle");
+
+    return (
+      <AbsoluteFill>
+        <SceneBackground config={scene.background} />
+        <ParallaxScene
+          layers={scene.parallaxLayers}
+          durationInFrames={scene.durationInFrames}
+        />
+        {/* Non-parallax elements (popup, fixed decorations) */}
+        {nonSubtitles.map(renderElement)}
+        {/* Subtitle on top */}
+        {subtitles.map(renderElement)}
+      </AbsoluteFill>
+    );
+  }
+
+  // ── Normal scene ──
   const motionElements = scene.elements.filter((el) => el.component !== "Subtitle");
   const fixedElements = scene.elements.filter((el) => el.component === "Subtitle");
 

@@ -1,6 +1,6 @@
-import type { PresetMetadata, TransitionType } from "../types/preset-meta";
+import type { PresetMetadata, TransitionType, SlotDefinition } from "../types/preset-meta";
 import { getPresetById } from "../data/preset-registry";
-import { getAssetById } from "../data/asset-catalog";
+import { getAssetById, type AssetEntry } from "../data/asset-catalog";
 
 // Minimal output types matching the engine's SceneSequence
 export interface SceneSequenceOutput {
@@ -12,6 +12,12 @@ export interface SceneSequenceOutput {
   scenes: SceneOutput[];
 }
 
+interface ParallaxLayerOutput {
+  speed: number;
+  splitDirection: "none" | "horizontal";
+  elements: ElementOutput[];
+}
+
 interface SceneOutput {
   id: string;
   title: string;
@@ -20,6 +26,7 @@ interface SceneOutput {
   transition?: Record<string, unknown>;
   elements: ElementOutput[];
   cameraMotion?: Record<string, unknown>;
+  parallaxLayers?: ParallaxLayerOutput[];
 }
 
 interface ElementOutput {
@@ -31,6 +38,7 @@ interface ElementOutput {
   durationInFrames?: number;
   containerStyle?: Record<string, unknown>;
   parallax?: Record<string, unknown>;
+  splitSide?: "left" | "right";
 }
 
 export interface SceneConfig {
@@ -44,6 +52,43 @@ export interface SceneConfig {
   transitionDuration: number;
   transitionColor?: string;
   labelOverrides?: Record<string, string>; // for timeline/split labels
+}
+
+// Detect static image vs Lottie by file extension
+function isStaticImageFile(file: string): boolean {
+  return /\.(webp|png|jpg|jpeg|svg|gif)$/i.test(file);
+}
+
+// Build element from slot + asset, auto-detecting component type
+function buildElementFromSlot(
+  sceneId: string,
+  slot: SlotDefinition,
+  asset: AssetEntry
+): ElementOutput {
+  const srcPath = `animations/${asset.file}`;
+  const isImage = isStaticImageFile(asset.file);
+
+  const component = isImage ? "StaticImage" : slot.component;
+  const props = isImage
+    ? { src: srcPath, width: "100%", height: "100%", objectFit: "cover" }
+    : { ...slot.defaultProps, src: srcPath };
+
+  return {
+    id: `${sceneId}-${slot.id}`,
+    component,
+    props,
+    containerStyle: slot.position.containerStyle as Record<string, unknown>,
+    startFrame: slot.defaultStartFrame,
+    durationInFrames: slot.defaultDurationInFrames,
+    animation: {
+      preset: slot.defaultAnimation.preset,
+      duration: slot.defaultAnimation.duration,
+      easing: slot.defaultAnimation.easing,
+      exitPreset: slot.defaultAnimation.exitPreset,
+      exitDuration: slot.defaultAnimation.exitDuration,
+    },
+    splitSide: slot.splitSide,
+  };
 }
 
 // Accumulate preset: generate wave positions
@@ -93,6 +138,52 @@ function generateAccumulateElements(
   return elements;
 }
 
+// Depth preset: generate parallax layers
+function generateDepthScene(
+  config: SceneConfig,
+  preset: PresetMetadata
+): { parallaxLayers: ParallaxLayerOutput[]; elements: ElementOutput[] } {
+  const pConfig = preset.parallaxConfig!;
+  const elements: ElementOutput[] = []; // non-parallax elements (popup, fixed)
+  const parallaxLayers: ParallaxLayerOutput[] = [];
+
+  // Build parallax layers
+  for (const layerConfig of pConfig.layers) {
+    const layerElements: ElementOutput[] = [];
+
+    for (const slot of preset.slots) {
+      // Match slot to layer by prefix
+      if (!slot.parallaxLayer || slot.parallaxLayer !== layerConfig.slotPrefix) continue;
+
+      const assetId = config.slotAssignments[slot.id];
+      if (!assetId) continue;
+      const asset = getAssetById(assetId);
+      if (!asset) continue;
+
+      layerElements.push(buildElementFromSlot(config.id, slot, asset));
+    }
+
+    parallaxLayers.push({
+      speed: layerConfig.speed,
+      splitDirection: layerConfig.splitDirection,
+      elements: layerElements,
+    });
+  }
+
+  // Non-parallax slots (e.g., popup) go into regular elements
+  for (const slot of preset.slots) {
+    if (slot.parallaxLayer) continue; // already handled above
+    const assetId = config.slotAssignments[slot.id];
+    if (!assetId) continue;
+    const asset = getAssetById(assetId);
+    if (!asset) continue;
+
+    elements.push(buildElementFromSlot(config.id, slot, asset));
+  }
+
+  return { parallaxLayers, elements };
+}
+
 export function generateSceneSequence(
   scenes: SceneConfig[],
   meta: { id: string; title: string; fps: number; width: number; height: number }
@@ -123,7 +214,14 @@ function generateScene(config: SceneConfig, index: number): SceneOutput {
   });
 
   // 2. Slot-assigned elements
-  if (config.presetId === "accumulate") {
+  let parallaxLayers: ParallaxLayerOutput[] | undefined;
+
+  if (preset.parallaxConfig) {
+    // Depth-style preset: generate parallax layers
+    const depth = generateDepthScene(config, preset);
+    parallaxLayers = depth.parallaxLayers;
+    elements.push(...depth.elements);
+  } else if (config.presetId === "accumulate") {
     const assetId = config.slotAssignments["asset"];
     const asset = assetId ? getAssetById(assetId) : null;
     if (asset) {
@@ -136,29 +234,7 @@ function generateScene(config: SceneConfig, index: number): SceneOutput {
       const asset = getAssetById(assetId);
       if (!asset) continue;
 
-      const srcPath = slot.component === "StaticImage"
-        ? asset.file
-        : `animations/${asset.file}`;
-
-      elements.push({
-        id: `${config.id}-${slot.id}`,
-        component: slot.component,
-        props: {
-          ...slot.defaultProps,
-          src: srcPath,
-        },
-        containerStyle: slot.position.containerStyle as Record<string, unknown>,
-        startFrame: slot.defaultStartFrame,
-        durationInFrames: slot.defaultDurationInFrames,
-        animation: {
-          preset: slot.defaultAnimation.preset,
-          duration: slot.defaultAnimation.duration,
-          easing: slot.defaultAnimation.easing,
-          exitPreset: slot.defaultAnimation.exitPreset,
-          exitDuration: slot.defaultAnimation.exitDuration,
-        },
-        parallax: slot.parallax ? { ...slot.parallax } : undefined,
-      });
+      elements.push(buildElementFromSlot(config.id, slot, asset));
     }
   }
 
@@ -181,6 +257,10 @@ function generateScene(config: SceneConfig, index: number): SceneOutput {
     background: preset.defaultBackground as unknown as Record<string, unknown>,
     elements,
   };
+
+  if (parallaxLayers && parallaxLayers.length > 0) {
+    scene.parallaxLayers = parallaxLayers;
+  }
 
   if (index > 0 && config.transitionType !== "none") {
     scene.transition = {

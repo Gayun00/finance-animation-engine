@@ -56,6 +56,10 @@ export interface SlotDefinition {
     direction?: "horizontal" | "vertical" | "both" | "zoom";
     range?: number;
   };
+  /** For parallax foreground split — which side this slot pushes toward */
+  splitSide?: "left" | "right";
+  /** Which parallax layer this slot belongs to (e.g., "bg", "mid", "fg") */
+  parallaxLayer?: string;
 }
 
 /** Fixed decorative element (particles, orbs, etc.) */
@@ -64,6 +68,14 @@ export interface FixedElement {
   props: Record<string, unknown>;
   containerStyle?: React.CSSProperties;
   animation?: { preset: AnimationPreset; duration: number };
+}
+
+/** Parallax layer configuration for depth presets */
+export interface ParallaxLayerConfig {
+  /** Prefix to match slot IDs (e.g., "bg" matches "bg-1", "bg-2") */
+  slotPrefix: string;
+  speed: number;
+  splitDirection: "none" | "horizontal";
 }
 
 /** Metadata for one of the 8 scene presets */
@@ -79,4 +91,9 @@ export interface PresetMetadata {
   defaultTransition?: { type: TransitionType; duration?: number; color?: string };
   fixedElements: FixedElement[];
   slots: SlotDefinition[];
+  /** If set, this preset uses parallax layer rendering */
+  parallaxConfig?: {
+    maxScale?: number;
+    layers: ParallaxLayerConfig[];
+  };
 }

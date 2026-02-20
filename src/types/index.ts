@@ -82,6 +82,13 @@ export interface ParallaxConfig {
   range?: number; // max pixel movement (default: 120)
 }
 
+// ── Parallax Layer (for depth scenes) ──
+export interface ParallaxLayerData {
+  speed: number;
+  splitDirection: "none" | "horizontal";
+  elements: SceneElement[];
+}
+
 // ── Scene Element ──
 export interface SceneElement {
   id: string;
@@ -92,6 +99,7 @@ export interface SceneElement {
   durationInFrames?: number;
   containerStyle?: React.CSSProperties;
   parallax?: ParallaxConfig;
+  splitSide?: "left" | "right"; // for parallax foreground split
 }
 
 // ── Scene ──
@@ -103,6 +111,7 @@ export interface Scene {
   transition?: TransitionConfig;
   elements: SceneElement[];
   cameraMotion?: CameraMotionConfig;
+  parallaxLayers?: ParallaxLayerData[];
 }
 
 // ── Top-level Sequence ──

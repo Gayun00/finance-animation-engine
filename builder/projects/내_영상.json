@@ -8,7 +8,7 @@
       "presetId": "hero",
       "title": "Hero 장면",
       "durationInFrames": 120,
-      "subtitle": "짠! 웅장하게 시작하는 장면입니다.",
+      "subtitle": "셋터에 들어가는 웅장한 장면",
       "slotAssignments": {
         "hero": "earth"
       },
@@ -20,56 +20,54 @@
       "id": "scene-2",
       "presetId": "walk",
       "title": "Walk 장면",
-      "durationInFrames": 150,
-      "subtitle": "이건 걸으면서 하나씩 3개 요소를 설명하는 장면이에요",
+      "durationInFrames": 270,
+      "subtitle": "걸으면서 3개 요소 보여주기 순차적으로",
       "slotAssignments": {
         "bg": "bg_lines",
         "character": "bearded_man_walking",
         "pass-1": "tesla",
-        "pass-2": "gemini",
-        "pass-3": "adidas_shoes"
+        "pass-2": "adidas_shoes",
+        "pass-3": "company_culture"
       },
-      "transitionType": "circle_wipe",
+      "transitionType": "wipe_left",
       "transitionDuration": 15
     },
     {
       "id": "scene-3",
+      "presetId": "data",
+      "title": "Data 장면",
+      "durationInFrames": 120,
+      "subtitle": "차트차트",
+      "slotAssignments": {
+        "chart": "growth_chart",
+        "accent": "growth_arrow"
+      },
+      "transitionType": "color_wipe",
+      "transitionDuration": 15
+    },
+    {
+      "id": "scene-4",
       "presetId": "grid",
       "title": "Grid 장면",
-      "durationInFrames": 150,
-      "subtitle": "이건 여러 요소들을 나열해 전체적으로 보여주거나, 같은 요소를 반복적으로 패턴화해 보여주는 거에요",
+      "durationInFrames": 210,
+      "subtitle": "나열",
       "slotAssignments": {
-        "grid-1": "tesla",
+        "grid-1": "gemini",
         "grid-2": "gemini",
         "grid-3": "gemini",
         "grid-4": "gemini",
         "grid-5": "gemini",
         "grid-6": "gemini"
       },
-      "transitionType": "color_wipe",
-      "transitionDuration": 18,
-      "transitionColor": "#F5A623"
+      "transitionType": "cross_dissolve",
+      "transitionDuration": 18
     },
     {
-      "id": "scene-4",
-      "presetId": "split",
-      "title": "Split 장면",
-      "durationInFrames": 120,
-      "subtitle": "이건 3개를 비교하도록 보여주는 장면!",
-      "slotAssignments": {
-        "panel-1": "planet",
-        "panel-2": "orbit_planet",
-        "panel-3": "coin_spin"
-      },
-      "transitionType": "wipe_right",
-      "transitionDuration": 15
-    },
-    {
-      "id": "scene-5",
+      "id": "scene-6",
       "presetId": "hero",
       "title": "Hero 장면",
       "durationInFrames": 210,
-      "subtitle": "화려한 장면 넣기",
+      "subtitle": "ㅏㅏ",
       "slotAssignments": {
         "hero": "rocket_ufo"
       },
@@ -77,45 +75,19 @@
       "transitionDuration": 18
     },
     {
-      "id": "scene-6",
-      "presetId": "accumulate",
-      "title": "Accumulate 장면",
-      "durationInFrames": 240,
-      "subtitle": "반복에셋 늘어나는 장면",
-      "slotAssignments": {
-        "asset": "coin_spin"
-      },
-      "transitionType": "cross_dissolve",
-      "transitionDuration": 15
-    },
-    {
       "id": "scene-7",
       "presetId": "depth",
       "title": "Depth 장면",
-      "durationInFrames": 150,
-      "subtitle": "이건 패럴렉스 효과",
+      "durationInFrames": 270,
+      "subtitle": "ㅏㅏ",
       "slotAssignments": {
-        "bg-1": "modern_buildings",
-        "bg-2": "constructions_houses",
+        "bg-1": "bg_lines",
+        "bg-2": "shine_star",
         "mid-1": "constructions_houses",
         "mid-2": "modern_buildings",
-        "fg-1": "constructions_houses",
-        "fg-2": "modern_buildings",
-        "popup": "coins_drop"
-      },
-      "transitionType": "fade",
-      "transitionDuration": 15
-    },
-    {
-      "id": "scene-11",
-      "presetId": "timeline",
-      "title": "Timeline 장면",
-      "durationInFrames": 300,
-      "subtitle": "",
-      "slotAssignments": {
-        "point-1": "company_revenue",
-        "point-2": "growth_arrow",
-        "point-3": "financial_graph"
+        "fg-1": null,
+        "fg-2": null,
+        "popup": null
       },
       "transitionType": "fade",
       "transitionDuration": 15
