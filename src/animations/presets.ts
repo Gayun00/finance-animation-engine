@@ -70,6 +70,12 @@ export const PRESETS: Record<AnimationPreset, PresetConfig> = {
     circleClip: { from: 0, to: 75 },
     defaultDuration: 20,
   },
+  spring_up: {
+    opacity: { from: 0, to: 1 },
+    scale: { from: 0.6, to: 1 },
+    translateY: { from: 300, to: 0 },
+    defaultDuration: 30,
+  },
   none: {
     opacity: { from: 1, to: 1 },
     defaultDuration: 0,

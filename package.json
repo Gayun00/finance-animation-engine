@@ -6,7 +6,8 @@
     "studio": "remotion studio src/index.ts",
     "render": "remotion render src/index.ts FinanceVideo out/video.mp4",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "builder": "cd builder && pnpm dev"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

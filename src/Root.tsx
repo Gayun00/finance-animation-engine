@@ -4,6 +4,7 @@ import { FinanceVideo } from "./composition/FinanceVideo";
 import { sampleSequence } from "./data/sample-sequence";
 import { spaceEconomySequence } from "./data/space-economy-sequence";
 import { presetDemoSequence } from "./data/preset-demo-sequence";
+import { builderSequence } from "./data/builder-sequence";
 import { loadFonts } from "./fonts/load-fonts";
 import type { SceneSequence } from "./types";
 
@@ -56,6 +57,19 @@ export const Root: React.FC = () => {
           sequence: presetDemoSequence,
         }}
       />
+      {builderSequence.scenes.length > 0 && (
+        <Composition
+          id="BuilderOutput"
+          component={FinanceVideo as unknown as React.ComponentType<Record<string, unknown>>}
+          durationInFrames={calcTotalFrames(builderSequence)}
+          fps={builderSequence.fps}
+          width={builderSequence.width}
+          height={builderSequence.height}
+          defaultProps={{
+            sequence: builderSequence,
+          }}
+        />
+      )}
     </>
   );
 };

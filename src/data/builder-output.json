@@ -1,0 +1,1657 @@
+{
+  "id": "builder-output",
+  "title": "내 영상",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "scenes": [
+    {
+      "id": "scene-1",
+      "title": "Hero 장면",
+      "durationInFrames": 120,
+      "background": {
+        "type": "radial",
+        "colors": [
+          "#2A1050",
+          "#1B0B3B"
+        ]
+      },
+      "elements": [
+        {
+          "id": "scene-1-fixed-0",
+          "component": "GradientOrb",
+          "props": {
+            "color": "#7B4FFF",
+            "size": 500,
+            "x": 30,
+            "y": 50,
+            "opacity": 0.2,
+            "blur": 80,
+            "pulseSpeed": 0.8
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 25
+          }
+        },
+        {
+          "id": "scene-1-fixed-1",
+          "component": "GradientOrb",
+          "props": {
+            "color": "#4FC3F7",
+            "size": 400,
+            "x": 70,
+            "y": 45,
+            "opacity": 0.18,
+            "blur": 70,
+            "pulseSpeed": 1.2
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 25
+          }
+        },
+        {
+          "id": "scene-1-fixed-2",
+          "component": "FloatingParticles",
+          "props": {
+            "count": 18,
+            "color": "rgba(255,255,255,0.5)",
+            "size": 4,
+            "speed": 0.5,
+            "shape": "star",
+            "opacity": 0.12
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "inset": 0
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-1-hero",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 0.5,
+            "style": {
+              "width": 700,
+              "height": 700
+            },
+            "src": "animations/element/Earth.json"
+          },
+          "containerStyle": {
+            "display": "flex",
+            "justifyContent": "center",
+            "alignItems": "center",
+            "width": "100%",
+            "height": "100%"
+          },
+          "animation": {
+            "preset": "scale_in",
+            "duration": 24,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-1-subtitle",
+          "component": "Subtitle",
+          "props": {
+            "text": "짠! 웅장하게 시작하는 장면입니다."
+          },
+          "startFrame": 10,
+          "animation": {
+            "preset": "fade_in",
+            "duration": 15
+          }
+        }
+      ],
+      "cameraMotion": {
+        "type": "ken_burns",
+        "endScale": 1.08,
+        "panX": -15,
+        "panY": 5
+      }
+    },
+    {
+      "id": "scene-2",
+      "title": "Walk 장면",
+      "durationInFrames": 150,
+      "background": {
+        "type": "gradient",
+        "colors": [
+          "#1B2838",
+          "#0B0B2B"
+        ],
+        "angle": 180
+      },
+      "elements": [
+        {
+          "id": "scene-2-fixed-0",
+          "component": "FloatingParticles",
+          "props": {
+            "count": 12,
+            "color": "rgba(255,255,255,0.4)",
+            "size": 3,
+            "speed": 0.5,
+            "shape": "dot",
+            "opacity": 0.1
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "inset": 0
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-2-bg",
+          "component": "LottieOverlay",
+          "props": {
+            "loop": true,
+            "opacity": 0.3,
+            "blendMode": "screen",
+            "cover": true,
+            "src": "animations/background/Background Lines.json"
+          },
+          "containerStyle": {},
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-2-character",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 1,
+            "style": {
+              "width": 400,
+              "height": 400
+            },
+            "src": "animations/character/Bearded Man Walking.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "bottom": "15%",
+            "left": "8%"
+          },
+          "animation": {
+            "preset": "slide_right",
+            "duration": 18,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-2-pass-1",
+          "component": "LottieElement",
+          "props": {
+            "loop": false,
+            "speed": 5,
+            "style": {
+              "width": 350,
+              "height": 350
+            },
+            "src": "animations/element/Tesla Company.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "15%",
+            "left": "50%",
+            "transform": "translateX(-50%)"
+          },
+          "startFrame": 0,
+          "durationInFrames": 90,
+          "animation": {
+            "preset": "slide_left_far",
+            "duration": 20,
+            "easing": "kurzgesagt",
+            "exitPreset": "exit_left_far",
+            "exitDuration": 20
+          }
+        },
+        {
+          "id": "scene-2-pass-2",
+          "component": "LottieElement",
+          "props": {
+            "loop": false,
+            "speed": 1.33,
+            "style": {
+              "width": 400,
+              "height": 400
+            },
+            "src": "animations/element/Gemini Logo.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "17%",
+            "left": "50%",
+            "transform": "translateX(-50%)"
+          },
+          "startFrame": 90,
+          "durationInFrames": 90,
+          "animation": {
+            "preset": "slide_left_far",
+            "duration": 20,
+            "easing": "kurzgesagt",
+            "exitPreset": "exit_left_far",
+            "exitDuration": 20
+          }
+        },
+        {
+          "id": "scene-2-pass-3",
+          "component": "LottieElement",
+          "props": {
+            "loop": false,
+            "speed": 3.08,
+            "style": {
+              "width": 300,
+              "height": 300
+            },
+            "src": "animations/element/Adidas Shoes.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "19%",
+            "left": "50%",
+            "transform": "translateX(-50%)"
+          },
+          "startFrame": 180,
+          "durationInFrames": 90,
+          "animation": {
+            "preset": "slide_left_far",
+            "duration": 20,
+            "easing": "kurzgesagt",
+            "exitPreset": "exit_left_far",
+            "exitDuration": 20
+          }
+        },
+        {
+          "id": "scene-2-subtitle",
+          "component": "Subtitle",
+          "props": {
+            "text": "이건 걸으면서 하나씩 3개 요소를 설명하는 장면이에요"
+          },
+          "startFrame": 10,
+          "animation": {
+            "preset": "fade_in",
+            "duration": 15
+          }
+        }
+      ],
+      "transition": {
+        "type": "circle_wipe",
+        "duration": 15
+      }
+    },
+    {
+      "id": "scene-3",
+      "title": "Grid 장면",
+      "durationInFrames": 150,
+      "background": {
+        "type": "solid",
+        "color": "#F5A623"
+      },
+      "elements": [
+        {
+          "id": "scene-3-fixed-0",
+          "component": "FloatingParticles",
+          "props": {
+            "count": 8,
+            "color": "rgba(0,0,0,0.15)",
+            "size": 6,
+            "speed": 0.3,
+            "shape": "ring",
+            "opacity": 0.08
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "inset": 0
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-3-fixed-1",
+          "component": "SceneLabel",
+          "props": {
+            "text": "기업 분석",
+            "color": "#1B0B3B",
+            "position": "top-left"
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 12
+          }
+        },
+        {
+          "id": "scene-3-grid-1",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 0.8,
+            "style": {
+              "width": 220,
+              "height": 220
+            },
+            "src": "animations/element/Tesla Company.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "18%",
+            "left": "12%"
+          },
+          "startFrame": 15,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 15,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-3-grid-2",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 0.8,
+            "style": {
+              "width": 220,
+              "height": 220
+            },
+            "src": "animations/element/Gemini Logo.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "18%",
+            "left": "40%"
+          },
+          "startFrame": 25,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 15,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-3-grid-3",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 0.8,
+            "style": {
+              "width": 220,
+              "height": 220
+            },
+            "src": "animations/element/Gemini Logo.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "18%",
+            "left": "68%"
+          },
+          "startFrame": 35,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 15,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-3-grid-4",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 0.8,
+            "style": {
+              "width": 220,
+              "height": 220
+            },
+            "src": "animations/element/Gemini Logo.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "52%",
+            "left": "12%"
+          },
+          "startFrame": 45,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 15,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-3-grid-5",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 0.8,
+            "style": {
+              "width": 220,
+              "height": 220
+            },
+            "src": "animations/element/Gemini Logo.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "52%",
+            "left": "40%"
+          },
+          "startFrame": 55,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 15,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-3-grid-6",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 0.8,
+            "style": {
+              "width": 220,
+              "height": 220
+            },
+            "src": "animations/element/Gemini Logo.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "52%",
+            "left": "68%"
+          },
+          "startFrame": 65,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 15,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-3-subtitle",
+          "component": "Subtitle",
+          "props": {
+            "text": "이건 여러 요소들을 나열해 전체적으로 보여주거나, 같은 요소를 반복적으로 패턴화해 보여주는 거에요"
+          },
+          "startFrame": 10,
+          "animation": {
+            "preset": "fade_in",
+            "duration": 15
+          }
+        }
+      ],
+      "transition": {
+        "type": "color_wipe",
+        "duration": 18,
+        "color": "#F5A623"
+      }
+    },
+    {
+      "id": "scene-4",
+      "title": "Split 장면",
+      "durationInFrames": 120,
+      "background": {
+        "type": "solid",
+        "color": "#0B0B2B"
+      },
+      "elements": [
+        {
+          "id": "scene-4-fixed-0",
+          "component": "FloatingParticles",
+          "props": {
+            "count": 8,
+            "color": "rgba(255,255,255,0.3)",
+            "size": 3,
+            "speed": 0.3,
+            "shape": "dot",
+            "opacity": 0.08
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "inset": 0
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-4-fixed-1",
+          "component": "GradientOrb",
+          "props": {
+            "color": "#7B4FFF",
+            "size": 600,
+            "x": 16,
+            "y": 50,
+            "opacity": 0.08,
+            "blur": 100
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-4-fixed-2",
+          "component": "GradientOrb",
+          "props": {
+            "color": "#4FC3F7",
+            "size": 600,
+            "x": 50,
+            "y": 50,
+            "opacity": 0.08,
+            "blur": 100
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-4-fixed-3",
+          "component": "GradientOrb",
+          "props": {
+            "color": "#00D2A0",
+            "size": 600,
+            "x": 84,
+            "y": 50,
+            "opacity": 0.08,
+            "blur": 100
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-4-panel-1",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 1,
+            "style": {
+              "width": 280,
+              "height": 280
+            },
+            "src": "animations/element/Planet.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "22%",
+            "left": "5%",
+            "width": "30%",
+            "display": "flex",
+            "justifyContent": "center"
+          },
+          "startFrame": 15,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 18,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-4-panel-2",
+          "component": "LottieElement",
+          "props": {
+            "loop": false,
+            "speed": 0.8,
+            "style": {
+              "width": 280,
+              "height": 280
+            },
+            "src": "animations/element/Orbit Planet.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "22%",
+            "left": "35%",
+            "width": "30%",
+            "display": "flex",
+            "justifyContent": "center"
+          },
+          "startFrame": 35,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 18,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-4-panel-3",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 1,
+            "style": {
+              "width": 280,
+              "height": 280
+            },
+            "src": "animations/element/coin-spin.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "22%",
+            "left": "65%",
+            "width": "30%",
+            "display": "flex",
+            "justifyContent": "center"
+          },
+          "startFrame": 55,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 18,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-4-subtitle",
+          "component": "Subtitle",
+          "props": {
+            "text": "이건 3개를 비교하도록 보여주는 장면!"
+          },
+          "startFrame": 10,
+          "animation": {
+            "preset": "fade_in",
+            "duration": 15
+          }
+        }
+      ],
+      "transition": {
+        "type": "wipe_right",
+        "duration": 15
+      }
+    },
+    {
+      "id": "scene-5",
+      "title": "Hero 장면",
+      "durationInFrames": 210,
+      "background": {
+        "type": "radial",
+        "colors": [
+          "#2A1050",
+          "#1B0B3B"
+        ]
+      },
+      "elements": [
+        {
+          "id": "scene-5-fixed-0",
+          "component": "GradientOrb",
+          "props": {
+            "color": "#7B4FFF",
+            "size": 500,
+            "x": 30,
+            "y": 50,
+            "opacity": 0.2,
+            "blur": 80,
+            "pulseSpeed": 0.8
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 25
+          }
+        },
+        {
+          "id": "scene-5-fixed-1",
+          "component": "GradientOrb",
+          "props": {
+            "color": "#4FC3F7",
+            "size": 400,
+            "x": 70,
+            "y": 45,
+            "opacity": 0.18,
+            "blur": 70,
+            "pulseSpeed": 1.2
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 25
+          }
+        },
+        {
+          "id": "scene-5-fixed-2",
+          "component": "FloatingParticles",
+          "props": {
+            "count": 18,
+            "color": "rgba(255,255,255,0.5)",
+            "size": 4,
+            "speed": 0.5,
+            "shape": "star",
+            "opacity": 0.12
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "inset": 0
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-5-hero",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 0.5,
+            "style": {
+              "width": 700,
+              "height": 700
+            },
+            "src": "animations/element/Rocket in space with the UFO.json"
+          },
+          "containerStyle": {
+            "display": "flex",
+            "justifyContent": "center",
+            "alignItems": "center",
+            "width": "100%",
+            "height": "100%"
+          },
+          "animation": {
+            "preset": "scale_in",
+            "duration": 24,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-5-subtitle",
+          "component": "Subtitle",
+          "props": {
+            "text": "화려한 장면 넣기"
+          },
+          "startFrame": 10,
+          "animation": {
+            "preset": "fade_in",
+            "duration": 15
+          }
+        }
+      ],
+      "transition": {
+        "type": "circle_wipe",
+        "duration": 18
+      },
+      "cameraMotion": {
+        "type": "ken_burns",
+        "endScale": 1.08,
+        "panX": -15,
+        "panY": 5
+      }
+    },
+    {
+      "id": "scene-6",
+      "title": "Accumulate 장면",
+      "durationInFrames": 120,
+      "background": {
+        "type": "radial",
+        "colors": [
+          "#2A1050",
+          "#1B0B3B"
+        ]
+      },
+      "elements": [
+        {
+          "id": "scene-6-fixed-0",
+          "component": "GradientOrb",
+          "props": {
+            "color": "#FFD700",
+            "size": 600,
+            "x": 50,
+            "y": 50,
+            "opacity": 0.12,
+            "blur": 90,
+            "pulseSpeed": 0.6
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 25
+          }
+        },
+        {
+          "id": "scene-6-fixed-1",
+          "component": "FloatingParticles",
+          "props": {
+            "count": 15,
+            "color": "rgba(255,215,0,0.4)",
+            "size": 4,
+            "speed": 0.4,
+            "shape": "star",
+            "opacity": 0.1
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "inset": 0
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-6-w1-1",
+          "component": "LottieElement",
+          "props": {
+            "src": "animations/element/coin-spin.json",
+            "loop": true,
+            "speed": 1.1383487931450456,
+            "style": {
+              "width": 160,
+              "height": 160
+            }
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "40%",
+            "left": "47%"
+          },
+          "startFrame": 10,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 15,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-6-w2-1",
+          "component": "LottieElement",
+          "props": {
+            "src": "animations/element/coin-spin.json",
+            "loop": true,
+            "speed": 1.0285691521449287,
+            "style": {
+              "width": 140,
+              "height": 140
+            }
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "25%",
+            "left": "30%"
+          },
+          "startFrame": 60,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 15,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-6-w2-2",
+          "component": "LottieElement",
+          "props": {
+            "src": "animations/element/coin-spin.json",
+            "loop": true,
+            "speed": 1.0400144941457745,
+            "style": {
+              "width": 140,
+              "height": 140
+            }
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "25%",
+            "left": "60%"
+          },
+          "startFrame": 68,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 15,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-6-w2-3",
+          "component": "LottieElement",
+          "props": {
+            "src": "animations/element/coin-spin.json",
+            "loop": true,
+            "speed": 1.1703645955431041,
+            "style": {
+              "width": 140,
+              "height": 140
+            }
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "55%",
+            "left": "45%"
+          },
+          "startFrame": 76,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 15,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-6-w3-1",
+          "component": "LottieElement",
+          "props": {
+            "src": "animations/element/coin-spin.json",
+            "loop": true,
+            "speed": 0.9871582205193338,
+            "style": {
+              "width": 120,
+              "height": 120
+            }
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "15%",
+            "left": "18%"
+          },
+          "startFrame": 130,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 12,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-6-w3-2",
+          "component": "LottieElement",
+          "props": {
+            "src": "animations/element/coin-spin.json",
+            "loop": true,
+            "speed": 0.9032159751898382,
+            "style": {
+              "width": 120,
+              "height": 120
+            }
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "15%",
+            "left": "45%"
+          },
+          "startFrame": 138,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 12,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-6-w3-3",
+          "component": "LottieElement",
+          "props": {
+            "src": "animations/element/coin-spin.json",
+            "loop": true,
+            "speed": 1.189859218190033,
+            "style": {
+              "width": 120,
+              "height": 120
+            }
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "15%",
+            "left": "72%"
+          },
+          "startFrame": 146,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 12,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-6-w3-4",
+          "component": "LottieElement",
+          "props": {
+            "src": "animations/element/coin-spin.json",
+            "loop": true,
+            "speed": 0.9333303300508713,
+            "style": {
+              "width": 120,
+              "height": 120
+            }
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "38%",
+            "left": "15%"
+          },
+          "startFrame": 154,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 12,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-6-w3-5",
+          "component": "LottieElement",
+          "props": {
+            "src": "animations/element/coin-spin.json",
+            "loop": true,
+            "speed": 1.0345751630478217,
+            "style": {
+              "width": 120,
+              "height": 120
+            }
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "38%",
+            "left": "72%"
+          },
+          "startFrame": 162,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 12,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-6-w3-6",
+          "component": "LottieElement",
+          "props": {
+            "src": "animations/element/coin-spin.json",
+            "loop": true,
+            "speed": 0.9189838950798715,
+            "style": {
+              "width": 120,
+              "height": 120
+            }
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "58%",
+            "left": "22%"
+          },
+          "startFrame": 170,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 12,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-6-w3-7",
+          "component": "LottieElement",
+          "props": {
+            "src": "animations/element/coin-spin.json",
+            "loop": true,
+            "speed": 1.18942923936311,
+            "style": {
+              "width": 120,
+              "height": 120
+            }
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "58%",
+            "left": "65%"
+          },
+          "startFrame": 178,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 12,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-6-w3-8",
+          "component": "LottieElement",
+          "props": {
+            "src": "animations/element/coin-spin.json",
+            "loop": true,
+            "speed": 0.858552567675833,
+            "style": {
+              "width": 120,
+              "height": 120
+            }
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "60%",
+            "left": "45%"
+          },
+          "startFrame": 186,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 12,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-6-subtitle",
+          "component": "Subtitle",
+          "props": {
+            "text": "반복에셋 늘어나는 장면"
+          },
+          "startFrame": 10,
+          "animation": {
+            "preset": "fade_in",
+            "duration": 15
+          }
+        }
+      ],
+      "transition": {
+        "type": "cross_dissolve",
+        "duration": 15
+      },
+      "cameraMotion": {
+        "type": "ken_burns",
+        "endScale": 1.06,
+        "panX": 0,
+        "panY": -8
+      }
+    },
+    {
+      "id": "scene-7",
+      "title": "Depth 장면",
+      "durationInFrames": 150,
+      "background": {
+        "type": "radial",
+        "colors": [
+          "#141445",
+          "#0A0A1A"
+        ]
+      },
+      "elements": [
+        {
+          "id": "scene-7-fixed-0",
+          "component": "FloatingParticles",
+          "props": {
+            "count": 12,
+            "color": "rgba(255,255,255,0.4)",
+            "size": 3,
+            "speed": 0.3,
+            "shape": "dot",
+            "opacity": 0.1
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "inset": 0
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-7-bg-1",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 0.5,
+            "style": {
+              "width": 900,
+              "height": 900
+            },
+            "src": "animations/element/Modern Buildings.json"
+          },
+          "containerStyle": {
+            "display": "flex",
+            "justifyContent": "center",
+            "alignItems": "center",
+            "width": "100%",
+            "height": "100%"
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          },
+          "parallax": {
+            "speed": 0.3,
+            "direction": "horizontal",
+            "range": 80
+          }
+        },
+        {
+          "id": "scene-7-bg-2",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 0.4,
+            "style": {
+              "width": 350,
+              "height": 350
+            },
+            "src": "animations/element/Constructions Houses.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "20%",
+            "right": "15%"
+          },
+          "startFrame": 5,
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          },
+          "parallax": {
+            "speed": 0.3,
+            "direction": "horizontal",
+            "range": 80
+          }
+        },
+        {
+          "id": "scene-7-bg-3",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 0.6,
+            "style": {
+              "width": 250,
+              "height": 250
+            },
+            "src": "animations/element/Modern Buildings.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "bottom": "25%",
+            "left": "10%"
+          },
+          "startFrame": 10,
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          },
+          "parallax": {
+            "speed": 0.3,
+            "direction": "horizontal",
+            "range": 80
+          }
+        },
+        {
+          "id": "scene-7-mid-1",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 1,
+            "style": {
+              "width": 320,
+              "height": 320
+            },
+            "src": "animations/element/Modern Buildings.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "15%",
+            "left": "20%"
+          },
+          "startFrame": 20,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 18,
+            "easing": "kurzgesagt"
+          },
+          "parallax": {
+            "speed": 0.8,
+            "direction": "horizontal",
+            "range": 150
+          }
+        },
+        {
+          "id": "scene-7-mid-2",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 0.8,
+            "style": {
+              "width": 280,
+              "height": 280
+            },
+            "src": "animations/element/Constructions Houses.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "10%",
+            "right": "22%"
+          },
+          "startFrame": 35,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 18,
+            "easing": "kurzgesagt"
+          },
+          "parallax": {
+            "speed": 0.8,
+            "direction": "horizontal",
+            "range": 150
+          }
+        },
+        {
+          "id": "scene-7-mid-3",
+          "component": "LottieElement",
+          "props": {
+            "loop": false,
+            "speed": 1.2,
+            "style": {
+              "width": 260,
+              "height": 260
+            },
+            "src": "animations/element/Constructions Houses.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "bottom": "20%",
+            "left": "45%",
+            "transform": "translateX(-50%)"
+          },
+          "startFrame": 50,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 18,
+            "easing": "kurzgesagt"
+          },
+          "parallax": {
+            "speed": 0.8,
+            "direction": "horizontal",
+            "range": 150
+          }
+        },
+        {
+          "id": "scene-7-fg-1",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 0.8,
+            "style": {
+              "width": 400,
+              "height": 400
+            },
+            "src": "animations/element/Constructions Houses.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "bottom": "10%",
+            "left": "5%"
+          },
+          "startFrame": 40,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 20,
+            "easing": "kurzgesagt"
+          },
+          "parallax": {
+            "speed": 2.2,
+            "direction": "horizontal",
+            "range": 450
+          }
+        },
+        {
+          "id": "scene-7-fg-2",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 1,
+            "style": {
+              "width": 350,
+              "height": 350
+            },
+            "src": "animations/element/Constructions Houses.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "bottom": "15%",
+            "right": "8%"
+          },
+          "startFrame": 55,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 20,
+            "easing": "kurzgesagt"
+          },
+          "parallax": {
+            "speed": 2.2,
+            "direction": "horizontal",
+            "range": 450
+          }
+        },
+        {
+          "id": "scene-7-fg-3",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 0.8,
+            "style": {
+              "width": 300,
+              "height": 300
+            },
+            "src": "animations/element/Modern Buildings.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "5%",
+            "left": "50%",
+            "transform": "translateX(-50%)"
+          },
+          "startFrame": 65,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 20,
+            "easing": "kurzgesagt"
+          },
+          "parallax": {
+            "speed": 2.2,
+            "direction": "horizontal",
+            "range": 450
+          }
+        },
+        {
+          "id": "scene-7-popup",
+          "component": "LottieElement",
+          "props": {
+            "loop": false,
+            "speed": 1,
+            "style": {
+              "width": 300,
+              "height": 300
+            },
+            "src": "animations/element/Coins drop.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "bottom": "8%",
+            "left": "50%",
+            "transform": "translateX(-50%)"
+          },
+          "startFrame": 150,
+          "animation": {
+            "preset": "spring_up",
+            "duration": 30,
+            "easing": "snap"
+          }
+        },
+        {
+          "id": "scene-7-subtitle",
+          "component": "Subtitle",
+          "props": {
+            "text": "이건 패럴렉스 효과"
+          },
+          "startFrame": 10,
+          "animation": {
+            "preset": "fade_in",
+            "duration": 15
+          }
+        }
+      ],
+      "transition": {
+        "type": "fade",
+        "duration": 15
+      },
+      "cameraMotion": {
+        "type": "ken_burns",
+        "endScale": 1.04,
+        "panX": 8,
+        "panY": -3
+      }
+    },
+    {
+      "id": "scene-10",
+      "title": "Split 장면",
+      "durationInFrames": 240,
+      "background": {
+        "type": "solid",
+        "color": "#0B0B2B"
+      },
+      "elements": [
+        {
+          "id": "scene-10-fixed-0",
+          "component": "FloatingParticles",
+          "props": {
+            "count": 8,
+            "color": "rgba(255,255,255,0.3)",
+            "size": 3,
+            "speed": 0.3,
+            "shape": "dot",
+            "opacity": 0.08
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "inset": 0
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-10-fixed-1",
+          "component": "GradientOrb",
+          "props": {
+            "color": "#7B4FFF",
+            "size": 600,
+            "x": 16,
+            "y": 50,
+            "opacity": 0.08,
+            "blur": 100
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-10-fixed-2",
+          "component": "GradientOrb",
+          "props": {
+            "color": "#4FC3F7",
+            "size": 600,
+            "x": 50,
+            "y": 50,
+            "opacity": 0.08,
+            "blur": 100
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-10-fixed-3",
+          "component": "GradientOrb",
+          "props": {
+            "color": "#00D2A0",
+            "size": 600,
+            "x": 84,
+            "y": 50,
+            "opacity": 0.08,
+            "blur": 100
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-10-panel-1",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 1,
+            "style": {
+              "width": 280,
+              "height": 280
+            },
+            "src": "animations/element/Modern Buildings.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "22%",
+            "left": "5%",
+            "width": "30%",
+            "display": "flex",
+            "justifyContent": "center"
+          },
+          "startFrame": 15,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 18,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-10-panel-2",
+          "component": "LottieElement",
+          "props": {
+            "loop": false,
+            "speed": 0.8,
+            "style": {
+              "width": 280,
+              "height": 280
+            },
+            "src": "animations/element/Company Culture.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "22%",
+            "left": "35%",
+            "width": "30%",
+            "display": "flex",
+            "justifyContent": "center"
+          },
+          "startFrame": 35,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 18,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-10-panel-3",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 1,
+            "style": {
+              "width": 280,
+              "height": 280
+            },
+            "src": "animations/element/Modern Buildings.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "22%",
+            "left": "65%",
+            "width": "30%",
+            "display": "flex",
+            "justifyContent": "center"
+          },
+          "startFrame": 55,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 18,
+            "easing": "kurzgesagt"
+          }
+        }
+      ],
+      "transition": {
+        "type": "wipe_right",
+        "duration": 15
+      }
+    }
+  ]
+}

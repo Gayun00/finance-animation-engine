@@ -21,7 +21,7 @@ export const ElementRenderer: React.FC<ElementRendererProps> = ({
   }
 
   const startFrame = element.startFrame ?? 0;
-  const duration = element.durationInFrames ?? sceneDuration - startFrame;
+  const duration = Math.max(1, element.durationInFrames ?? sceneDuration - startFrame);
 
   return (
     <Sequence from={startFrame} durationInFrames={duration} name={element.id}>

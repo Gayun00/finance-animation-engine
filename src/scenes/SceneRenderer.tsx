@@ -13,7 +13,7 @@ interface SceneRendererProps {
 export const SceneRenderer: React.FC<SceneRendererProps> = ({ scene }) => {
   const renderElement = (el: (typeof scene.elements)[number]) => {
     const startFrame = el.startFrame ?? 0;
-    const duration = el.durationInFrames ?? scene.durationInFrames - startFrame;
+    const duration = Math.max(1, el.durationInFrames ?? scene.durationInFrames - startFrame);
 
     // LottieOverlay bypasses AnimationWrapper
     if (el.component === "LottieOverlay") {

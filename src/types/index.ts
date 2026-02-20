@@ -22,6 +22,7 @@ export type AnimationPreset =
   | "bounce_in"
   | "pop_in"
   | "circle_reveal"
+  | "spring_up"
   | "none";
 
 export interface AnimationConfig {
