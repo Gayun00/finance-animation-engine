@@ -10,39 +10,36 @@ interface SceneRendererProps {
 }
 
 export const SceneRenderer: React.FC<SceneRendererProps> = ({ scene }) => {
-  const overlays = scene.elements.filter(
-    (el) => el.component === "LottieOverlay"
-  );
-  const content = scene.elements.filter(
-    (el) => el.component !== "LottieOverlay"
-  );
-
   return (
     <AbsoluteFill>
       <SceneBackground config={scene.background} />
-      {/* Overlays rendered directly, bypassing AnimationWrapper */}
-      {overlays.map((el) => {
+      {/* Render elements in declaration order — later items appear on top */}
+      {scene.elements.map((el) => {
         const startFrame = el.startFrame ?? 0;
         const duration = el.durationInFrames ?? scene.durationInFrames - startFrame;
+
+        // LottieOverlay bypasses AnimationWrapper
+        if (el.component === "LottieOverlay") {
+          return (
+            <Sequence
+              key={el.id}
+              from={startFrame}
+              durationInFrames={duration}
+              name={el.id}
+            >
+              <LottieOverlay {...(el.props as any)} />
+            </Sequence>
+          );
+        }
+
         return (
-          <Sequence
+          <ElementRenderer
             key={el.id}
-            from={startFrame}
-            durationInFrames={duration}
-            name={el.id}
-          >
-            <LottieOverlay {...(el.props as any)} />
-          </Sequence>
+            element={el}
+            sceneDuration={scene.durationInFrames}
+          />
         );
       })}
-      {/* Content elements go through normal ElementRenderer pipeline */}
-      {content.map((element) => (
-        <ElementRenderer
-          key={element.id}
-          element={element}
-          sceneDuration={scene.durationInFrames}
-        />
-      ))}
     </AbsoluteFill>
   );
 };

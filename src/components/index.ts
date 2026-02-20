@@ -6,4 +6,5 @@ export { CalloutBox } from "./CalloutBox";
 export { CenterLayout } from "./CenterLayout";
 export { LottieElement } from "./LottieElement";
 export { LottieOverlay } from "./LottieOverlay";
+export { Subtitle } from "./Subtitle";
 export { COMPONENT_REGISTRY } from "./registry";

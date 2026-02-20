@@ -7,6 +7,8 @@ import { CalloutBox } from "./CalloutBox";
 import { CenterLayout } from "./CenterLayout";
 import { LottieElement } from "./LottieElement";
 import { LottieOverlay } from "./LottieOverlay";
+import { Subtitle } from "./Subtitle";
+import { LottieShowcase } from "./LottieShowcase";
 
 export const COMPONENT_REGISTRY: Record<string, React.ComponentType<any>> = {
   TitleCard,
@@ -17,4 +19,6 @@ export const COMPONENT_REGISTRY: Record<string, React.ComponentType<any>> = {
   CenterLayout,
   LottieElement,
   LottieOverlay,
+  Subtitle,
+  LottieShowcase,
 };

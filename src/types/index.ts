@@ -27,7 +27,7 @@ export interface AnimationConfig {
 }
 
 // ── Transition ──
-export type TransitionType = "fade" | "wipe_left" | "wipe_right" | "color_wipe" | "none";
+export type TransitionType = "fade" | "wipe_left" | "wipe_right" | "color_wipe" | "circle_shrink" | "none";
 
 export interface TransitionConfig {
   type: TransitionType;

@@ -8,125 +8,130 @@ export const sampleSequence: SceneSequence = {
   width: 1920,
   height: 1080,
   scenes: [
-    // ── Scene 1: Title (4s = 120f) ──
+    // ── Scene 1: 코인 단독 (5s = 150f) ──
     {
       id: "scene-title",
       title: "타이틀",
-      durationInFrames: 120,
+      durationInFrames: 150,
       background: {
-        type: "gradient",
-        colors: [COLORS.bg.dark, COLORS.bg.mid],
-        angle: 135,
+        type: "solid",
+        color: "#0EA0E4",
       },
       elements: [
         {
-          id: "title-sparkle-overlay",
-          component: "LottieOverlay",
+          id: "title-coins",
+          component: "LottieElement",
           props: {
             src: "animations/Coins drop.json",
             loop: true,
-            speed: 0.6,
-            opacity: 0.25,
-            blendMode: "screen",
+            speed: 2,
+            style: { width: 800, height: 800 },
           },
+          containerStyle: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "100%",
+          },
+          animation: { preset: "scale_in", duration: 20, easing: "kurzgesagt" },
         },
         {
-          id: "title-card",
-          component: "TitleCard",
+          id: "title-subtitle",
+          component: "Subtitle",
           props: {
-            title: "복리의 마법",
-            subtitle: "시간이 만들어내는 부의 기적",
-            accentColor: COLORS.finance.gold,
+            text: "복리의 마법 — 시간이 만들어내는 부의 기적",
           },
-          animation: {
-            preset: "scale_in",
-            duration: 25,
-            easing: "kurzgesagt",
-          },
+          startFrame: 10,
+          animation: { preset: "fade_in", duration: 15 },
         },
       ],
     },
 
-    // ── Scene 2: Count-up (5s = 150f) ──
+    // ── Scene 2: 돈 아이콘 릴레이 (7s = 210f) ──
     {
       id: "scene-countup",
       title: "1000만 → 7612만",
-      durationInFrames: 150,
+      durationInFrames: 210,
       background: {
-        type: "gradient",
-        colors: [COLORS.bg.mid, COLORS.bg.light],
-        angle: 180,
+        type: "solid",
+        color: "#E92F60",
       },
       transition: {
-        type: "fade",
-        duration: 15,
+        type: "wipe_left",
+        duration: 20,
       },
       elements: [
+        // 1) 코인 — 크게 등장 → 축소 → 왼쪽 위로 이동
         {
-          id: "countup-coin-icon",
-          component: "LottieElement",
+          id: "showcase-coin",
+          component: "LottieShowcase",
           props: {
             src: "animations/Fake 3D vector coin.json",
             loop: true,
             speed: 0.8,
-            style: { width: 120, height: 120 },
-          },
-          containerStyle: {
-            position: "absolute",
-            top: 80,
-            right: 160,
-          },
-          animation: {
-            preset: "pop_in",
-            delay: 10,
-            duration: 12,
+            bigSize: 550,
+            smallSize: 160,
+            holdFrames: 35,
+            transitionFrames: 20,
+            targetX: "18",
+            targetY: "25",
           },
         },
+        // 2) Money — 크게 등장 → 축소 → 오른쪽 위로 이동
         {
-          id: "countup-number",
-          component: "CountUpNumber",
+          id: "showcase-money",
+          component: "LottieShowcase",
           props: {
-            from: 10000000,
-            to: 76122550,
-            prefix: "",
-            suffix: "원",
-            label: "1,000만원을 30년간 연 7% 복리 투자하면",
-            duration: 100,
-            color: COLORS.finance.gold,
+            src: "animations/Money.json",
+            loop: true,
+            speed: 1,
+            bigSize: 550,
+            smallSize: 160,
+            holdFrames: 35,
+            transitionFrames: 20,
+            targetX: "82",
+            targetY: "25",
           },
-          animation: {
-            preset: "fade_in",
-            duration: 15,
+          startFrame: 65,
+        },
+        // 3) Money Transfer — 크게 등장 → 축소 → 아래 가운데로 이동
+        {
+          id: "showcase-transfer",
+          component: "LottieShowcase",
+          props: {
+            src: "animations/Money Transfer.json",
+            loop: true,
+            speed: 1,
+            bigSize: 550,
+            smallSize: 160,
+            holdFrames: 35,
+            transitionFrames: 20,
+            targetX: "50",
+            targetY: "78",
           },
+          startFrame: 130,
         },
         {
-          id: "countup-callout",
-          component: "CalloutBox",
+          id: "countup-subtitle",
+          component: "Subtitle",
           props: {
-            text: "약 7.6배 성장!",
-            accentColor: COLORS.finance.green,
+            text: "1,000만원을 30년간 연 7% 복리 투자하면 약 7,612만원",
           },
-          startFrame: 100,
-          durationInFrames: 50,
-          animation: {
-            preset: "slide_up",
-            delay: 0,
-            duration: 15,
-            easing: "snap",
-          },
+          startFrame: 10,
+          animation: { preset: "fade_in", duration: 15 },
         },
       ],
     },
 
-    // ── Scene 3: Chart (6s = 180f) ──
+    // ── Scene 3: 차트 크게 + 돈 겹침 (6s = 180f) ──
     {
       id: "scene-chart",
       title: "복리 vs 단리 차트",
       durationInFrames: 180,
       background: {
-        type: "gradient",
-        colors: [COLORS.bg.dark, "#0d1b2a"],
-        angle: 160,
+        type: "solid",
+        color: "#14D1C8",
       },
       transition: {
         type: "wipe_left",
@@ -134,106 +139,135 @@ export const sampleSequence: SceneSequence = {
       },
       elements: [
         {
-          id: "chart-growth-overlay",
-          component: "LottieOverlay",
+          id: "chart-growth-center",
+          component: "LottieElement",
           props: {
             src: "animations/Growth Chart.json",
             loop: true,
-            speed: 0.5,
-            opacity: 0.15,
-            blendMode: "screen",
+            speed: 0.7,
+            style: { width: 1440, height: 810 },
           },
+          containerStyle: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "100%",
+          },
+          animation: { preset: "scale_in", duration: 20, easing: "kurzgesagt" },
         },
         {
-          id: "compound-chart",
-          component: "CompoundInterestChart",
+          id: "chart-money-right",
+          component: "LottieElement",
           props: {
-            principal: 1000,
-            compoundRate: 0.07,
-            simpleRate: 0.07,
-            years: 30,
-            drawDuration: 120,
+            src: "animations/Money.json",
+            loop: true,
+            speed: 1,
+            style: { width: 320, height: 320 },
           },
-          animation: {
-            preset: "fade_in",
-            duration: 10,
+          containerStyle: {
+            position: "absolute",
+            top: "30%",
+            right: "3%",
           },
+          startFrame: 12,
+          animation: { preset: "slide_left", duration: 18 },
+        },
+        {
+          id: "chart-subtitle",
+          component: "Subtitle",
+          props: {
+            text: "복리와 단리의 차이는 시간이 지날수록 기하급수적으로 벌어집니다",
+          },
+          startFrame: 30,
+          animation: { preset: "fade_in", duration: 15 },
         },
       ],
     },
 
-    // ── Scene 4: Insight (4s = 120f) ──
+    // ── Scene 4: Conversation 단독 (4s = 120f) ──
     {
       id: "scene-insight",
       title: "핵심 인사이트",
       durationInFrames: 120,
       background: {
-        type: "radial",
-        colors: [COLORS.bg.light, COLORS.bg.dark],
+        type: "solid",
+        color: "#4F28F2",
       },
       transition: {
-        type: "color_wipe",
+        type: "wipe_left",
         duration: 20,
-        color: COLORS.primary.main,
       },
       elements: [
         {
-          id: "insight-callout",
-          component: "CalloutBox",
+          id: "insight-idea-center",
+          component: "LottieElement",
           props: {
-            text: "복리의 핵심은 '시간'입니다",
-            subtext:
-              "일찍 시작할수록, 오래 유지할수록 복리 효과는 기하급수적으로 커집니다. 워런 버핏 자산의 99%는 50세 이후에 만들어졌습니다.",
-            accentColor: COLORS.finance.green,
-            lottieIcon: "animations/Conversation Two Friend & Get Idea.json",
+            src: "animations/Conversation Two Friend & Get Idea.json",
+            loop: true,
+            speed: 0.8,
+            style: { width: 700, height: 700 },
           },
-          animation: {
-            preset: "scale_in",
-            duration: 20,
-            easing: "kurzgesagt",
+          containerStyle: {
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -52%)",
           },
+          animation: { preset: "scale_in", duration: 20, easing: "kurzgesagt" },
+        },
+        {
+          id: "insight-subtitle",
+          component: "Subtitle",
+          props: {
+            text: "복리의 핵심은 '시간'입니다. 일찍 시작할수록 복리 효과는 기하급수적으로 커집니다.",
+          },
+          startFrame: 15,
+          animation: { preset: "fade_in", duration: 15 },
         },
       ],
     },
 
-    // ── Scene 5: End Card (3s = 90f) ──
+    // ── Scene 5: 엔딩 (3s = 90f) ──
     {
       id: "scene-end",
       title: "엔딩",
       durationInFrames: 90,
       background: {
-        type: "gradient",
-        colors: [COLORS.bg.dark, COLORS.bg.mid],
-        angle: 135,
+        type: "solid",
+        color: "#0EA0E4",
       },
       transition: {
-        type: "fade",
-        duration: 15,
+        type: "wipe_left",
+        duration: 20,
       },
       elements: [
         {
-          id: "end-confetti-overlay",
-          component: "LottieOverlay",
+          id: "end-confetti",
+          component: "LottieElement",
           props: {
             src: "animations/confetti.json",
             loop: false,
             speed: 1,
-            opacity: 0.4,
-            blendMode: "screen",
+            style: { width: 900, height: 900 },
           },
+          containerStyle: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "100%",
+          },
+          animation: { preset: "scale_in", duration: 15, easing: "kurzgesagt" },
         },
         {
-          id: "end-card",
-          component: "EndCard",
+          id: "end-subtitle",
+          component: "Subtitle",
           props: {
-            channelName: "Finance Explained",
-            cta: "구독과 좋아요 부탁드립니다!",
+            text: "구독과 좋아요 부탁드립니다!",
           },
-          animation: {
-            preset: "scale_in",
-            duration: 20,
-            easing: "kurzgesagt",
-          },
+          startFrame: 20,
+          animation: { preset: "fade_in", duration: 15 },
         },
       ],
     },

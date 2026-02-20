@@ -6,6 +6,7 @@ import {
 import { fade } from "@remotion/transitions/fade";
 import { wipe } from "@remotion/transitions/wipe";
 import { colorWipe } from "./ColorWipePresentation";
+import { circleShrink } from "./CircleShrinkPresentation";
 import type { TransitionConfig } from "../types";
 
 interface ResolvedTransition {
@@ -43,6 +44,11 @@ export function resolveTransition(
         presentation: colorWipe({
           color: config.color,
         }) as TransitionPresentation<Record<string, unknown>>,
+        timing: linearTiming({ durationInFrames }),
+      };
+    case "circle_shrink":
+      return {
+        presentation: circleShrink() as TransitionPresentation<Record<string, unknown>>,
         timing: linearTiming({ durationInFrames }),
       };
     case "none":
