@@ -53,6 +53,7 @@ export const AnimationWrapper: React.FC<AnimationWrapperProps> = ({
 
   if (!animation || animation.preset === "none") {
     const parts: string[] = [];
+    if (style?.transform) parts.push(style.transform);
     if (px !== 0 || py !== 0) parts.push(`translate(${px}px, ${py}px)`);
     if (pScale !== 1) parts.push(`scale(${pScale})`);
     const pTransform = parts.length > 0 ? parts.join(" ") : undefined;
@@ -172,12 +173,17 @@ export const AnimationWrapper: React.FC<AnimationWrapperProps> = ({
     clipPath = `circle(${radius}% at 50% 50%)`;
   }
 
+  // Preserve original transform from containerStyle (e.g. translateX(-50%) for centering)
+  const baseTransform = style?.transform;
+  const animTransform = transforms.length > 0 ? transforms.join(" ") : undefined;
+  const finalTransform = [baseTransform, animTransform].filter(Boolean).join(" ") || undefined;
+
   return (
     <div
       style={{
         ...style,
         opacity,
-        transform: transforms.length > 0 ? transforms.join(" ") : undefined,
+        transform: finalTransform,
         transformOrigin: isZoom ? "50% 100%" : undefined,
         clipPath,
       }}

@@ -78,16 +78,16 @@
       "id": "scene-7",
       "presetId": "depth",
       "title": "Depth 장면",
-      "durationInFrames": 270,
+      "durationInFrames": 390,
       "subtitle": "ㅏㅏ",
       "slotAssignments": {
         "bg-1": "bg_lines",
-        "bg-2": "shine_star",
-        "mid-1": "constructions_houses",
-        "mid-2": "modern_buildings",
-        "fg-1": null,
-        "fg-2": null,
-        "popup": null
+        "bg-2": "coin_spin",
+        "mid-1": "coin_spin",
+        "mid-2": "coin_spin",
+        "fg-1": "coin_spin",
+        "fg-2": "coin_spin",
+        "popup": "lightbulb"
       },
       "transitionType": "fade",
       "transitionDuration": 15

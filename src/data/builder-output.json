@@ -721,7 +721,7 @@
     {
       "id": "scene-7",
       "title": "Depth 장면",
-      "durationInFrames": 270,
+      "durationInFrames": 390,
       "background": {
         "type": "radial",
         "colors": [
@@ -751,6 +751,31 @@
           }
         },
         {
+          "id": "scene-7-popup",
+          "component": "LottieElement",
+          "props": {
+            "loop": false,
+            "speed": 1,
+            "style": {
+              "width": 350,
+              "height": 350
+            },
+            "src": "animations/element/lightbulb.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "50%",
+            "left": "50%",
+            "transform": "translate(-50%, -50%)"
+          },
+          "startFrame": 180,
+          "animation": {
+            "preset": "spring_up",
+            "duration": 30,
+            "easing": "snap"
+          }
+        },
+        {
           "id": "scene-7-subtitle",
           "component": "Subtitle",
           "props": {
@@ -775,8 +800,10 @@
                 "loop": true,
                 "speed": 0.3,
                 "style": {
-                  "width": "110%",
-                  "height": "110%"
+                  "width": "120%",
+                  "height": "120%",
+                  "marginLeft": "-10%",
+                  "marginTop": "-10%"
                 },
                 "src": "animations/background/Background Lines.json"
               },
@@ -792,28 +819,18 @@
             {
               "id": "scene-7-bg-2",
               "component": "LottieElement",
-              "props": {
-                "loop": true,
-                "speed": 0.4,
-                "style": {
-                  "width": "100%",
-                  "height": "100%"
-                },
-                "src": "animations/effect/Shine Star.json"
-              },
-              "containerStyle": {
-                "position": "absolute",
-                "bottom": 0,
-                "left": "50%",
-                "transform": "translateX(-50%)",
-                "width": "110%",
-                "height": "50%"
-              },
+              "props": { "loop": true, "speed": 0.4, "style": { "width": 160, "height": 160 }, "src": "animations/element/coin-spin.json" },
+              "containerStyle": { "position": "absolute", "top": "10%", "left": "18%" },
               "startFrame": 5,
-              "animation": {
-                "preset": "fade_in",
-                "duration": 20
-              }
+              "animation": { "preset": "fade_in", "duration": 20 }
+            },
+            {
+              "id": "scene-7-bg-3",
+              "component": "LottieElement",
+              "props": { "loop": true, "speed": 0.35, "style": { "width": 140, "height": 140 }, "src": "animations/element/coin-spin.json" },
+              "containerStyle": { "position": "absolute", "top": "25%", "right": "18%" },
+              "startFrame": 10,
+              "animation": { "preset": "fade_in", "duration": 20 }
             }
           ]
         },
@@ -824,59 +841,78 @@
             {
               "id": "scene-7-mid-1",
               "component": "LottieElement",
-              "props": {
-                "loop": true,
-                "speed": 0.6,
-                "style": {
-                  "width": "100%",
-                  "height": "100%"
-                },
-                "src": "animations/element/Constructions Houses.json"
-              },
-              "containerStyle": {
-                "position": "absolute",
-                "bottom": 0,
-                "left": 0,
-                "width": "55%",
-                "height": "70%"
-              },
+              "props": { "loop": true, "speed": 0.6, "style": { "width": 280, "height": 280 }, "src": "animations/element/coin-spin.json" },
+              "containerStyle": { "position": "absolute", "top": "18%", "left": "12%" },
               "startFrame": 10,
-              "animation": {
-                "preset": "fade_in",
-                "duration": 20
-              }
+              "animation": { "preset": "fade_in", "duration": 20 }
             },
             {
               "id": "scene-7-mid-2",
               "component": "LottieElement",
-              "props": {
-                "loop": true,
-                "speed": 0.6,
-                "style": {
-                  "width": "100%",
-                  "height": "100%"
-                },
-                "src": "animations/element/Modern Buildings.json"
-              },
-              "containerStyle": {
-                "position": "absolute",
-                "bottom": 0,
-                "right": 0,
-                "width": "55%",
-                "height": "70%"
-              },
-              "startFrame": 10,
-              "animation": {
-                "preset": "fade_in",
-                "duration": 20
-              }
+              "props": { "loop": true, "speed": 0.6, "style": { "width": 260, "height": 260 }, "src": "animations/element/coin-spin.json" },
+              "containerStyle": { "position": "absolute", "top": "12%", "right": "10%" },
+              "startFrame": 15,
+              "animation": { "preset": "fade_in", "duration": 20 }
+            },
+            {
+              "id": "scene-7-mid-3",
+              "component": "LottieElement",
+              "props": { "loop": true, "speed": 0.55, "style": { "width": 220, "height": 220 }, "src": "animations/element/coin-spin.json" },
+              "containerStyle": { "position": "absolute", "bottom": "15%", "left": "20%" },
+              "startFrame": 20,
+              "animation": { "preset": "fade_in", "duration": 20 }
+            },
+            {
+              "id": "scene-7-mid-4",
+              "component": "LottieElement",
+              "props": { "loop": true, "speed": 0.65, "style": { "width": 200, "height": 200 }, "src": "animations/element/coin-spin.json" },
+              "containerStyle": { "position": "absolute", "bottom": "10%", "right": "18%" },
+              "startFrame": 25,
+              "animation": { "preset": "fade_in", "duration": 20 }
             }
           ]
         },
         {
           "speed": 2.5,
           "splitDirection": "horizontal",
-          "elements": []
+          "elements": [
+            {
+              "id": "scene-7-fg-1",
+              "component": "LottieElement",
+              "props": { "loop": true, "speed": 0.8, "style": { "width": 450, "height": 450 }, "src": "animations/element/coin-spin.json" },
+              "containerStyle": { "position": "absolute", "top": "8%", "left": "8%" },
+              "startFrame": 5,
+              "animation": { "preset": "fade_in", "duration": 15 },
+              "splitSide": "left"
+            },
+            {
+              "id": "scene-7-fg-2",
+              "component": "LottieElement",
+              "props": { "loop": true, "speed": 0.8, "style": { "width": 400, "height": 400 }, "src": "animations/element/coin-spin.json" },
+              "containerStyle": { "position": "absolute", "bottom": "5%", "right": "6%" },
+              "startFrame": 5,
+              "animation": { "preset": "fade_in", "duration": 15 },
+              "splitSide": "right"
+            },
+            {
+              "id": "scene-7-fg-3",
+              "component": "LottieElement",
+              "props": { "loop": true, "speed": 0.75, "style": { "width": 350, "height": 350 }, "src": "animations/element/coin-spin.json" },
+              "containerStyle": { "position": "absolute", "bottom": "20%", "left": "15%" },
+              "startFrame": 8,
+              "animation": { "preset": "fade_in", "duration": 15 },
+              "splitSide": "left"
+            },
+            {
+              "id": "scene-7-fg-4",
+              "component": "LottieElement",
+              "props": { "loop": true, "speed": 0.85, "style": { "width": 370, "height": 370 }, "src": "animations/element/coin-spin.json" },
+              "containerStyle": { "position": "absolute", "top": "12%", "right": "10%" },
+              "startFrame": 8,
+              "animation": { "preset": "fade_in", "duration": 15 },
+              "splitSide": "right"
+            }
+          ]
         }
       ],
       "transition": {

@@ -22,7 +22,7 @@ export const ParallaxScene: React.FC<ParallaxSceneProps> = ({
   const progress = easeOutQuart(Math.min(1, frame / durationInFrames));
 
   return (
-    <>
+    <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
       {layers.map((layer, layerIndex) => {
         // Layer-level scale: closer layers scale faster
         const layerScale = interpolate(
@@ -51,6 +51,7 @@ export const ParallaxScene: React.FC<ParallaxSceneProps> = ({
               position: "absolute",
               inset: 0,
               zIndex: layerIndex + 1,
+              overflow: "visible",
               transform: `scale(${layerScale}) translateY(${layerTranslateY}px)`,
               transformOrigin: "center center",
             }}
@@ -106,6 +107,6 @@ export const ParallaxScene: React.FC<ParallaxSceneProps> = ({
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
