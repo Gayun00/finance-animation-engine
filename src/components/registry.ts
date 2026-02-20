@@ -5,6 +5,11 @@ import { CountUpNumber } from "./CountUpNumber";
 import { CompoundInterestChart } from "./CompoundInterestChart";
 import { CalloutBox } from "./CalloutBox";
 import { CenterLayout } from "./CenterLayout";
+import { SplitLayout } from "./SplitLayout";
+import { TopBottomLayout } from "./TopBottomLayout";
+import { GridLayout } from "./GridLayout";
+import { FocusLayout } from "./FocusLayout";
+import { Spotlight } from "./Spotlight";
 import { LottieElement } from "./LottieElement";
 import { LottieOverlay } from "./LottieOverlay";
 import { Subtitle } from "./Subtitle";
@@ -17,6 +22,11 @@ export const COMPONENT_REGISTRY: Record<string, React.ComponentType<any>> = {
   CompoundInterestChart,
   CalloutBox,
   CenterLayout,
+  SplitLayout,
+  TopBottomLayout,
+  GridLayout,
+  FocusLayout,
+  Spotlight,
   LottieElement,
   LottieOverlay,
   Subtitle,
