@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "studio": "remotion studio src/index.ts",
-    "render": "remotion render src/index.ts FinanceVideo out/video.mp4"
+    "render": "remotion render src/index.ts FinanceVideo out/video.mp4",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",
@@ -20,6 +22,7 @@
   "devDependencies": {
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
-    "typescript": "^5.4.0"
+    "typescript": "^5.4.0",
+    "vitest": "^4.0.18"
   }
 }
