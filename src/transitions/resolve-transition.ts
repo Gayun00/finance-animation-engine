@@ -7,6 +7,9 @@ import { fade } from "@remotion/transitions/fade";
 import { wipe } from "@remotion/transitions/wipe";
 import { colorWipe } from "./ColorWipePresentation";
 import { circleShrink } from "./CircleShrinkPresentation";
+import { zoomIn, zoomOut } from "./ZoomPresentation";
+import { slideUp } from "./SlideUpPresentation";
+import { crossDissolve } from "./CrossDissolvePresentation";
 import type { TransitionConfig } from "../types";
 
 interface ResolvedTransition {
@@ -22,33 +25,53 @@ export function resolveTransition(
   switch (config.type) {
     case "fade":
       return {
-        presentation: fade() as TransitionPresentation<Record<string, unknown>>,
+        presentation: fade() as unknown as TransitionPresentation<Record<string, unknown>>,
         timing: linearTiming({ durationInFrames }),
       };
     case "wipe_left":
       return {
         presentation: wipe({
           direction: "from-left",
-        }) as TransitionPresentation<Record<string, unknown>>,
+        }) as unknown as TransitionPresentation<Record<string, unknown>>,
         timing: linearTiming({ durationInFrames }),
       };
     case "wipe_right":
       return {
         presentation: wipe({
           direction: "from-right",
-        }) as TransitionPresentation<Record<string, unknown>>,
+        }) as unknown as TransitionPresentation<Record<string, unknown>>,
         timing: linearTiming({ durationInFrames }),
       };
     case "color_wipe":
       return {
         presentation: colorWipe({
           color: config.color,
-        }) as TransitionPresentation<Record<string, unknown>>,
+        }) as unknown as TransitionPresentation<Record<string, unknown>>,
         timing: linearTiming({ durationInFrames }),
       };
     case "circle_shrink":
       return {
-        presentation: circleShrink() as TransitionPresentation<Record<string, unknown>>,
+        presentation: circleShrink() as unknown as TransitionPresentation<Record<string, unknown>>,
+        timing: linearTiming({ durationInFrames }),
+      };
+    case "zoom_in":
+      return {
+        presentation: zoomIn() as unknown as TransitionPresentation<Record<string, unknown>>,
+        timing: linearTiming({ durationInFrames }),
+      };
+    case "zoom_out":
+      return {
+        presentation: zoomOut() as unknown as TransitionPresentation<Record<string, unknown>>,
+        timing: linearTiming({ durationInFrames }),
+      };
+    case "slide_up":
+      return {
+        presentation: slideUp() as unknown as TransitionPresentation<Record<string, unknown>>,
+        timing: linearTiming({ durationInFrames }),
+      };
+    case "cross_dissolve":
+      return {
+        presentation: crossDissolve() as unknown as TransitionPresentation<Record<string, unknown>>,
         timing: linearTiming({ durationInFrames }),
       };
     case "none":
