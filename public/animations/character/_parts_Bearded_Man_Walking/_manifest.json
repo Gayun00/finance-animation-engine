@@ -1,0 +1,491 @@
+{
+  "source": "Bearded Man Walking.json",
+  "canvas": {
+    "w": 1080,
+    "h": 1080
+  },
+  "fps": 15,
+  "frames": {
+    "in": 75,
+    "out": 91,
+    "duration": 16
+  },
+  "layers": [
+    {
+      "name": "01_part1_ctrl",
+      "originalName": "N",
+      "ind": 1,
+      "type": "null",
+      "parent": null,
+      "anchor": [
+        0,
+        0
+      ],
+      "position": [
+        900,
+        540
+      ],
+      "rotation": 0,
+      "scale": [
+        100,
+        100
+      ],
+      "animated": [],
+      "keyframes": {},
+      "pathCount": 0,
+      "fills": []
+    },
+    {
+      "name": "02_part5",
+      "originalName": "C",
+      "ind": 5,
+      "type": "shape",
+      "parent": null,
+      "anchor": [
+        0,
+        0
+      ],
+      "position": [
+        553.367,
+        536.694
+      ],
+      "rotation": 0,
+      "scale": [
+        100,
+        100
+      ],
+      "animated": [
+        "position"
+      ],
+      "keyframes": {
+        "position": "150 keyframes, range [553.4, 553.4]"
+      },
+      "pathCount": 0,
+      "fills": []
+    },
+    {
+      "name": "03_part2",
+      "originalName": "B",
+      "ind": 2,
+      "type": "shape",
+      "parent": "02_part5",
+      "anchor": [
+        529.026,
+        -201.736
+      ],
+      "position": [
+        -34.034,
+        -106.331
+      ],
+      "rotation": -1.973,
+      "scale": [
+        100,
+        100
+      ],
+      "animated": [
+        "position",
+        "rotation"
+      ],
+      "keyframes": {
+        "position": "3 keyframes, range [-34.0, -25.0]",
+        "rotation": "150 keyframes, range [-30.0, 11.0]"
+      },
+      "pathCount": 1,
+      "fills": [
+        "rgb(150,221,223)"
+      ]
+    },
+    {
+      "name": "04_part3",
+      "originalName": "A",
+      "ind": 3,
+      "type": "shape",
+      "parent": "03_part2",
+      "anchor": [
+        1066.026,
+        513.267
+      ],
+      "position": [
+        520.5,
+        -46.44
+      ],
+      "rotation": -19.949,
+      "scale": [
+        100,
+        100
+      ],
+      "animated": [
+        "rotation"
+      ],
+      "keyframes": {
+        "rotation": "150 keyframes, range [-22.0, -19.0]"
+      },
+      "pathCount": 3,
+      "fills": [
+        "rgb(251,160,159)"
+      ]
+    },
+    {
+      "name": "05_part4",
+      "originalName": "V",
+      "ind": 4,
+      "type": "shape",
+      "parent": "02_part5",
+      "anchor": [
+        1061.412,
+        235.917
+      ],
+      "position": [
+        -17.321,
+        -209.652
+      ],
+      "rotation": 2.785,
+      "scale": [
+        100,
+        100
+      ],
+      "animated": [
+        "position",
+        "rotation"
+      ],
+      "keyframes": {
+        "position": "150 keyframes, range [-18.0, -16.0]",
+        "rotation": "150 keyframes, range [-2.0, 5.0]"
+      },
+      "pathCount": 3,
+      "fills": [
+        "rgb(119,65,51)",
+        "rgb(114,61,48)",
+        "rgb(179,96,75)"
+      ]
+    },
+    {
+      "name": "06_part12",
+      "originalName": "B",
+      "ind": 12,
+      "type": "shape",
+      "parent": "02_part5",
+      "anchor": [
+        529.026,
+        -210.736
+      ],
+      "position": [
+        -36.034,
+        -108.331
+      ],
+      "rotation": -17.027,
+      "scale": [
+        100,
+        100
+      ],
+      "animated": [
+        "position",
+        "rotation"
+      ],
+      "keyframes": {
+        "position": "3 keyframes, range [-36.0, -27.0]",
+        "rotation": "150 keyframes, range [-30.0, 11.0]"
+      },
+      "pathCount": 1,
+      "fills": [
+        "rgb(150,221,223)"
+      ]
+    },
+    {
+      "name": "07_part13",
+      "originalName": "A",
+      "ind": 13,
+      "type": "shape",
+      "parent": "06_part12",
+      "anchor": [
+        1066.026,
+        513.267
+      ],
+      "position": [
+        520.5,
+        -46.44
+      ],
+      "rotation": -21.051,
+      "scale": [
+        100,
+        100
+      ],
+      "animated": [
+        "rotation"
+      ],
+      "keyframes": {
+        "rotation": "150 keyframes, range [-22.0, -19.0]"
+      },
+      "pathCount": 3,
+      "fills": [
+        "rgb(228,145,144)"
+      ]
+    },
+    {
+      "name": "08_part8_ctrl",
+      "originalName": "H",
+      "ind": 8,
+      "type": "null",
+      "parent": null,
+      "anchor": [
+        0,
+        0
+      ],
+      "position": [
+        633.899,
+        811.237
+      ],
+      "rotation": 0,
+      "scale": [
+        100,
+        100
+      ],
+      "animated": [
+        "position"
+      ],
+      "keyframes": {
+        "position": "150 keyframes, range [498.6, 638.8]"
+      },
+      "pathCount": 0,
+      "fills": []
+    },
+    {
+      "name": "09_part10",
+      "originalName": "C",
+      "ind": 10,
+      "type": "shape",
+      "parent": "08_part8_ctrl",
+      "anchor": [
+        1064,
+        828
+      ],
+      "position": [
+        0,
+        0
+      ],
+      "rotation": -29.142,
+      "scale": [
+        100,
+        73.842
+      ],
+      "animated": [
+        "rotation",
+        "scale"
+      ],
+      "keyframes": {
+        "rotation": "150 keyframes, range [-29.2, 11.6]",
+        "scale": "150 keyframes, range [100.0, 100.0]"
+      },
+      "pathCount": 1,
+      "fills": [
+        "rgb(49,84,84)"
+      ]
+    },
+    {
+      "name": "10_part11",
+      "originalName": "T",
+      "ind": 11,
+      "type": "shape",
+      "parent": "08_part8_ctrl",
+      "anchor": [
+        1064,
+        828
+      ],
+      "position": [
+        0,
+        0
+      ],
+      "rotation": 19.569,
+      "scale": [
+        100,
+        78.01
+      ],
+      "animated": [
+        "rotation",
+        "scale"
+      ],
+      "keyframes": {
+        "rotation": "150 keyframes, range [-8.7, 33.3]",
+        "scale": "150 keyframes, range [100.0, 100.0]"
+      },
+      "pathCount": 2,
+      "fills": [
+        "rgb(251,160,159)"
+      ]
+    },
+    {
+      "name": "11_part9",
+      "originalName": "P",
+      "ind": 9,
+      "type": "shape",
+      "parent": null,
+      "anchor": [
+        515.462,
+        468.015
+      ],
+      "position": [
+        0,
+        0
+      ],
+      "rotation": 7.037,
+      "scale": [
+        100,
+        100
+      ],
+      "animated": [
+        "rotation"
+      ],
+      "keyframes": {
+        "rotation": "150 keyframes, range [-10.0, 30.0]"
+      },
+      "pathCount": 1,
+      "fills": [
+        "rgb(102,2,8)"
+      ]
+    },
+    {
+      "name": "12_part14",
+      "originalName": "P",
+      "ind": 14,
+      "type": "shape",
+      "parent": null,
+      "anchor": [
+        515.462,
+        468.015
+      ],
+      "position": [
+        0,
+        0
+      ],
+      "rotation": 0,
+      "scale": [
+        100,
+        100
+      ],
+      "animated": [
+        "rotation"
+      ],
+      "keyframes": {
+        "rotation": "150 keyframes, range [-10.0, 30.0]"
+      },
+      "pathCount": 1,
+      "fills": [
+        "rgb(102,2,8)"
+      ]
+    },
+    {
+      "name": "13_part17_ctrl",
+      "originalName": "H",
+      "ind": 17,
+      "type": "null",
+      "parent": null,
+      "anchor": [
+        0,
+        0
+      ],
+      "position": [
+        554.439,
+        867.119
+      ],
+      "rotation": 0,
+      "scale": [
+        100,
+        100
+      ],
+      "animated": [
+        "position"
+      ],
+      "keyframes": {
+        "position": "150 keyframes, range [499.3, 637.8]"
+      },
+      "pathCount": 0,
+      "fills": []
+    },
+    {
+      "name": "14_part18",
+      "originalName": "C",
+      "ind": 18,
+      "type": "shape",
+      "parent": "13_part17_ctrl",
+      "anchor": [
+        1064,
+        828
+      ],
+      "position": [
+        0,
+        0
+      ],
+      "rotation": -3.805,
+      "scale": [
+        100,
+        87.04
+      ],
+      "animated": [
+        "rotation",
+        "scale"
+      ],
+      "keyframes": {
+        "rotation": "150 keyframes, range [-30.2, 10.4]",
+        "scale": "150 keyframes, range [100.0, 100.0]"
+      },
+      "pathCount": 1,
+      "fills": [
+        "rgb(40,68,68)"
+      ]
+    },
+    {
+      "name": "15_part19",
+      "originalName": "T",
+      "ind": 19,
+      "type": "shape",
+      "parent": "13_part17_ctrl",
+      "anchor": [
+        1064,
+        828
+      ],
+      "position": [
+        0,
+        0
+      ],
+      "rotation": 13.211,
+      "scale": [
+        100,
+        89.316
+      ],
+      "animated": [
+        "rotation",
+        "scale"
+      ],
+      "keyframes": {
+        "rotation": "150 keyframes, range [-9.8, 32.3]",
+        "scale": "150 keyframes, range [100.0, 100.0]"
+      },
+      "pathCount": 2,
+      "fills": [
+        "rgb(228,145,144)"
+      ]
+    }
+  ],
+  "hierarchy": {
+    "01_part1_ctrl": {},
+    "02_part5": {
+      "03_part2": {
+        "04_part3": {}
+      },
+      "05_part4": {},
+      "06_part12": {
+        "07_part13": {}
+      }
+    },
+    "08_part8_ctrl": {
+      "09_part10": {},
+      "10_part11": {}
+    },
+    "11_part9": {},
+    "12_part14": {},
+    "13_part17_ctrl": {
+      "14_part18": {},
+      "15_part19": {}
+    }
+  }
+}

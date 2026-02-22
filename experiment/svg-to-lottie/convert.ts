@@ -17,7 +17,7 @@
 
 import * as fs from "fs";
 import * as path from "path";
-import { parseSvg } from "./parse-svg.js";
+import { parseSvg, stripBackground } from "./parse-svg.js";
 import { buildLottie } from "./build-lottie.js";
 import { ALL_PRESETS, type MotionPreset } from "./motion-presets.js";
 
@@ -34,6 +34,7 @@ function main() {
   let outputFile: string | undefined;
   let name: string | undefined;
   let motion: MotionPreset | undefined;
+  let keepBg = false;
 
   for (let i = 1; i < args.length; i++) {
     if (args[i] === "--output" && args[i + 1]) {
@@ -47,6 +48,8 @@ function main() {
         process.exit(1);
       }
       motion = val;
+    } else if (args[i] === "--keep-bg") {
+      keepBg = true;
     }
   }
 
@@ -56,7 +59,14 @@ function main() {
   }
 
   const svgText = fs.readFileSync(inputFile, "utf-8");
-  const parsed = parseSvg(svgText);
+  let parsed = parseSvg(svgText);
+  if (!keepBg) {
+    const before = parsed.paths.length;
+    parsed = stripBackground(parsed);
+    if (parsed.paths.length < before) {
+      console.log("Background path removed");
+    }
+  }
 
   console.log(`Parsed SVG: viewBox=${parsed.viewBox.w}x${parsed.viewBox.h}, ${parsed.paths.length} paths, ${parsed.gradients.size} gradients`);
 

@@ -9,6 +9,7 @@ const ANIMATIONS_DIR = path.resolve(__dirname, "../public/animations");
 const EXPERIMENT_DIR = path.resolve(__dirname, "../experiment");
 const REFERENCES_DIR = path.resolve(EXPERIMENT_DIR, "reference/collected");
 const TRIALS_DIR = path.resolve(EXPERIMENT_DIR, "outputs/trial");
+const CHARACTERS_DIR = path.resolve(EXPERIMENT_DIR, "outputs/character");
 
 const IMAGE_EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg"]);
 
@@ -241,6 +242,31 @@ export default defineConfig({
           res.end(JSON.stringify(files));
         });
 
+        // List character SVG/Lottie files
+        server.middlewares.use("/api/review/characters", (_req, res) => {
+          if (!fs.existsSync(CHARACTERS_DIR)) {
+            res.setHeader("Content-Type", "application/json");
+            res.end(JSON.stringify([]));
+            return;
+          }
+          const CHAR_EXTENSIONS = new Set([".svg", ".json", ".png"]);
+          const files = fs.readdirSync(CHARACTERS_DIR)
+            .filter((f) => CHAR_EXTENSIONS.has(path.extname(f).toLowerCase()))
+            .map((f) => {
+              const stat = fs.statSync(path.join(CHARACTERS_DIR, f));
+              return {
+                filename: f,
+                path: `outputs/character/${f}`,
+                size: stat.size,
+                mtime: stat.mtimeMs,
+                type: path.extname(f).toLowerCase().slice(1) as "svg" | "json" | "png",
+              };
+            })
+            .sort((a, b) => a.filename.localeCompare(b.filename));
+          res.setHeader("Content-Type", "application/json");
+          res.end(JSON.stringify(files));
+        });
+
         // Serve image from experiment/ directory (path traversal guard)
         server.middlewares.use("/api/review/image", (req, res) => {
           const url = new URL(req.url || "", "http://localhost");
@@ -255,6 +281,7 @@ export default defineConfig({
           const mimeMap: Record<string, string> = {
             ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
             ".webp": "image/webp", ".gif": "image/gif", ".svg": "image/svg+xml",
+            ".json": "application/json",
           };
           res.setHeader("Content-Type", mimeMap[ext] || "application/octet-stream");
           res.setHeader("Cache-Control", "no-cache");

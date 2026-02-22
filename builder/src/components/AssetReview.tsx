@@ -1,12 +1,17 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { Player } from "@remotion/player";
 import { AssetPreviewComposition, type MotionPreset } from "./AssetPreviewComposition";
+import { LottiePreviewComposition } from "./LottiePreviewComposition";
 
 interface ImageFile {
   filename: string;
   path: string;
   size: number;
   mtime: number;
+}
+
+interface CharacterFile extends ImageFile {
+  type: "svg" | "json" | "png";
 }
 
 interface TrialReview {
@@ -28,6 +33,7 @@ const MOTION_PRESETS: { key: MotionPreset; label: string }[] = [
 export const AssetReview: React.FC = () => {
   const [references, setReferences] = useState<ImageFile[]>([]);
   const [trials, setTrials] = useState<ImageFile[]>([]);
+  const [characters, setCharacters] = useState<CharacterFile[]>([]);
   const [reviewData, setReviewData] = useState<ReviewData>({});
   const [saving, setSaving] = useState(false);
   const [dragOver, setDragOver] = useState(false);
@@ -46,6 +52,13 @@ export const AssetReview: React.FC = () => {
     setTrials(await res.json());
   }, []);
 
+  const loadCharacters = useCallback(async () => {
+    const res = await fetch("/api/review/characters");
+    const all: CharacterFile[] = await res.json();
+    // character-style-info.json 등 비-Lottie 메타 파일 제외
+    setCharacters(all.filter((c) => c.type !== "json" || c.filename.startsWith("char_")));
+  }, []);
+
   const loadReview = useCallback(async () => {
     const res = await fetch("/api/review/trials/load-review");
     const data = await res.json();
@@ -55,8 +68,9 @@ export const AssetReview: React.FC = () => {
   useEffect(() => {
     loadReferences();
     loadTrials();
+    loadCharacters();
     loadReview();
-  }, [loadReferences, loadTrials, loadReview]);
+  }, [loadReferences, loadTrials, loadCharacters, loadReview]);
 
   const getReview = (filename: string): TrialReview =>
     reviewData[filename] || { status: "pending", feedback: "" };
@@ -279,6 +293,61 @@ export const AssetReview: React.FC = () => {
                 </div>
               );
             })}
+          </div>
+        )}
+      </section>
+
+      {/* ── Character POC Section ── */}
+      <section style={{ marginBottom: 40 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+          <h2 style={{ margin: 0, fontSize: 18, fontWeight: 700 }}>캐릭터 POC</h2>
+          <span style={{ fontSize: 14, color: "var(--text-muted)" }}>
+            {characters.filter((c) => c.type === "json").length} Lottie
+          </span>
+        </div>
+
+        {characters.filter((c) => c.type === "json").length === 0 ? (
+          <div style={{ padding: 32, textAlign: "center", color: "var(--text-muted)", fontSize: 13 }}>
+            캐릭터 Lottie 없음 (experiment/outputs/character/*.json)
+          </div>
+        ) : (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 16 }}>
+            {characters.filter((c) => c.type === "json").map((char) => (
+              <div
+                key={char.filename}
+                style={{
+                  border: "2px solid var(--border)",
+                  borderRadius: "var(--radius-md)",
+                  overflow: "hidden",
+                  background: "var(--bg-secondary)",
+                }}
+              >
+                <div style={{ background: "#1a1a2e" }}>
+                  <Player
+                    component={LottiePreviewComposition}
+                    inputProps={{
+                      lottieUrl: `/api/review/image?path=${encodeURIComponent(char.path)}`,
+                      bgColor: "#1a1a2e",
+                    }}
+                    durationInFrames={90}
+                    fps={30}
+                    compositionWidth={400}
+                    compositionHeight={400}
+                    loop
+                    autoPlay
+                    style={{ width: "100%", height: 300, borderRadius: 0 }}
+                  />
+                </div>
+                <div style={{ padding: "8px 12px" }}>
+                  <div style={{ fontSize: 12, fontWeight: 600, wordBreak: "break-all" }}>
+                    {char.filename}
+                  </div>
+                  <div style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 2 }}>
+                    {(char.size / 1024).toFixed(1)} KB
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </section>

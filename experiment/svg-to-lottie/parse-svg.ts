@@ -94,3 +94,29 @@ export function parseSvg(svgText: string): ParsedSvg {
 
   return { viewBox, gradients, paths };
 }
+
+/**
+ * Remove the first path if it's a full-canvas background rectangle.
+ * Recraft SVGs typically start with a solid color rect covering the viewBox.
+ */
+export function stripBackground(parsed: ParsedSvg): ParsedSvg {
+  if (parsed.paths.length === 0) return parsed;
+  const first = parsed.paths[0];
+  // Check if the path is only M/L/Z (no curves) — a simple polygon
+  if (/C/i.test(first.d)) return parsed;
+  // Check if it covers the full viewBox area (approximate)
+  const coords = first.d.match(/[\d.]+/g)?.map(Number) || [];
+  const xs = coords.filter((_, i) => i % 2 === 0);
+  const ys = coords.filter((_, i) => i % 2 === 1);
+  if (xs.length < 3) return parsed;
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+  const { w, h } = parsed.viewBox;
+  // If it spans ≥95% of the viewBox, it's a background
+  if ((maxX - minX) >= w * 0.95 && (maxY - minY) >= h * 0.95) {
+    return { ...parsed, paths: parsed.paths.slice(1) };
+  }
+  return parsed;
+}

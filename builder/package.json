@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@remotion/lottie": "^4.0.425",
     "@remotion/player": "^4.0.425",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
