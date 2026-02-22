@@ -268,6 +268,7 @@ export default defineConfig({
     alias: {
       "@engine": path.resolve(__dirname, "../src"),
     },
+    dedupe: ["remotion", "react", "react-dom"],
   },
   server: {
     port: 3100,

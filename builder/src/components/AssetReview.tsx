@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
+import { Player } from "@remotion/player";
+import { AssetPreviewComposition, type MotionPreset } from "./AssetPreviewComposition";
 
 interface ImageFile {
   filename: string;
@@ -14,12 +16,24 @@ interface TrialReview {
 
 type ReviewData = Record<string, TrialReview>;
 
+const MOTION_PRESETS: { key: MotionPreset; label: string }[] = [
+  { key: "none", label: "정지" },
+  { key: "float", label: "둥둥" },
+  { key: "bounce", label: "바운스" },
+  { key: "pulse", label: "펄스" },
+  { key: "rotate", label: "회전" },
+  { key: "swing", label: "흔들기" },
+];
+
 export const AssetReview: React.FC = () => {
   const [references, setReferences] = useState<ImageFile[]>([]);
   const [trials, setTrials] = useState<ImageFile[]>([]);
   const [reviewData, setReviewData] = useState<ReviewData>({});
   const [saving, setSaving] = useState(false);
   const [dragOver, setDragOver] = useState(false);
+  const [previewImage, setPreviewImage] = useState<ImageFile | null>(null);
+  const [previewMotion, setPreviewMotion] = useState<MotionPreset>("float");
+  const [previewBg, setPreviewBg] = useState<"dark" | "light" | "checker">("dark");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const loadReferences = useCallback(async () => {
@@ -99,8 +113,24 @@ export const AssetReview: React.FC = () => {
     if (e.dataTransfer.files.length > 0) uploadFiles(e.dataTransfer.files);
   };
 
+  const navigatePreview = (dir: 1 | -1) => {
+    if (!previewImage) return;
+    const list = trials.some(t => t.filename === previewImage.filename) ? trials : references;
+    const idx = list.findIndex(f => f.filename === previewImage.filename);
+    if (idx < 0) return;
+    setPreviewImage(list[(idx + dir + list.length) % list.length]);
+  };
+
   const approvedCount = trials.filter((t) => getReview(t.filename).status === "approved").length;
   const gatePass = trials.length > 0 && approvedCount >= Math.ceil(trials.length * 0.8);
+
+  const getBgColor = () => {
+    switch (previewBg) {
+      case "light": return "#f0f0f0";
+      case "checker": return "#808080";
+      default: return "#1a1a2e";
+    }
+  };
 
   return (
     <div style={{ flex: 1, overflow: "auto", padding: 24 }}>
@@ -148,7 +178,7 @@ export const AssetReview: React.FC = () => {
             트라이얼 이미지 없음 (experiment/outputs/trial/)
           </div>
         ) : (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240, 1fr))", gap: 16 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 16 }}>
             {trials.map((trial) => {
               const review = getReview(trial.filename);
               return (
@@ -167,7 +197,10 @@ export const AssetReview: React.FC = () => {
                     background: "var(--bg-secondary)",
                   }}
                 >
-                  <div style={{ position: "relative", background: "#1a1a2e", padding: 8 }}>
+                  <div
+                    style={{ position: "relative", background: "#1a1a2e", padding: 8, cursor: "pointer" }}
+                    onClick={() => setPreviewImage(trial)}
+                  >
                     <img
                       src={`/api/review/image?path=${encodeURIComponent(trial.path)}`}
                       alt={trial.filename}
@@ -178,6 +211,20 @@ export const AssetReview: React.FC = () => {
                         display: "block",
                       }}
                     />
+                    <div
+                      style={{
+                        position: "absolute",
+                        bottom: 12,
+                        right: 12,
+                        fontSize: 10,
+                        padding: "2px 8px",
+                        borderRadius: 4,
+                        background: "rgba(0,0,0,0.6)",
+                        color: "#aaa",
+                      }}
+                    >
+                      클릭하여 미리보기
+                    </div>
                   </div>
                   <div style={{ padding: 12 }}>
                     <div style={{ fontSize: 12, fontWeight: 600, marginBottom: 8, wordBreak: "break-all" }}>
@@ -314,11 +361,13 @@ export const AssetReview: React.FC = () => {
                 <img
                   src={`/api/review/image?path=${encodeURIComponent(ref.path)}`}
                   alt={ref.filename}
+                  onClick={() => setPreviewImage(ref)}
                   style={{
                     width: "100%",
                     height: 120,
                     objectFit: "cover",
                     display: "block",
+                    cursor: "pointer",
                   }}
                 />
                 <div style={{ padding: "6px 8px", display: "flex", alignItems: "center", gap: 4 }}>
@@ -355,6 +404,160 @@ export const AssetReview: React.FC = () => {
           </div>
         )}
       </section>
+
+      {/* ── Remotion Player Preview Modal ── */}
+      {previewImage && (
+        <div
+          onClick={() => setPreviewImage(null)}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") setPreviewImage(null);
+            if (e.key === "ArrowLeft") navigatePreview(-1);
+            if (e.key === "ArrowRight") navigatePreview(1);
+          }}
+          tabIndex={0}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 1000,
+            background: "rgba(0,0,0,0.92)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            outline: "none",
+          }}
+          ref={(el) => el?.focus()}
+        >
+          {/* Motion preset toolbar */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              display: "flex",
+              gap: 6,
+              marginBottom: 16,
+              padding: "8px 16px",
+              background: "rgba(255,255,255,0.08)",
+              borderRadius: 24,
+              cursor: "default",
+              alignItems: "center",
+            }}
+          >
+            {MOTION_PRESETS.map((p) => (
+              <button
+                key={p.key}
+                onClick={() => setPreviewMotion(p.key)}
+                style={{
+                  padding: "4px 12px",
+                  borderRadius: 14,
+                  border: "none",
+                  fontSize: 12,
+                  fontWeight: previewMotion === p.key ? 700 : 400,
+                  background: previewMotion === p.key ? "var(--accent, #f0c040)" : "transparent",
+                  color: previewMotion === p.key ? "#000" : "#ccc",
+                  cursor: "pointer",
+                  transition: "all 0.15s",
+                }}
+              >
+                {p.label}
+              </button>
+            ))}
+            <div style={{ width: 1, height: 20, background: "rgba(255,255,255,0.2)", margin: "0 4px" }} />
+            {(["dark", "light", "checker"] as const).map((bg) => (
+              <button
+                key={bg}
+                onClick={() => setPreviewBg(bg)}
+                style={{
+                  width: 24,
+                  height: 24,
+                  borderRadius: 12,
+                  border: previewBg === bg ? "2px solid var(--accent, #f0c040)" : "2px solid rgba(255,255,255,0.2)",
+                  cursor: "pointer",
+                  ...(bg === "dark" ? { background: "#1a1a2e" } :
+                    bg === "light" ? { background: "#f0f0f0" } :
+                    { background: "repeating-conic-gradient(#808080 0% 25%, #a0a0a0 0% 50%) 0 0 / 8px 8px" }),
+                }}
+                title={bg === "dark" ? "어두운 배경" : bg === "light" ? "밝은 배경" : "체커보드"}
+              />
+            ))}
+          </div>
+
+          {/* Remotion Player */}
+          <div onClick={(e) => e.stopPropagation()} style={{ cursor: "default", borderRadius: 12, overflow: "hidden" }}>
+            <Player
+              component={AssetPreviewComposition}
+              inputProps={{
+                imageUrl: `/api/review/image?path=${encodeURIComponent(previewImage.path)}`,
+                motion: previewMotion,
+                bgColor: getBgColor(),
+              }}
+              durationInFrames={150}
+              fps={30}
+              compositionWidth={500}
+              compositionHeight={500}
+              loop
+              autoPlay
+              style={{
+                width: 500,
+                height: 500,
+                borderRadius: 12,
+              }}
+              controls
+            />
+          </div>
+
+          {/* Navigation */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 24,
+              marginTop: 16,
+              cursor: "default",
+            }}
+          >
+            <button
+              onClick={() => navigatePreview(-1)}
+              style={{
+                background: "rgba(255,255,255,0.1)",
+                border: "none",
+                borderRadius: 20,
+                width: 36,
+                height: 36,
+                fontSize: 18,
+                color: "#ccc",
+                cursor: "pointer",
+              }}
+            >
+              ←
+            </button>
+            <div style={{ textAlign: "center" }}>
+              <div style={{ color: "#fff", fontSize: 14, fontWeight: 600 }}>
+                {previewImage.filename}
+              </div>
+              <div style={{ color: "#888", fontSize: 12, marginTop: 2 }}>
+                {(previewImage.size / 1024).toFixed(1)} KB · ESC 닫기 · ←→ 탐색
+              </div>
+            </div>
+            <button
+              onClick={() => navigatePreview(1)}
+              style={{
+                background: "rgba(255,255,255,0.1)",
+                border: "none",
+                borderRadius: 20,
+                width: 36,
+                height: 36,
+                fontSize: 18,
+                color: "#ccc",
+                cursor: "pointer",
+              }}
+            >
+              →
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
