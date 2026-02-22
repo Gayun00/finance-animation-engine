@@ -1,0 +1,25 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="arrowGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#A5D6A7"/>
+      <stop offset="70%" stop-color="#81C784"/>
+      <stop offset="100%" stop-color="#66BB6A"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <path d="M 256 120 L 176 200 L 216 200 L 216 320 L 296 320 L 296 200 L 336 200 Z" 
+        fill="url(#arrowGradient)" 
+        filter="url(#glow)" 
+        rx="12"/>
+  
+  <ellipse cx="256" cy="360" rx="24" ry="12" fill="#81C784" opacity="0.3"/>
+</svg>

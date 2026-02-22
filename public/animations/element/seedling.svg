@@ -1,0 +1,44 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="soilGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#A1887F"/>
+      <stop offset="100%" stop-color="#5D4037"/>
+    </radialGradient>
+    <radialGradient id="stemGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#A5D6A7"/>
+      <stop offset="100%" stop-color="#66BB6A"/>
+    </radialGradient>
+    <radialGradient id="leaf1Gradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#C8E6C9"/>
+      <stop offset="100%" stop-color="#81C784"/>
+    </radialGradient>
+    <radialGradient id="leaf2Gradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#C8E6C9"/>
+      <stop offset="100%" stop-color="#81C784"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <!-- Soil -->
+  <ellipse cx="256" cy="360" rx="120" ry="60" fill="url(#soilGradient)" filter="url(#glow)"/>
+  
+  <!-- Stem -->
+  <ellipse cx="256" cy="280" rx="12" ry="80" fill="url(#stemGradient)" filter="url(#glow)"/>
+  
+  <!-- Left leaf -->
+  <ellipse cx="200" cy="240" rx="35" ry="25" fill="url(#leaf1Gradient)" filter="url(#glow)" transform="rotate(-30 200 240)"/>
+  
+  <!-- Right leaf -->
+  <ellipse cx="312" cy="240" rx="35" ry="25" fill="url(#leaf2Gradient)" filter="url(#glow)" transform="rotate(30 312 240)"/>
+  
+  <!-- Small highlight on soil -->
+  <ellipse cx="220" cy="340" rx="8" ry="8" fill="#BCAAA4" opacity="0.3" filter="url(#glow)"/>
+</svg>

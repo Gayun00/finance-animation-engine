@@ -764,9 +764,9 @@
           },
           "containerStyle": {
             "position": "absolute",
-            "top": "50%",
+            "bottom": "12%",
             "left": "50%",
-            "transform": "translate(-50%, -50%)"
+            "transform": "translateX(-50%)"
           },
           "startFrame": 180,
           "animation": {
@@ -819,18 +819,27 @@
             {
               "id": "scene-7-bg-2",
               "component": "LottieElement",
-              "props": { "loop": true, "speed": 0.4, "style": { "width": 160, "height": 160 }, "src": "animations/element/coin-spin.json" },
-              "containerStyle": { "position": "absolute", "top": "10%", "left": "18%" },
+              "props": {
+                "loop": true,
+                "speed": 0.4,
+                "style": {
+                  "width": "100%",
+                  "height": "100%"
+                },
+                "src": "animations/element/coin-spin.json"
+              },
+              "containerStyle": {
+                "position": "absolute",
+                "bottom": "-15%",
+                "left": 0,
+                "width": "100%",
+                "height": "60%"
+              },
               "startFrame": 5,
-              "animation": { "preset": "fade_in", "duration": 20 }
-            },
-            {
-              "id": "scene-7-bg-3",
-              "component": "LottieElement",
-              "props": { "loop": true, "speed": 0.35, "style": { "width": 140, "height": 140 }, "src": "animations/element/coin-spin.json" },
-              "containerStyle": { "position": "absolute", "top": "25%", "right": "18%" },
-              "startFrame": 10,
-              "animation": { "preset": "fade_in", "duration": 20 }
+              "animation": {
+                "preset": "fade_in",
+                "duration": 20
+              }
             }
           ]
         },
@@ -841,34 +850,52 @@
             {
               "id": "scene-7-mid-1",
               "component": "LottieElement",
-              "props": { "loop": true, "speed": 0.6, "style": { "width": 280, "height": 280 }, "src": "animations/element/coin-spin.json" },
-              "containerStyle": { "position": "absolute", "top": "18%", "left": "12%" },
+              "props": {
+                "loop": true,
+                "speed": 0.6,
+                "style": {
+                  "width": "100%",
+                  "height": "100%"
+                },
+                "src": "animations/element/coin-spin.json"
+              },
+              "containerStyle": {
+                "position": "absolute",
+                "bottom": "-20%",
+                "left": "-5%",
+                "width": "60%",
+                "height": "85%"
+              },
               "startFrame": 10,
-              "animation": { "preset": "fade_in", "duration": 20 }
+              "animation": {
+                "preset": "fade_in",
+                "duration": 20
+              }
             },
             {
               "id": "scene-7-mid-2",
               "component": "LottieElement",
-              "props": { "loop": true, "speed": 0.6, "style": { "width": 260, "height": 260 }, "src": "animations/element/coin-spin.json" },
-              "containerStyle": { "position": "absolute", "top": "12%", "right": "10%" },
-              "startFrame": 15,
-              "animation": { "preset": "fade_in", "duration": 20 }
-            },
-            {
-              "id": "scene-7-mid-3",
-              "component": "LottieElement",
-              "props": { "loop": true, "speed": 0.55, "style": { "width": 220, "height": 220 }, "src": "animations/element/coin-spin.json" },
-              "containerStyle": { "position": "absolute", "bottom": "15%", "left": "20%" },
-              "startFrame": 20,
-              "animation": { "preset": "fade_in", "duration": 20 }
-            },
-            {
-              "id": "scene-7-mid-4",
-              "component": "LottieElement",
-              "props": { "loop": true, "speed": 0.65, "style": { "width": 200, "height": 200 }, "src": "animations/element/coin-spin.json" },
-              "containerStyle": { "position": "absolute", "bottom": "10%", "right": "18%" },
-              "startFrame": 25,
-              "animation": { "preset": "fade_in", "duration": 20 }
+              "props": {
+                "loop": true,
+                "speed": 0.6,
+                "style": {
+                  "width": "100%",
+                  "height": "100%"
+                },
+                "src": "animations/element/coin-spin.json"
+              },
+              "containerStyle": {
+                "position": "absolute",
+                "bottom": "-20%",
+                "right": "-5%",
+                "width": "60%",
+                "height": "85%"
+              },
+              "startFrame": 10,
+              "animation": {
+                "preset": "fade_in",
+                "duration": 20
+              }
             }
           ]
         },
@@ -879,37 +906,53 @@
             {
               "id": "scene-7-fg-1",
               "component": "LottieElement",
-              "props": { "loop": true, "speed": 0.8, "style": { "width": 450, "height": 450 }, "src": "animations/element/coin-spin.json" },
-              "containerStyle": { "position": "absolute", "top": "8%", "left": "8%" },
+              "props": {
+                "loop": true,
+                "speed": 0.8,
+                "style": {
+                  "width": "100%",
+                  "height": "100%"
+                },
+                "src": "animations/element/coin-spin.json"
+              },
+              "containerStyle": {
+                "position": "absolute",
+                "bottom": "-25%",
+                "left": "-5%",
+                "width": "50%",
+                "height": "100%"
+              },
               "startFrame": 5,
-              "animation": { "preset": "fade_in", "duration": 15 },
+              "animation": {
+                "preset": "fade_in",
+                "duration": 15
+              },
               "splitSide": "left"
             },
             {
               "id": "scene-7-fg-2",
               "component": "LottieElement",
-              "props": { "loop": true, "speed": 0.8, "style": { "width": 400, "height": 400 }, "src": "animations/element/coin-spin.json" },
-              "containerStyle": { "position": "absolute", "bottom": "5%", "right": "6%" },
+              "props": {
+                "loop": true,
+                "speed": 0.8,
+                "style": {
+                  "width": "100%",
+                  "height": "100%"
+                },
+                "src": "animations/element/coin-spin.json"
+              },
+              "containerStyle": {
+                "position": "absolute",
+                "bottom": "-25%",
+                "right": "-5%",
+                "width": "50%",
+                "height": "100%"
+              },
               "startFrame": 5,
-              "animation": { "preset": "fade_in", "duration": 15 },
-              "splitSide": "right"
-            },
-            {
-              "id": "scene-7-fg-3",
-              "component": "LottieElement",
-              "props": { "loop": true, "speed": 0.75, "style": { "width": 350, "height": 350 }, "src": "animations/element/coin-spin.json" },
-              "containerStyle": { "position": "absolute", "bottom": "20%", "left": "15%" },
-              "startFrame": 8,
-              "animation": { "preset": "fade_in", "duration": 15 },
-              "splitSide": "left"
-            },
-            {
-              "id": "scene-7-fg-4",
-              "component": "LottieElement",
-              "props": { "loop": true, "speed": 0.85, "style": { "width": 370, "height": 370 }, "src": "animations/element/coin-spin.json" },
-              "containerStyle": { "position": "absolute", "top": "12%", "right": "10%" },
-              "startFrame": 8,
-              "animation": { "preset": "fade_in", "duration": 15 },
+              "animation": {
+                "preset": "fade_in",
+                "duration": 15
+              },
               "splitSide": "right"
             }
           ]
@@ -918,6 +961,139 @@
       "transition": {
         "type": "fade",
         "duration": 15
+      }
+    },
+    {
+      "id": "scene-8",
+      "title": "World 장면",
+      "durationInFrames": 240,
+      "background": {
+        "type": "radial",
+        "colors": [
+          "#141445",
+          "#0B0B2B"
+        ]
+      },
+      "elements": [
+        {
+          "id": "scene-8-fixed-0",
+          "component": "FloatingParticles",
+          "props": {
+            "count": 20,
+            "color": "rgba(255,255,255,0.5)",
+            "size": 4,
+            "speed": 0.4,
+            "shape": "dot",
+            "opacity": 0.15
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "inset": 0
+          },
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-8-bg",
+          "component": "LottieOverlay",
+          "props": {
+            "loop": true,
+            "opacity": 0.35,
+            "blendMode": "screen",
+            "cover": true,
+            "src": "animations/background/Cityscape at night.json"
+          },
+          "containerStyle": {},
+          "animation": {
+            "preset": "fade_in",
+            "duration": 20
+          }
+        },
+        {
+          "id": "scene-8-el-1",
+          "component": "LottieElement",
+          "props": {
+            "loop": false,
+            "speed": 4,
+            "style": {
+              "width": 280,
+              "height": 280
+            },
+            "src": "animations/element/Coins drop.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "12%",
+            "right": "18%"
+          },
+          "startFrame": 15,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 18,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-8-el-2",
+          "component": "LottieElement",
+          "props": {
+            "loop": false,
+            "speed": 1.2,
+            "style": {
+              "width": 320,
+              "height": 320
+            },
+            "src": "animations/element/Growth Chart.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "8%",
+            "left": "15%"
+          },
+          "startFrame": 30,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 18,
+            "easing": "kurzgesagt"
+          }
+        },
+        {
+          "id": "scene-8-el-3",
+          "component": "LottieElement",
+          "props": {
+            "loop": true,
+            "speed": 0.8,
+            "style": {
+              "width": 250,
+              "height": 250
+            },
+            "src": "animations/element/Rocket in space with the UFO.json"
+          },
+          "containerStyle": {
+            "position": "absolute",
+            "top": "5%",
+            "left": "50%",
+            "transform": "translateX(-50%)"
+          },
+          "startFrame": 45,
+          "animation": {
+            "preset": "scale_in",
+            "duration": 18,
+            "easing": "kurzgesagt"
+          }
+        }
+      ],
+      "transition": {
+        "type": "fade",
+        "duration": 15
+      },
+      "cameraMotion": {
+        "type": "ken_burns",
+        "endScale": 1.05,
+        "panX": 10,
+        "panY": -5
       }
     }
   ]

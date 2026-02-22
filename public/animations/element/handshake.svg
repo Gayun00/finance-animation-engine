@@ -1,0 +1,49 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="skinGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FFE0B2"/>
+      <stop offset="100%" stop-color="#FFCC80"/>
+    </radialGradient>
+    <radialGradient id="blueGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#64B5F6"/>
+      <stop offset="100%" stop-color="#42A5F5"/>
+    </radialGradient>
+    <radialGradient id="tealGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#4DB6AC"/>
+      <stop offset="100%" stop-color="#26A69A"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <g filter="url(#glow)">
+    <!-- Left hand wrist/cuff -->
+    <ellipse cx="160" cy="320" rx="40" ry="60" fill="url(#blueGradient)"/>
+    
+    <!-- Right hand wrist/cuff -->
+    <ellipse cx="352" cy="320" rx="40" ry="60" fill="url(#tealGradient)"/>
+    
+    <!-- Left hand -->
+    <ellipse cx="180" cy="240" rx="35" ry="45" fill="url(#skinGradient)"/>
+    <circle cx="200" cy="220" r="25" fill="url(#skinGradient)"/>
+    <circle cx="210" cy="245" r="20" fill="url(#skinGradient)"/>
+    <circle cx="195" cy="265" r="18" fill="url(#skinGradient)"/>
+    
+    <!-- Right hand -->
+    <ellipse cx="332" cy="240" rx="35" ry="45" fill="url(#skinGradient)"/>
+    <circle cx="312" cy="220" r="25" fill="url(#skinGradient)"/>
+    <circle cx="302" cy="245" r="20" fill="url(#skinGradient)"/>
+    <circle cx="317" cy="265" r="18" fill="url(#skinGradient)"/>
+    
+    <!-- Handshake connection -->
+    <ellipse cx="256" cy="225" rx="45" ry="30" fill="url(#skinGradient)" opacity="0.8"/>
+    <ellipse cx="256" cy="250" rx="35" ry="25" fill="url(#skinGradient)" opacity="0.9"/>
+  </g>
+</svg>

@@ -1,0 +1,44 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="cardGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#64B5F6"/>
+      <stop offset="100%" stop-color="#1976D2"/>
+    </radialGradient>
+    <radialGradient id="chipGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FFF176"/>
+      <stop offset="100%" stop-color="#FFB74D"/>
+    </radialGradient>
+    <radialGradient id="stripeGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#CFD8DC"/>
+      <stop offset="100%" stop-color="#90A4AE"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <g filter="url(#glow)">
+    <rect x="96" y="176" width="320" height="200" rx="24" fill="url(#cardGrad)"/>
+    
+    <rect x="96" y="256" width="320" height="32" rx="4" fill="url(#stripeGrad)"/>
+    
+    <rect x="128" y="208" width="48" height="32" rx="6" fill="url(#chipGrad)"/>
+    
+    <rect x="140" y="216" width="8" height="8" rx="2" fill="#FF9800" opacity="0.8"/>
+    <rect x="152" y="216" width="8" height="8" rx="2" fill="#FF9800" opacity="0.8"/>
+    <rect x="164" y="216" width="8" height="8" rx="2" fill="#FF9800" opacity="0.8"/>
+    
+    <circle cx="144" cy="328" r="8" fill="#FFF176" opacity="0.6"/>
+    <circle cx="176" cy="328" r="8" fill="#FFF176" opacity="0.6"/>
+    <circle cx="208" cy="328" r="8" fill="#FFF176" opacity="0.6"/>
+    <circle cx="240" cy="328" r="8" fill="#FFF176" opacity="0.6"/>
+    
+    <rect x="288" y="312" width="96" height="24" rx="4" fill="#42A5F5" opacity="0.3"/>
+  </g>
+</svg>

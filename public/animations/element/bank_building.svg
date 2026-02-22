@@ -1,0 +1,57 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="buildingGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#EEEEEE"/>
+      <stop offset="100%" stop-color="#E0E0E0"/>
+    </radialGradient>
+    <radialGradient id="columnGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#CFD8DC"/>
+      <stop offset="100%" stop-color="#B0BEC5"/>
+    </radialGradient>
+    <radialGradient id="accentGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FFF176"/>
+      <stop offset="100%" stop-color="#FFD54F"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <g filter="url(#glow)">
+    <!-- Main building body -->
+    <ellipse cx="256" cy="280" rx="140" ry="120" fill="url(#buildingGrad)"/>
+    
+    <!-- Building steps/base -->
+    <ellipse cx="256" cy="360" rx="160" ry="40" fill="url(#columnGrad)" opacity="0.8"/>
+    
+    <!-- Left column -->
+    <ellipse cx="200" cy="280" rx="20" ry="80" fill="url(#columnGrad)"/>
+    
+    <!-- Center-left column -->
+    <ellipse cx="230" cy="280" rx="20" ry="80" fill="url(#columnGrad)"/>
+    
+    <!-- Center-right column -->
+    <ellipse cx="282" cy="280" rx="20" ry="80" fill="url(#columnGrad)"/>
+    
+    <!-- Right column -->
+    <ellipse cx="312" cy="280" rx="20" ry="80" fill="url(#columnGrad)"/>
+    
+    <!-- Entrance/door area -->
+    <ellipse cx="256" cy="320" rx="35" ry="60" fill="url(#accentGrad)" opacity="0.9"/>
+    
+    <!-- Dome/roof -->
+    <ellipse cx="256" cy="180" rx="120" ry="60" fill="url(#buildingGrad)"/>
+    
+    <!-- Small accent detail on dome -->
+    <circle cx="256" cy="160" r="20" fill="url(#accentGrad)"/>
+    
+    <!-- Foundation shadow -->
+    <ellipse cx="256" cy="380" rx="150" ry="20" fill="#1B2838" opacity="0.3"/>
+  </g>
+</svg>

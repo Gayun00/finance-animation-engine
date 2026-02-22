@@ -1,0 +1,29 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="barGrad1" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#CE93D8"/>
+      <stop offset="100%" stop-color="#AB47BC"/>
+    </radialGradient>
+    <radialGradient id="barGrad2" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#CE93D8"/>
+      <stop offset="100%" stop-color="#AB47BC"/>
+    </radialGradient>
+    <radialGradient id="barGrad3" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#CE93D8"/>
+      <stop offset="100%" stop-color="#AB47BC"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <rect x="96" y="320" width="80" height="120" rx="20" fill="url(#barGrad1)" filter="url(#glow)"/>
+  <rect x="216" y="240" width="80" height="200" rx="20" fill="url(#barGrad2)" filter="url(#glow)"/>
+  <rect x="336" y="160" width="80" height="280" rx="20" fill="url(#barGrad3)" filter="url(#glow)"/>
+</svg>

@@ -1,0 +1,57 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="goldGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FFF176"/>
+      <stop offset="100%" stop-color="#FFB74D"/>
+    </radialGradient>
+    <radialGradient id="panGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#CFD8DC"/>
+      <stop offset="100%" stop-color="#90A4AE"/>
+    </radialGradient>
+    <radialGradient id="beamGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#90A4AE"/>
+      <stop offset="100%" stop-color="#607D8B"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <g filter="url(#glow)">
+    <!-- Central support post -->
+    <rect x="246" y="140" width="20" height="160" rx="10" fill="url(#beamGrad)"/>
+    
+    <!-- Top finial -->
+    <circle cx="256" cy="140" r="16" fill="url(#goldGrad)"/>
+    
+    <!-- Main horizontal beam -->
+    <rect x="140" y="240" width="232" height="16" rx="8" fill="url(#beamGrad)"/>
+    
+    <!-- Left chain links -->
+    <ellipse cx="172" cy="270" rx="8" ry="12" fill="url(#beamGrad)"/>
+    <ellipse cx="172" cy="290" rx="8" ry="12" fill="url(#beamGrad)"/>
+    <ellipse cx="172" cy="310" rx="8" ry="12" fill="url(#beamGrad)"/>
+    
+    <!-- Right chain links -->
+    <ellipse cx="340" cy="270" rx="8" ry="12" fill="url(#beamGrad)"/>
+    <ellipse cx="340" cy="290" rx="8" ry="12" fill="url(#beamGrad)"/>
+    <ellipse cx="340" cy="310" rx="8" ry="12" fill="url(#beamGrad)"/>
+    
+    <!-- Left pan -->
+    <ellipse cx="172" cy="340" rx="60" ry="16" fill="url(#panGrad)"/>
+    <path d="M112 340 Q112 360 172 360 Q232 360 232 340 L232 356 Q232 376 172 376 Q112 376 112 356 Z" fill="url(#panGrad)"/>
+    
+    <!-- Right pan -->
+    <ellipse cx="340" cy="340" rx="60" ry="16" fill="url(#panGrad)"/>
+    <path d="M280 340 Q280 360 340 360 Q400 360 400 340 L400 356 Q400 376 340 376 Q280 376 280 356 Z" fill="url(#panGrad)"/>
+    
+    <!-- Balance point -->
+    <circle cx="256" cy="248" r="12" fill="url(#goldGrad)"/>
+  </g>
+</svg>

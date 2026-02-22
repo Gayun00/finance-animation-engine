@@ -1,0 +1,46 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="billGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#A5D6A7"/>
+      <stop offset="100%" stop-color="#66BB6A"/>
+    </radialGradient>
+    <radialGradient id="bandGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FFCC02"/>
+      <stop offset="100%" stop-color="#FF9800"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <g filter="url(#glow)">
+    <!-- Bottom bills (background stack) -->
+    <rect x="176" y="200" width="160" height="100" rx="8" fill="#81C784" opacity="0.6"/>
+    <rect x="172" y="195" width="160" height="100" rx="8" fill="#81C784" opacity="0.7"/>
+    <rect x="168" y="190" width="160" height="100" rx="8" fill="#81C784" opacity="0.8"/>
+    
+    <!-- Main bill stack -->
+    <rect x="164" y="185" width="160" height="100" rx="8" fill="url(#billGradient)"/>
+    
+    <!-- Bill details -->
+    <rect x="184" y="205" width="30" height="20" rx="4" fill="#4CAF50" opacity="0.8"/>
+    <rect x="280" y="205" width="24" height="8" rx="4" fill="#4CAF50" opacity="0.6"/>
+    <rect x="280" y="220" width="20" height="6" rx="3" fill="#4CAF50" opacity="0.6"/>
+    <rect x="280" y="235" width="16" height="6" rx="3" fill="#4CAF50" opacity="0.6"/>
+    
+    <!-- Paper band -->
+    <rect x="140" y="215" width="208" height="36" rx="18" fill="url(#bandGradient)"/>
+    
+    <!-- Band text representation -->
+    <ellipse cx="200" cy="233" rx="8" ry="4" fill="#FF9800" opacity="0.7"/>
+    <ellipse cx="220" cy="233" rx="8" ry="4" fill="#FF9800" opacity="0.7"/>
+    <ellipse cx="240" cy="233" rx="8" ry="4" fill="#FF9800" opacity="0.7"/>
+    <ellipse cx="280" cy="233" rx="12" ry="6" fill="#FF9800" opacity="0.8"/>
+  </g>
+</svg>
