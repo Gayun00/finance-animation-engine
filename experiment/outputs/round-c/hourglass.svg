@@ -1,0 +1,59 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="glassGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#E8F4FD"/>
+      <stop offset="100%" stop-color="#B0BEC5"/>
+    </radialGradient>
+    <radialGradient id="goldGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FFF176"/>
+      <stop offset="100%" stop-color="#FFD54F"/>
+    </radialGradient>
+    <radialGradient id="sandGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FFCC02"/>
+      <stop offset="100%" stop-color="#FFB74D"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <g filter="url(#glow)">
+    <!-- Top glass bulb -->
+    <ellipse cx="256" cy="180" rx="100" ry="120" fill="url(#glassGradient)" opacity="0.9"/>
+    
+    <!-- Bottom glass bulb -->
+    <ellipse cx="256" cy="332" rx="100" ry="120" fill="url(#glassGradient)" opacity="0.9"/>
+    
+    <!-- Center connector -->
+    <rect x="246" y="240" width="20" height="32" rx="10" fill="url(#glassGradient)" opacity="0.9"/>
+    
+    <!-- Gold rim top -->
+    <ellipse cx="256" cy="120" rx="110" ry="24" fill="url(#goldGradient)"/>
+    
+    <!-- Gold rim middle -->
+    <ellipse cx="256" cy="256" rx="80" ry="16" fill="url(#goldGradient)"/>
+    
+    <!-- Gold rim bottom -->
+    <ellipse cx="256" cy="392" rx="110" ry="24" fill="url(#goldGradient)"/>
+    
+    <!-- Sand in top bulb -->
+    <ellipse cx="256" cy="200" rx="70" ry="40" fill="url(#sandGradient)" opacity="0.8"/>
+    
+    <!-- Sand in bottom bulb -->
+    <ellipse cx="256" cy="350" rx="80" ry="80" fill="url(#sandGradient)" opacity="0.9"/>
+    
+    <!-- Flowing sand stream -->
+    <ellipse cx="256" cy="256" rx="8" ry="20" fill="#FFB74D" opacity="0.7"/>
+    
+    <!-- Sand particles -->
+    <circle cx="260" cy="240" r="3" fill="#FFB74D" opacity="0.6"/>
+    <circle cx="252" cy="250" r="2" fill="#FFB74D" opacity="0.5"/>
+    <circle cx="258" cy="270" r="2" fill="#FFB74D" opacity="0.6"/>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+**Style Guide for Gaming UI Icon Set**
+
+This icon style uses a **512x512 viewBox** with a consistent **dark slate background (#1B2838)** that evokes gaming interfaces. All icons feature a **soft glow filter** using `feGaussianBlur` with `stdDeviation="8"` for primary elements (reduced to `stdDeviation="3"` for line-based graphics), applied through `feMerge` technique combining the blurred result with the original graphic.
+
+**Color palette** centers on **warm gaming colors**: golden yellows (#FFD54F, #FFF176, #FFB74D, #FF9800), vibrant pinks (#F06292, #E91E63), and success green (#81C784). Secondary elements use **muted blue-gray (#2A4157)** for grid lines and structural components. **Radial gradients** are positioned with `cx="0.3" cy="0.3"` to create top-left highlighting, transitioning from lighter centers to darker edges.
+
+**Shape construction** relies on **geometric primitives**: circles, ellipses, rectangles with `rx` rounding, and simple polygons. Icons maintain **medium complexity** with 5-12 primary elements. **Proportions** center main subjects around coordinate 256 with typical radii of 80-140px for primary shapes, 8px for accent dots, and 20-30px for secondary details.
+
+**Visual treatment** combines **flat fills with subtle transparency** (opacity="0.15" for background fills, opacity="0.3" for grid elements). Line weights use **1-2px strokes** for grids and **8px circles** for data points. Elements are positioned using **80px grid intervals** (80, 160, 240, 320, 400) for consistent spacing. The overall aesthetic balances **clean geometric forms** with **warm atmospheric glow** suitable for financial gaming applications.

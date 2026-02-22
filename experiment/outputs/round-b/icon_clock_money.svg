@@ -1,0 +1,48 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="clockFace" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#E3F2FD"/>
+      <stop offset="100%" stop-color="#BBDEFB"/>
+    </radialGradient>
+    <radialGradient id="hourHand" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#42A5F5"/>
+      <stop offset="100%" stop-color="#1976D2"/>
+    </radialGradient>
+    <radialGradient id="minuteHand" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#42A5F5"/>
+      <stop offset="100%" stop-color="#1976D2"/>
+    </radialGradient>
+    <radialGradient id="dollarSign" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FFD54F"/>
+      <stop offset="100%" stop-color="#FF9800"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <circle cx="256" cy="256" r="140" fill="url(#clockFace)" filter="url(#glow)"/>
+  
+  <circle cx="256" cy="176" r="8" fill="#2A4157" opacity="0.3"/>
+  <circle cx="336" cy="256" r="8" fill="#2A4157" opacity="0.3"/>
+  <circle cx="256" cy="336" r="8" fill="#2A4157" opacity="0.3"/>
+  <circle cx="176" cy="256" r="8" fill="#2A4157" opacity="0.3"/>
+  
+  <ellipse cx="256" cy="200" rx="6" ry="80" fill="url(#hourHand)" filter="url(#glow)"/>
+  
+  <ellipse cx="320" cy="256" rx="8" ry="64" fill="url(#minuteHand)" filter="url(#glow)" transform="rotate(90 320 256)"/>
+  
+  <circle cx="320" cy="256" r="20" fill="url(#dollarSign)" filter="url(#glow)"/>
+  <rect x="314" y="246" width="4" height="20" rx="2" fill="#1B2838"/>
+  <rect x="318" y="250" width="8" height="4" rx="2" fill="#1B2838"/>
+  <rect x="318" y="258" width="8" height="4" rx="2" fill="#1B2838"/>
+  <rect x="316" y="242" width="4" height="28" rx="2" fill="#1B2838"/>
+  
+  <circle cx="256" cy="256" r="12" fill="url(#hourHand)" filter="url(#glow)"/>
+</svg>

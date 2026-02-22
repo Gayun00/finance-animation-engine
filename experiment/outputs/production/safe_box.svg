@@ -1,0 +1,44 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="safeGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#90A4AE"/>
+      <stop offset="100%" stop-color="#546E7A"/>
+    </radialGradient>
+    <radialGradient id="dialGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FFF176"/>
+      <stop offset="100%" stop-color="#FFB74D"/>
+    </radialGradient>
+    <radialGradient id="handleGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#CFD8DC"/>
+      <stop offset="100%" stop-color="#90A4AE"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <g filter="url(#glow)">
+    <rect x="156" y="176" width="200" height="160" rx="12" fill="url(#safeGradient)"/>
+    
+    <rect x="166" y="186" width="180" height="16" rx="8" fill="#2A4157" opacity="0.3"/>
+    <rect x="166" y="320" width="180" height="16" rx="8" fill="#2A4157" opacity="0.3"/>
+    
+    <circle cx="256" cy="256" r="50" fill="url(#dialGradient)"/>
+    <circle cx="256" cy="256" r="35" fill="#78909C"/>
+    <circle cx="256" cy="256" r="8" fill="#FFD54F"/>
+    
+    <circle cx="256" cy="206" r="3" fill="#FFD54F"/>
+    <circle cx="306" cy="256" r="3" fill="#FFD54F"/>
+    <circle cx="256" cy="306" r="3" fill="#FFD54F"/>
+    <circle cx="206" cy="256" r="3" fill="#FFD54F"/>
+    
+    <ellipse cx="376" cy="256" rx="12" ry="24" fill="url(#handleGradient)"/>
+    <circle cx="376" cy="256" r="6" fill="#2A4157" opacity="0.5"/>
+  </g>
+</svg>

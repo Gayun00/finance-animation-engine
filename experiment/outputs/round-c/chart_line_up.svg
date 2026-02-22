@@ -1,0 +1,49 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="mintGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#A5D6A7"/>
+      <stop offset="100%" stop-color="#81C784"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <!-- Grid lines -->
+  <rect x="80" y="120" width="352" height="1" fill="#2A4157" opacity="0.3"/>
+  <rect x="80" y="200" width="352" height="1" fill="#2A4157" opacity="0.3"/>
+  <rect x="80" y="280" width="352" height="1" fill="#2A4157" opacity="0.3"/>
+  <rect x="80" y="360" width="352" height="1" fill="#2A4157" opacity="0.3"/>
+  
+  <rect x="80" y="120" width="1" height="240" fill="#2A4157" opacity="0.3"/>
+  <rect x="160" y="120" width="1" height="240" fill="#2A4157" opacity="0.3"/>
+  <rect x="240" y="120" width="1" height="240" fill="#2A4157" opacity="0.3"/>
+  <rect x="320" y="120" width="1" height="240" fill="#2A4157" opacity="0.3"/>
+  <rect x="400" y="120" width="1" height="240" fill="#2A4157" opacity="0.3"/>
+  
+  <!-- Chart line segments -->
+  <ellipse cx="100" cy="320" rx="20" ry="3" fill="url(#mintGradient)" filter="url(#glow)"/>
+  <ellipse cx="140" cy="280" rx="20" ry="3" fill="url(#mintGradient)" filter="url(#glow)" transform="rotate(20 140 280)"/>
+  <ellipse cx="180" cy="260" rx="25" ry="3" fill="url(#mintGradient)" filter="url(#glow)" transform="rotate(15 180 260)"/>
+  <ellipse cx="220" cy="220" rx="20" ry="3" fill="url(#mintGradient)" filter="url(#glow)" transform="rotate(25 220 220)"/>
+  <ellipse cx="260" cy="200" rx="25" ry="3" fill="url(#mintGradient)" filter="url(#glow)" transform="rotate(18 260 200)"/>
+  <ellipse cx="300" cy="160" rx="20" ry="3" fill="url(#mintGradient)" filter="url(#glow)" transform="rotate(30 300 160)"/>
+  <ellipse cx="340" cy="140" rx="25" ry="3" fill="url(#mintGradient)" filter="url(#glow)" transform="rotate(22 340 140)"/>
+  <ellipse cx="380" cy="120" rx="20" ry="3" fill="url(#mintGradient)" filter="url(#glow)" transform="rotate(28 380 120)"/>
+  
+  <!-- Data points -->
+  <circle cx="100" cy="320" r="8" fill="url(#mintGradient)" filter="url(#glow)"/>
+  <circle cx="140" cy="280" r="8" fill="url(#mintGradient)" filter="url(#glow)"/>
+  <circle cx="180" cy="260" r="8" fill="url(#mintGradient)" filter="url(#glow)"/>
+  <circle cx="220" cy="220" r="8" fill="url(#mintGradient)" filter="url(#glow)"/>
+  <circle cx="260" cy="200" r="8" fill="url(#mintGradient)" filter="url(#glow)"/>
+  <circle cx="300" cy="160" r="8" fill="url(#mintGradient)" filter="url(#glow)"/>
+  <circle cx="340" cy="140" r="8" fill="url(#mintGradient)" filter="url(#glow)"/>
+  <circle cx="380" cy="120" r="8" fill="url(#mintGradient)" filter="url(#glow)"/>
+</svg>

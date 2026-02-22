@@ -1,0 +1,57 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="buildingGrad" cx="0.3" cy="0.3" r="0.8">
+      <stop offset="0%" stop-color="#F5F5F5"/>
+      <stop offset="100%" stop-color="#E0E0E0"/>
+    </radialGradient>
+    <radialGradient id="columnGrad" cx="0.3" cy="0.3" r="0.8">
+      <stop offset="0%" stop-color="#CFD8DC"/>
+      <stop offset="100%" stop-color="#B0BEC5"/>
+    </radialGradient>
+    <radialGradient id="goldGrad" cx="0.3" cy="0.3" r="0.8">
+      <stop offset="0%" stop-color="#FFF176"/>
+      <stop offset="100%" stop-color="#FFD54F"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <g filter="url(#glow)">
+    <!-- Pediment (triangular top) -->
+    <polygon points="256,120 180,200 332,200" fill="url(#buildingGrad)"/>
+    
+    <!-- Main building body -->
+    <rect x="160" y="200" width="192" height="180" fill="url(#buildingGrad)"/>
+    
+    <!-- Column 1 -->
+    <rect x="185" y="200" width="20" height="140" rx="10" fill="url(#columnGrad)"/>
+    
+    <!-- Column 2 -->
+    <rect x="225" y="200" width="20" height="140" rx="10" fill="url(#columnGrad)"/>
+    
+    <!-- Column 3 -->
+    <rect x="265" y="200" width="20" height="140" rx="10" fill="url(#columnGrad)"/>
+    
+    <!-- Column 4 -->
+    <rect x="305" y="200" width="20" height="140" rx="10" fill="url(#columnGrad)"/>
+    
+    <!-- Base/Foundation -->
+    <rect x="140" y="380" width="232" height="40" rx="4" fill="url(#buildingGrad)"/>
+    
+    <!-- Steps -->
+    <rect x="150" y="360" width="212" height="20" rx="2" fill="url(#columnGrad)"/>
+    
+    <!-- Decorative element in pediment -->
+    <circle cx="256" cy="160" r="12" fill="url(#goldGrad)"/>
+    
+    <!-- Door/entrance -->
+    <rect x="235" y="320" width="42" height="60" rx="21" fill="#2A4157" opacity="0.6"/>
+  </g>
+</svg>

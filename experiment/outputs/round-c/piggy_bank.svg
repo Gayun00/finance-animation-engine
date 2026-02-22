@@ -1,0 +1,56 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="piggyGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#F06292"/>
+      <stop offset="100%" stop-color="#E91E63"/>
+    </radialGradient>
+    <radialGradient id="coinGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FFF176"/>
+      <stop offset="100%" stop-color="#FFD54F"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <!-- Piggy bank body -->
+  <ellipse cx="256" cy="280" rx="120" ry="90" fill="url(#piggyGradient)" filter="url(#glow)"/>
+  
+  <!-- Piggy bank head -->
+  <ellipse cx="256" cy="200" rx="80" ry="70" fill="url(#piggyGradient)" filter="url(#glow)"/>
+  
+  <!-- Snout -->
+  <ellipse cx="256" cy="180" rx="25" ry="18" fill="#E91E63" filter="url(#glow)"/>
+  
+  <!-- Nostrils -->
+  <ellipse cx="248" cy="178" rx="3" ry="5" fill="#C2185B"/>
+  <ellipse cx="264" cy="178" rx="3" ry="5" fill="#C2185B"/>
+  
+  <!-- Eyes -->
+  <circle cx="235" cy="165" r="8" fill="#C2185B"/>
+  <circle cx="277" cy="165" r="8" fill="#C2185B"/>
+  
+  <!-- Ears -->
+  <ellipse cx="220" cy="145" rx="12" ry="20" fill="#E91E63" filter="url(#glow)"/>
+  <ellipse cx="292" cy="145" rx="12" ry="20" fill="#E91E63" filter="url(#glow)"/>
+  
+  <!-- Legs -->
+  <ellipse cx="200" cy="350" rx="15" ry="25" fill="#E91E63" filter="url(#glow)"/>
+  <ellipse cx="240" cy="360" rx="15" ry="25" fill="#E91E63" filter="url(#glow)"/>
+  <ellipse cx="272" cy="360" rx="15" ry="25" fill="#E91E63" filter="url(#glow)"/>
+  <ellipse cx="312" cy="350" rx="15" ry="25" fill="#E91E63" filter="url(#glow)"/>
+  
+  <!-- Tail -->
+  <circle cx="360" cy="260" r="8" fill="#E91E63" filter="url(#glow)"/>
+  <circle cx="370" cy="250" r="6" fill="#E91E63" filter="url(#glow)"/>
+  <circle cx="375" cy="238" r="4" fill="#E91E63" filter="url(#glow)"/>
+  
+  <!-- Coin slot -->
+  <rect x="236" y="130" width="40" height="8" rx="4" fill="url(#coinGradient)" filter="url(#glow)"/>
+</svg>

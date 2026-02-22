@@ -1,0 +1,38 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="percentGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FF6B6B"/>
+      <stop offset="100%" stop-color="#EF5350"/>
+    </radialGradient>
+    <radialGradient id="arrowGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FFF176"/>
+      <stop offset="100%" stop-color="#FFD54F"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <g filter="url(#glow)">
+    <!-- Left circle of percent -->
+    <circle cx="180" cy="180" r="32" fill="url(#percentGrad)"/>
+    
+    <!-- Right circle of percent -->
+    <circle cx="332" cy="280" r="32" fill="url(#percentGrad)"/>
+    
+    <!-- Diagonal line of percent -->
+    <ellipse cx="256" cy="230" rx="8" ry="60" fill="url(#percentGrad)" transform="rotate(45 256 230)"/>
+    
+    <!-- Arrow shaft -->
+    <rect x="248" y="320" width="16" height="80" rx="8" fill="url(#arrowGrad)"/>
+    
+    <!-- Arrow head -->
+    <polygon points="256,420 236,380 276,380" fill="url(#arrowGrad)"/>
+  </g>
+</svg>

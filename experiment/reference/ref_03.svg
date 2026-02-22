@@ -1,0 +1,28 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <g filter="url(#glow)">
+    <ellipse cx="256" cy="280" rx="140" ry="100" fill="#F06292"/>
+    <ellipse cx="256" cy="200" rx="80" ry="70" fill="#F06292"/>
+    <circle cx="230" cy="180" r="8" fill="#E91E63"/>
+    <circle cx="282" cy="180" r="8" fill="#E91E63"/>
+    <ellipse cx="256" cy="220" rx="20" ry="15" fill="#E91E63"/>
+    <ellipse cx="380" cy="280" rx="25" ry="20" fill="#F06292"/>
+    <ellipse cx="200" cy="350" rx="20" ry="30" fill="#F06292"/>
+    <ellipse cx="250" cy="350" rx="20" ry="30" fill="#F06292"/>
+    <ellipse cx="300" cy="350" rx="20" ry="30" fill="#F06292"/>
+    <ellipse cx="350" cy="350" rx="20" ry="30" fill="#F06292"/>
+    <rect x="230" y="140" width="52" height="16" rx="8" fill="#FFD54F"/>
+    <rect x="240" y="130" width="32" height="6" rx="3" fill="#FFD54F"/>
+  </g>
+</svg>

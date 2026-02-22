@@ -1,0 +1,34 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="barGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#CE93D8"/>
+      <stop offset="100%" stop-color="#7B1FA2"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <g filter="url(#glow)">
+    <rect x="160" y="320" width="60" height="80" rx="8" fill="url(#barGradient)"/>
+    <rect x="226" y="280" width="60" height="120" rx="8" fill="url(#barGradient)"/>
+    <rect x="292" y="240" width="60" height="160" rx="8" fill="url(#barGradient)"/>
+    
+    <polygon points="320,200 360,180 360,190 400,190 400,170 440,190 400,210 400,200 360,200" fill="#FFD54F"/>
+    
+    <rect x="140" y="420" width="240" height="2" rx="1" fill="#2A4157" opacity="0.3"/>
+    <rect x="160" y="240" width="2" height="180" rx="1" fill="#2A4157" opacity="0.3"/>
+    
+    <circle cx="180" cy="360" r="3" fill="#AB47BC"/>
+    <circle cx="246" cy="340" r="3" fill="#AB47BC"/>
+    <circle cx="312" cy="320" r="3" fill="#AB47BC"/>
+    
+    <rect x="140" y="160" width="200" height="40" rx="20" fill="#AB47BC" opacity="0.15"/>
+  </g>
+</svg>

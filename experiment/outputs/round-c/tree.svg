@@ -1,0 +1,38 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="trunkGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#A1887F"/>
+      <stop offset="100%" stop-color="#5D4037"/>
+    </radialGradient>
+    <radialGradient id="canopyGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#81C784"/>
+      <stop offset="100%" stop-color="#388E3C"/>
+    </radialGradient>
+    <radialGradient id="leavesGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#C8E6C9"/>
+      <stop offset="100%" stop-color="#66BB6A"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <ellipse cx="256" cy="410" rx="25" ry="90" fill="url(#trunkGrad)" filter="url(#glow)"/>
+  
+  <circle cx="256" cy="220" r="120" fill="url(#canopyGrad)" filter="url(#glow)"/>
+  
+  <circle cx="210" cy="180" r="35" fill="url(#leavesGrad)" opacity="0.8" filter="url(#glow)"/>
+  <circle cx="300" cy="190" r="28" fill="url(#leavesGrad)" opacity="0.7" filter="url(#glow)"/>
+  <circle cx="240" cy="260" r="32" fill="url(#leavesGrad)" opacity="0.8" filter="url(#glow)"/>
+  <circle cx="290" cy="250" r="25" fill="url(#leavesGrad)" opacity="0.6" filter="url(#glow)"/>
+  <circle cx="320" cy="210" r="20" fill="url(#leavesGrad)" opacity="0.7" filter="url(#glow)"/>
+  <circle cx="200" cy="240" r="22" fill="url(#leavesGrad)" opacity="0.8" filter="url(#glow)"/>
+  <circle cx="270" cy="160" r="18" fill="url(#leavesGrad)" opacity="0.9" filter="url(#glow)"/>
+  <circle cx="180" cy="210" r="15" fill="url(#leavesGrad)" opacity="0.7" filter="url(#glow)"/>
+</svg>

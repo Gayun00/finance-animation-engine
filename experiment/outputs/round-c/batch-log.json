@@ -1,0 +1,159 @@
+{
+  "timestamp": "2026-02-20T15:45:18.627Z",
+  "total": 30,
+  "success": 30,
+  "failed": 0,
+  "successRate": "100.0%",
+  "results": [
+    {
+      "id": "coin_gold",
+      "success": true,
+      "time": "2026-02-20T15:38:54.802Z"
+    },
+    {
+      "id": "coin_silver",
+      "success": true,
+      "time": "2026-02-20T15:39:06.833Z"
+    },
+    {
+      "id": "bills_stack",
+      "success": true,
+      "time": "2026-02-20T15:39:22.336Z"
+    },
+    {
+      "id": "money_bag",
+      "success": true,
+      "time": "2026-02-20T15:39:35.398Z"
+    },
+    {
+      "id": "wallet",
+      "success": true,
+      "time": "2026-02-20T15:39:49.206Z"
+    },
+    {
+      "id": "credit_card",
+      "success": true,
+      "time": "2026-02-20T15:40:02.102Z"
+    },
+    {
+      "id": "chart_line_up",
+      "success": true,
+      "time": "2026-02-20T15:40:28.252Z"
+    },
+    {
+      "id": "chart_line_down",
+      "success": true,
+      "time": "2026-02-20T15:40:40.901Z"
+    },
+    {
+      "id": "chart_bar",
+      "success": true,
+      "time": "2026-02-20T15:40:50.239Z"
+    },
+    {
+      "id": "chart_pie",
+      "success": true,
+      "time": "2026-02-20T15:41:05.061Z"
+    },
+    {
+      "id": "percent_up",
+      "success": true,
+      "time": "2026-02-20T15:41:15.766Z"
+    },
+    {
+      "id": "percent_down",
+      "success": true,
+      "time": "2026-02-20T15:41:26.316Z"
+    },
+    {
+      "id": "piggy_bank",
+      "success": true,
+      "time": "2026-02-20T15:41:41.867Z"
+    },
+    {
+      "id": "bank_building",
+      "success": true,
+      "time": "2026-02-20T15:41:54.914Z"
+    },
+    {
+      "id": "safe_box",
+      "success": true,
+      "time": "2026-02-20T15:42:08.380Z"
+    },
+    {
+      "id": "scale_balance",
+      "success": true,
+      "time": "2026-02-20T15:42:25.080Z"
+    },
+    {
+      "id": "clock",
+      "success": true,
+      "time": "2026-02-20T15:42:36.630Z"
+    },
+    {
+      "id": "hourglass",
+      "success": true,
+      "time": "2026-02-20T15:42:50.748Z"
+    },
+    {
+      "id": "seedling",
+      "success": true,
+      "time": "2026-02-20T15:43:03.048Z"
+    },
+    {
+      "id": "tree",
+      "success": true,
+      "time": "2026-02-20T15:43:30.776Z"
+    },
+    {
+      "id": "handshake",
+      "success": true,
+      "time": "2026-02-20T15:43:46.107Z"
+    },
+    {
+      "id": "target",
+      "success": true,
+      "time": "2026-02-20T15:43:58.778Z"
+    },
+    {
+      "id": "shield_check",
+      "success": true,
+      "time": "2026-02-20T15:44:07.869Z"
+    },
+    {
+      "id": "lightbulb",
+      "success": true,
+      "time": "2026-02-20T15:44:22.096Z"
+    },
+    {
+      "id": "arrow_up",
+      "success": true,
+      "time": "2026-02-20T15:44:31.135Z"
+    },
+    {
+      "id": "arrow_down",
+      "success": true,
+      "time": "2026-02-20T15:44:39.407Z"
+    },
+    {
+      "id": "check_circle",
+      "success": true,
+      "time": "2026-02-20T15:44:48.136Z"
+    },
+    {
+      "id": "x_circle",
+      "success": true,
+      "time": "2026-02-20T15:44:58.246Z"
+    },
+    {
+      "id": "warning",
+      "success": true,
+      "time": "2026-02-20T15:45:07.055Z"
+    },
+    {
+      "id": "star",
+      "success": true,
+      "time": "2026-02-20T15:45:18.627Z"
+    }
+  ]
+}

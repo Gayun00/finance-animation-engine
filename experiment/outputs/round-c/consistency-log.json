@@ -1,0 +1,103 @@
+{
+  "timestamp": "2026-02-20T15:51:36.892Z",
+  "results": [
+    {
+      "group": 1,
+      "icons": [
+        "arrow_down.svg",
+        "arrow_up.svg",
+        "bank_building.svg",
+        "bills_stack.svg",
+        "chart_bar.svg",
+        "chart_line_down.svg",
+        "chart_line_up.svg",
+        "chart_pie.svg"
+      ],
+      "overall_score": 7,
+      "color_consistency": 8,
+      "style_consistency": 6,
+      "detail_consistency": 5,
+      "outliers": [
+        "arrow_down.svg",
+        "arrow_up.svg",
+        "chart_line_down.svg"
+      ],
+      "notes": "Good color palette consistency with #1B2838 backgrounds and radial gradients. However, arrows use different shapes (arrow_down uses path, arrow_up uses different path structure), chart_line_down uses ellipses for line segments while chart_line_up uses proper line rendering, and detail complexity varies significantly between simple charts and complex bank building."
+    },
+    {
+      "group": 2,
+      "icons": [
+        "check_circle.svg",
+        "clock.svg",
+        "coin_gold.svg",
+        "coin_silver.svg",
+        "credit_card.svg",
+        "handshake.svg",
+        "hourglass.svg",
+        "lightbulb.svg"
+      ],
+      "overall_score": 9,
+      "color_consistency": 8,
+      "style_consistency": 9,
+      "detail_consistency": 7,
+      "outliers": [
+        "lightbulb.svg"
+      ],
+      "notes": "Very cohesive set with consistent dark background, radial gradients, and glow effects. Lightbulb breaks pattern with external ray elements extending beyond main shape. Some icons have more complex internal details (clock hour markers, credit card elements) than others (simple check circle), but overall maintains strong visual unity."
+    },
+    {
+      "group": 3,
+      "icons": [
+        "money_bag.svg",
+        "percent_down.svg",
+        "percent_up.svg",
+        "piggy_bank.svg",
+        "safe_box.svg",
+        "scale_balance.svg",
+        "seedling.svg",
+        "shield_check.svg"
+      ],
+      "overall_score": 8,
+      "color_consistency": 9,
+      "style_consistency": 8,
+      "detail_consistency": 7,
+      "outliers": [
+        "percent_up.svg"
+      ],
+      "notes": "Strong consistency in dark background (#1B2838), glow filter, and radial gradients. Percent_up breaks pattern with different arrow style (pointing to corner vs vertical). Detail levels vary from simple (shield_check) to complex (piggy_bank), but core visual language is cohesive."
+    },
+    {
+      "group": 4,
+      "icons": [
+        "star.svg",
+        "target.svg",
+        "tree.svg",
+        "wallet.svg",
+        "warning.svg",
+        "x_circle.svg"
+      ],
+      "overall_score": 8,
+      "color_consistency": 9,
+      "style_consistency": 9,
+      "detail_consistency": 6,
+      "outliers": [
+        "tree.svg"
+      ],
+      "notes": "Strong visual cohesion with consistent dark background, radial gradients, and glow effects. Tree.svg is overly complex with 8 leaf circles vs 1-3 elements in others. Color palette is well-coordinated using yellows, oranges, reds, and earth tones throughout."
+    }
+  ],
+  "summary": {
+    "avgOverall": "8.0",
+    "avgColor": "8.5",
+    "avgStyle": "8.0",
+    "avgDetail": "6.3",
+    "allOutliers": [
+      "arrow_down.svg",
+      "arrow_up.svg",
+      "chart_line_down.svg",
+      "lightbulb.svg",
+      "percent_up.svg",
+      "tree.svg"
+    ]
+  }
+}

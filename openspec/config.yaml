@@ -1,0 +1,19 @@
+schema: spec-driven
+
+context: |
+  Tech stack: TypeScript, React, Remotion (video rendering), pnpm monorepo
+  AI SDKs: @anthropic-ai/sdk, openai
+  Domain: 금융 교육 애니메이션 엔진 (Kurzgesagt 스타일)
+  기존 시스템: Scene Composer (LLM 기반 장면 구성), Builder UI (Vite + React)
+  색상 팔레트: navy #0C0E2E, mint #3DDBC4, purple #6B3FA0, magenta #C83878
+
+rules:
+  proposal:
+    - 실험 목적이므로 "가설 → 검증 → 결론" 구조를 유지한다
+    - 각 실험의 성공 기준을 명확히 정의한다
+  tasks:
+    - 각 Phase는 독립 실행 가능해야 한다
+    - 실험 결과 기록 양식을 포함한다
+  specs:
+    - 코드 예시는 실행 가능한 수준으로 작성한다
+    - API 키 등 환경변수 요구사항을 명시한다

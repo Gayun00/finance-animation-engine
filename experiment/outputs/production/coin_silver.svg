@@ -1,0 +1,32 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="coinGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#ECEFF1"/>
+      <stop offset="100%" stop-color="#B0BEC5"/>
+    </radialGradient>
+    <radialGradient id="diamondGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#ECEFF1"/>
+      <stop offset="100%" stop-color="#CFD8DC"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <circle cx="256" cy="256" r="120" fill="url(#coinGradient)" filter="url(#glow)"/>
+  
+  <circle cx="256" cy="256" r="100" fill="#B0BEC5" opacity="0.3"/>
+  
+  <polygon points="256,196 276,236 256,276 236,236" fill="url(#diamondGradient)" filter="url(#glow)"/>
+  
+  <circle cx="216" cy="216" r="8" fill="#ECEFF1" opacity="0.6"/>
+  <circle cx="296" cy="216" r="8" fill="#ECEFF1" opacity="0.6"/>
+  <circle cx="216" cy="296" r="8" fill="#ECEFF1" opacity="0.6"/>
+  <circle cx="296" cy="296" r="8" fill="#ECEFF1" opacity="0.6"/>
+</svg>

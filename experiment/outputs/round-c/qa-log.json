@@ -1,0 +1,837 @@
+{
+  "timestamp": "2026-02-20T15:50:33.685Z",
+  "threshold": 38,
+  "total": 30,
+  "passed": 30,
+  "failed": 0,
+  "passRate": "100.0%",
+  "avgScore": "44.5",
+  "results": [
+    {
+      "id": "coin_gold",
+      "name": "금화",
+      "scores": {
+        "flat_vector": 5,
+        "color_match": 5,
+        "no_outlines": 5,
+        "clean_shapes": 5,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 5,
+        "no_artifacts": 5,
+        "consistent_style": 5
+      },
+      "total": 50,
+      "pass": true,
+      "issues": [],
+      "fix_suggestions": []
+    },
+    {
+      "id": "coin_silver",
+      "name": "은화",
+      "scores": {
+        "flat_vector": 4,
+        "color_match": 5,
+        "no_outlines": 5,
+        "clean_shapes": 4,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 4
+      },
+      "total": 46,
+      "pass": true,
+      "issues": [
+        "Diamond emblem is quite small and may not be clearly visible at smaller sizes",
+        "Multiple overlapping circles create slight complexity",
+        "Decorative corner circles may be unnecessary detail"
+      ],
+      "fix_suggestions": [
+        "Increase diamond size to make it more prominent",
+        "Simplify the coin structure to use a single circle with gradient",
+        "Consider removing the small decorative circles for cleaner design"
+      ]
+    },
+    {
+      "id": "bills_stack",
+      "name": "지폐 묶음",
+      "scores": {
+        "flat_vector": 4,
+        "color_match": 5,
+        "no_outlines": 5,
+        "clean_shapes": 4,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 4
+      },
+      "total": 46,
+      "pass": true,
+      "issues": [
+        "Multiple gradients create slight depth effect",
+        "Complex layering with many overlapping elements",
+        "Bill details are quite small and geometric rather than organic"
+      ],
+      "fix_suggestions": [
+        "Simplify to solid fills or single gradient",
+        "Reduce number of stacked bill layers",
+        "Make bill details slightly larger and more rounded",
+        "Consider more organic curved shapes for better Kurzgesagt style match"
+      ]
+    },
+    {
+      "id": "money_bag",
+      "name": "돈 자루",
+      "scores": {
+        "flat_vector": 3,
+        "color_match": 4,
+        "no_outlines": 5,
+        "clean_shapes": 2,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 3,
+        "animation_ready": 4,
+        "no_artifacts": 4,
+        "consistent_style": 4
+      },
+      "total": 39,
+      "pass": true,
+      "issues": [
+        "Dollar sign construction is overly complex and fragmented",
+        "Multiple overlapping ellipses and paths create cluttered appearance",
+        "Bag neck/tie area has awkward geometric construction",
+        "Dollar sign not immediately recognizable due to complex path structure",
+        "Gradients add some dimensionality that reduces flat vector style"
+      ],
+      "fix_suggestions": [
+        "Simplify dollar sign to clean S-curve path with vertical line",
+        "Use single ellipse for bag body instead of multiple overlapping shapes",
+        "Create cleaner bag neck with simple gathered fabric representation",
+        "Reduce gradient complexity for flatter appearance",
+        "Consolidate dollar sign elements into fewer, cleaner shapes"
+      ]
+    },
+    {
+      "id": "wallet",
+      "name": "지갑",
+      "scores": {
+        "flat_vector": 2,
+        "color_match": 4,
+        "no_outlines": 5,
+        "clean_shapes": 4,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 3,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 3
+      },
+      "total": 40,
+      "pass": true,
+      "issues": [
+        "Heavy use of radial gradients creates 3D appearance",
+        "Wallet represented as abstract ellipses rather than recognizable wallet shape",
+        "Bills and cards are too small and positioned awkwardly",
+        "Overall composition lacks the organic, friendly Kurzgesagt style"
+      ],
+      "fix_suggestions": [
+        "Replace radial gradients with flat colors or simple linear gradients",
+        "Use more geometric wallet shape with clear opening/fold",
+        "Make bills and cards larger and more prominently displayed",
+        "Simplify to fewer, cleaner shapes with more organic curves"
+      ]
+    },
+    {
+      "id": "credit_card",
+      "name": "신용카드",
+      "scores": {
+        "flat_vector": 3,
+        "color_match": 4,
+        "no_outlines": 5,
+        "clean_shapes": 4,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 3
+      },
+      "total": 43,
+      "pass": true,
+      "issues": [
+        "Uses gradients which reduces flat vector style",
+        "Card shape is too geometric/rectangular for Kurzgesagt organic style",
+        "Small chip details may not be visible at smaller sizes"
+      ],
+      "fix_suggestions": [
+        "Replace gradients with solid fills using expected colors",
+        "Add more rounded corners and organic curves to the card shape",
+        "Simplify chip design to single rectangle without small internal elements",
+        "Consider adding subtle shadow or depth cues typical of Kurzgesagt style"
+      ]
+    },
+    {
+      "id": "chart_line_up",
+      "name": "상승 라인 차트",
+      "scores": {
+        "flat_vector": 3,
+        "color_match": 5,
+        "no_outlines": 5,
+        "clean_shapes": 2,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 2,
+        "animation_ready": 4,
+        "no_artifacts": 4,
+        "consistent_style": 3
+      },
+      "total": 38,
+      "pass": true,
+      "issues": [
+        "Line segments represented as rotated ellipses create confusing visual",
+        "Chart doesn't clearly show upward trending line",
+        "Rotated ellipses appear as disconnected segments rather than continuous line",
+        "Unconventional approach makes chart less recognizable"
+      ],
+      "fix_suggestions": [
+        "Replace rotated ellipses with proper line/path elements connecting data points",
+        "Use polyline or path element to create continuous upward trending line",
+        "Keep glowing data points but connect them with solid line segments",
+        "Ensure line clearly shows upward trend from bottom-left to top-right"
+      ]
+    },
+    {
+      "id": "chart_line_down",
+      "name": "하락 라인 차트",
+      "scores": {
+        "flat_vector": 2,
+        "color_match": 5,
+        "no_outlines": 5,
+        "clean_shapes": 3,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 2,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 3
+      },
+      "total": 39,
+      "pass": true,
+      "issues": [
+        "ellipses create confusing visual elements that don't represent chart lines",
+        "missing actual connecting lines between data points",
+        "chart doesn't clearly read as a downward trending line chart",
+        "ellipses behind points serve no clear purpose"
+      ],
+      "fix_suggestions": [
+        "replace ellipses with actual polyline or path connecting the data points",
+        "use stroke property on connecting line instead of filled ellipses",
+        "ensure line clearly shows downward trend from left to right",
+        "consider adding chart axes for better readability"
+      ]
+    },
+    {
+      "id": "chart_bar",
+      "name": "막대 차트",
+      "scores": {
+        "flat_vector": 4,
+        "color_match": 5,
+        "no_outlines": 5,
+        "clean_shapes": 5,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 5,
+        "no_artifacts": 5,
+        "consistent_style": 4
+      },
+      "total": 48,
+      "pass": true,
+      "issues": [
+        "Radial gradients add slight dimensional effect reducing flat vector style",
+        "Three identical gradient definitions create unnecessary code duplication"
+      ],
+      "fix_suggestions": [
+        "Use solid fills (#CE93D8) instead of gradients for flatter appearance",
+        "Consolidate into single gradient definition reused across all bars",
+        "Consider slightly more rounded corners (rx='25') for more organic Kurzgesagt feel"
+      ]
+    },
+    {
+      "id": "chart_pie",
+      "name": "원형 차트",
+      "scores": {
+        "flat_vector": 3,
+        "color_match": 4,
+        "no_outlines": 5,
+        "clean_shapes": 5,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 4
+      },
+      "total": 45,
+      "pass": true,
+      "issues": [
+        "Uses gradients instead of flat colors",
+        "Colors don't exactly match expected values (#26A69A, #FFB74D, #F06292)",
+        "Gradients create depth that conflicts with flat vector style"
+      ],
+      "fix_suggestions": [
+        "Replace radial gradients with solid flat colors using the exact expected values",
+        "Use fill='#26A69A' for teal segment, fill='#FFB74D' for orange segment, fill='#F06292' for pink segment"
+      ]
+    },
+    {
+      "id": "percent_up",
+      "name": "상승 퍼센트",
+      "scores": {
+        "flat_vector": 4,
+        "color_match": 4,
+        "no_outlines": 5,
+        "clean_shapes": 5,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 2,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 4
+      },
+      "total": 43,
+      "pass": true,
+      "issues": [
+        "Percent symbol is poorly formed - diagonal line doesn't connect circles properly",
+        "Arrow positioning makes it unclear if it's part of the percent or separate",
+        "Overall icon doesn't clearly read as 'percent up' concept"
+      ],
+      "fix_suggestions": [
+        "Reposition circles and diagonal line to form a proper percent symbol (%)",
+        "Move arrow to top-right or integrate it more clearly with the percent symbol",
+        "Consider making the diagonal line thicker for better visibility"
+      ]
+    },
+    {
+      "id": "percent_down",
+      "name": "하락 퍼센트",
+      "scores": {
+        "flat_vector": 5,
+        "color_match": 5,
+        "no_outlines": 5,
+        "clean_shapes": 5,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 5,
+        "no_artifacts": 5,
+        "consistent_style": 5
+      },
+      "total": 50,
+      "pass": true,
+      "issues": [],
+      "fix_suggestions": []
+    },
+    {
+      "id": "piggy_bank",
+      "name": "저금통",
+      "scores": {
+        "flat_vector": 5,
+        "color_match": 5,
+        "no_outlines": 5,
+        "clean_shapes": 5,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 5,
+        "no_artifacts": 5,
+        "consistent_style": 5
+      },
+      "total": 50,
+      "pass": true,
+      "issues": [],
+      "fix_suggestions": []
+    },
+    {
+      "id": "bank_building",
+      "name": "은행 건물",
+      "scores": {
+        "flat_vector": 3,
+        "color_match": 4,
+        "no_outlines": 5,
+        "clean_shapes": 4,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 4,
+        "animation_ready": 5,
+        "no_artifacts": 5,
+        "consistent_style": 4
+      },
+      "total": 44,
+      "pass": true,
+      "issues": [
+        "Radial gradients create subtle 3D depth effect reducing flat vector appearance",
+        "Building structure uses only ellipses making it less architecturally recognizable",
+        "Columns are too thin and vertical, not typical classical bank columns"
+      ],
+      "fix_suggestions": [
+        "Replace radial gradients with solid fills to achieve true flat vector style",
+        "Add more rectangular elements mixed with rounded shapes for better bank building recognition",
+        "Make columns wider and add capital details to look more like classical bank architecture"
+      ]
+    },
+    {
+      "id": "safe_box",
+      "name": "금고",
+      "scores": {
+        "flat_vector": 3,
+        "color_match": 4,
+        "no_outlines": 5,
+        "clean_shapes": 4,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 4
+      },
+      "total": 44,
+      "pass": true,
+      "issues": [
+        "Uses gradients which reduce flat vector style",
+        "Safe appears quite small in the 512x512 viewBox",
+        "Gradient colors deviate slightly from expected flat colors"
+      ],
+      "fix_suggestions": [
+        "Replace radial gradients with solid fills using expected colors",
+        "Increase safe size to better fill the canvas",
+        "Use flat #78909C for safe body, #FFD54F for dial, #B0BEC5 for handle"
+      ]
+    },
+    {
+      "id": "scale_balance",
+      "name": "저울",
+      "scores": {
+        "flat_vector": 3,
+        "color_match": 4,
+        "no_outlines": 5,
+        "clean_shapes": 4,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 3
+      },
+      "total": 43,
+      "pass": true,
+      "issues": [
+        "Radial gradients create 3D effect reducing flat vector style",
+        "Chain links as separate ellipses rather than organic shapes",
+        "Overall design feels mechanical rather than organic/friendly",
+        "Colors close to expected but gradients vary from flat specification"
+      ],
+      "fix_suggestions": [
+        "Replace radial gradients with solid fills using specified colors #FFD54F, #B0BEC5, #78909C",
+        "Simplify chain design to fewer, more organic curved elements",
+        "Add subtle rounded corners and softer curves to make design more friendly",
+        "Consider making pans slightly asymmetrical or adding gentle curves for more organic feel"
+      ]
+    },
+    {
+      "id": "clock",
+      "name": "시계",
+      "scores": {
+        "flat_vector": 3,
+        "color_match": 5,
+        "no_outlines": 5,
+        "clean_shapes": 4,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 2,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 4
+      },
+      "total": 42,
+      "pass": true,
+      "issues": [
+        "Clock hands are poorly designed - using ellipses creates confusing overlapping shapes",
+        "Hour markers use mix of circles at different positions making time unclear",
+        "No clear time indication - hands don't point to recognizable hour positions",
+        "Gradients add slight complexity against pure flat design"
+      ],
+      "fix_suggestions": [
+        "Replace ellipse hands with proper line or rectangular shapes pointing from center",
+        "Standardize hour markers - use consistent small circles or lines at 12, 3, 6, 9 positions",
+        "Position hands to show clear readable time like 3:00 or 10:10",
+        "Consider using flat fills instead of gradients for purer flat design"
+      ]
+    },
+    {
+      "id": "hourglass",
+      "name": "모래시계",
+      "scores": {
+        "flat_vector": 3,
+        "color_match": 5,
+        "no_outlines": 5,
+        "clean_shapes": 4,
+        "transparent_bg": 5,
+        "glow_effect": 5,
+        "identifiable": 5,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 4
+      },
+      "total": 45,
+      "pass": true,
+      "issues": [
+        "Complex gradients reduce flat vector style",
+        "Glass bulbs overlap awkwardly with gold rims",
+        "Sand distribution looks unnatural for flowing hourglass"
+      ],
+      "fix_suggestions": [
+        "Simplify gradients to solid fills or simple two-stop gradients",
+        "Adjust z-order so glass appears properly contained by gold frame",
+        "Make top sand smaller and bottom sand larger to show more realistic flow progression"
+      ]
+    },
+    {
+      "id": "seedling",
+      "name": "새싹",
+      "scores": {
+        "flat_vector": 3,
+        "color_match": 4,
+        "no_outlines": 5,
+        "clean_shapes": 4,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 5,
+        "no_artifacts": 5,
+        "consistent_style": 4
+      },
+      "total": 45,
+      "pass": true,
+      "issues": [
+        "radial gradients create subtle 3D effect",
+        "soil color doesn't match expected #8D6E63",
+        "stem uses ellipse instead of organic curved shape"
+      ],
+      "fix_suggestions": [
+        "replace radial gradients with solid fills for flatter look",
+        "change soil gradient to use #8D6E63 as base color",
+        "use path element for more natural stem curve"
+      ]
+    },
+    {
+      "id": "tree",
+      "name": "나무",
+      "scores": {
+        "flat_vector": 2,
+        "color_match": 4,
+        "no_outlines": 5,
+        "clean_shapes": 4,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 3
+      },
+      "total": 42,
+      "pass": true,
+      "issues": [
+        "Uses complex gradients instead of flat colors",
+        "Too many overlapping leaf circles create visual clutter",
+        "Trunk shape (ellipse) appears overly narrow and unrealistic",
+        "Gradients make it less flat vector style"
+      ],
+      "fix_suggestions": [
+        "Replace gradients with solid flat colors matching the specification",
+        "Simplify leaf detail to 2-3 larger shapes instead of 8 small circles",
+        "Use a wider rectangular trunk shape for better proportions",
+        "Remove complex lighting gradients to achieve true flat design"
+      ]
+    },
+    {
+      "id": "handshake",
+      "name": "악수",
+      "scores": {
+        "flat_vector": 5,
+        "color_match": 5,
+        "no_outlines": 5,
+        "clean_shapes": 3,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 2,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 4
+      },
+      "total": 43,
+      "pass": true,
+      "issues": [
+        "hands don't appear to be actually shaking/connected",
+        "abstract representation makes it unclear as handshake",
+        "hand anatomy is very simplified with just circles",
+        "connection area is too abstract"
+      ],
+      "fix_suggestions": [
+        "create interlocked fingers showing actual hand-to-hand contact",
+        "add thumb elements to make hands more recognizable",
+        "position hands to show clear grip/shake gesture",
+        "reduce opacity variations in connection area for clearer definition"
+      ]
+    },
+    {
+      "id": "target",
+      "name": "과녁",
+      "scores": {
+        "flat_vector": 3,
+        "color_match": 4,
+        "no_outlines": 5,
+        "clean_shapes": 4,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 3,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 4
+      },
+      "total": 42,
+      "pass": true,
+      "issues": [
+        "Uses gradients which adds dimensionality contrary to flat vector style",
+        "Arrow design is confusing - appears as directional arrows pointing outward rather than a single arrow hitting bullseye",
+        "Complex multi-directional arrow design doesn't clearly represent target achievement concept"
+      ],
+      "fix_suggestions": [
+        "Replace gradients with solid flat colors",
+        "Simplify to single arrow pointing toward or stuck in center of target",
+        "Use expected colors more precisely (#EF5350 for red, #FFD54F for arrow)"
+      ]
+    },
+    {
+      "id": "shield_check",
+      "name": "보안 방패",
+      "scores": {
+        "flat_vector": 4,
+        "color_match": 3,
+        "no_outlines": 5,
+        "clean_shapes": 3,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 4
+      },
+      "total": 43,
+      "pass": true,
+      "issues": [
+        "Shield shape uses angular path instead of organic curves",
+        "Teal color is darker than expected #26A69A",
+        "Checkmark path is angular rather than smooth"
+      ],
+      "fix_suggestions": [
+        "Use curved path for more organic shield shape with rounded top",
+        "Adjust gradient colors to include specified teal #26A69A",
+        "Smooth the checkmark path with curves for better Kurzgesagt style"
+      ]
+    },
+    {
+      "id": "lightbulb",
+      "name": "전구",
+      "scores": {
+        "flat_vector": 4,
+        "color_match": 5,
+        "no_outlines": 5,
+        "clean_shapes": 4,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 5,
+        "no_artifacts": 5,
+        "consistent_style": 5
+      },
+      "total": 48,
+      "pass": true,
+      "issues": [
+        "Gradients add slight dimensional depth",
+        "Complex ray positioning could be simplified"
+      ],
+      "fix_suggestions": [
+        "Consider using solid fills instead of radial gradients for flatter style",
+        "Simplify ray arrangement to more symmetrical pattern"
+      ]
+    },
+    {
+      "id": "arrow_up",
+      "name": "상승 화살표",
+      "scores": {
+        "flat_vector": 4,
+        "color_match": 5,
+        "no_outlines": 5,
+        "clean_shapes": 4,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 5,
+        "no_artifacts": 5,
+        "consistent_style": 4
+      },
+      "total": 47,
+      "pass": true,
+      "issues": [
+        "gradient creates slight depth effect reducing flatness",
+        "sharp corners on arrow despite rx attribute",
+        "shadow ellipse adds dimensional element"
+      ],
+      "fix_suggestions": [
+        "use solid fill instead of radial gradient for flatter appearance",
+        "ensure rx attribute properly rounds arrow corners",
+        "consider removing shadow ellipse for pure flat style"
+      ]
+    },
+    {
+      "id": "arrow_down",
+      "name": "하락 화살표",
+      "scores": {
+        "flat_vector": 4,
+        "color_match": 5,
+        "no_outlines": 5,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 5,
+        "no_artifacts": 4,
+        "consistent_style": 4,
+        "clean_shapes": 3
+      },
+      "total": 45,
+      "pass": true,
+      "issues": [
+        "rx attribute on path element is invalid and will be ignored",
+        "Arrow corners are sharp angles rather than rounded organic shapes typical of Kurzgesagt style",
+        "Path coordinates could be more optimized for cleaner geometry"
+      ],
+      "fix_suggestions": [
+        "Remove the invalid rx='20' attribute from the path element",
+        "Add rounded corners by modifying the path to use curved segments or apply border-radius through proper SVG techniques",
+        "Refine path coordinates to create smoother, more organic curved edges that better match Kurzgesagt's characteristic rounded aesthetic"
+      ]
+    },
+    {
+      "id": "check_circle",
+      "name": "체크 원",
+      "scores": {
+        "flat_vector": 5,
+        "color_match": 5,
+        "no_outlines": 2,
+        "clean_shapes": 5,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 4
+      },
+      "total": 45,
+      "pass": true,
+      "issues": [
+        "checkmark uses stroke instead of fill",
+        "stroke width creates outline effect"
+      ],
+      "fix_suggestions": [
+        "convert checkmark stroke to filled path shape",
+        "use fill-only approach for checkmark to match flat vector style"
+      ]
+    },
+    {
+      "id": "x_circle",
+      "name": "X 원",
+      "scores": {
+        "flat_vector": 5,
+        "color_match": 4,
+        "no_outlines": 5,
+        "clean_shapes": 5,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 5,
+        "no_artifacts": 5,
+        "consistent_style": 5
+      },
+      "total": 49,
+      "pass": true,
+      "issues": [
+        "Circle uses red gradient (#FF5722 to #B71C1C) instead of expected flat red #EF5350"
+      ],
+      "fix_suggestions": [
+        "Replace gradient fill with flat red color #EF5350 to match expected specification"
+      ]
+    },
+    {
+      "id": "warning",
+      "name": "경고",
+      "scores": {
+        "flat_vector": 4,
+        "color_match": 5,
+        "no_outlines": 5,
+        "clean_shapes": 4,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 5,
+        "no_artifacts": 4,
+        "consistent_style": 4
+      },
+      "total": 46,
+      "pass": true,
+      "issues": [
+        "Triangle path uses rx attribute which is invalid for path elements",
+        "Radial gradient creates slight dimensional effect rather than pure flat design",
+        "Sharp triangle corners don't fully match organic shape expectation"
+      ],
+      "fix_suggestions": [
+        "Remove rx='20' from path element and use rounded corners in path definition instead",
+        "Consider using linear gradient or solid fill for flatter appearance",
+        "Add subtle corner rounding to triangle path coordinates for more organic feel"
+      ]
+    },
+    {
+      "id": "star",
+      "name": "별",
+      "scores": {
+        "flat_vector": 3,
+        "color_match": 4,
+        "no_outlines": 5,
+        "clean_shapes": 4,
+        "glow_effect": 5,
+        "transparent_bg": 5,
+        "identifiable": 5,
+        "animation_ready": 4,
+        "no_artifacts": 5,
+        "consistent_style": 4
+      },
+      "total": 44,
+      "pass": true,
+      "issues": [
+        "Multiple overlapping gradients reduce flatness",
+        "Center circle adds unnecessary complexity",
+        "Extra highlight dot creates busy appearance"
+      ],
+      "fix_suggestions": [
+        "Use single gradient for the star shape",
+        "Remove the center circle overlay",
+        "Simplify to just the main star polygon with subtle glow"
+      ]
+    }
+  ]
+}

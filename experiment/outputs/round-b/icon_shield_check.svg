@@ -1,0 +1,37 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="shieldGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#4DB6AC"/>
+      <stop offset="100%" stop-color="#26A69A"/>
+    </radialGradient>
+    <radialGradient id="checkGradient" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E0E0E0"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <g filter="url(#glow)">
+    <path d="M256 80 L176 120 L176 240 Q176 320 256 400 Q336 320 336 240 L336 120 Z" fill="url(#shieldGradient)"/>
+    
+    <ellipse cx="256" cy="240" rx="120" ry="140" fill="#26A69A" opacity="0.3"/>
+    
+    <circle cx="200" cy="160" r="8" fill="#4DB6AC"/>
+    <circle cx="312" cy="160" r="8" fill="#4DB6AC"/>
+    <circle cx="180" cy="280" r="8" fill="#4DB6AC"/>
+    <circle cx="332" cy="280" r="8" fill="#4DB6AC"/>
+    
+    <path d="M220 240 L240 260 L292 200" fill="none" stroke="url(#checkGradient)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <rect x="176" y="115" width="160" height="8" rx="4" fill="#4DB6AC" opacity="0.15"/>
+    <rect x="196" y="350" width="120" height="6" rx="3" fill="#4DB6AC" opacity="0.15"/>
+  </g>
+</svg>

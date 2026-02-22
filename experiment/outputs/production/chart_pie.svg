@@ -1,0 +1,31 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="tealGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#4DB6AC"/>
+      <stop offset="100%" stop-color="#00695C"/>
+    </radialGradient>
+    <radialGradient id="orangeGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FFCC80"/>
+      <stop offset="100%" stop-color="#F57C00"/>
+    </radialGradient>
+    <radialGradient id="pinkGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#F8BBD9"/>
+      <stop offset="100%" stop-color="#AD1457"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <g filter="url(#glow)">
+    <path d="M 256,256 L 256,136 A 120,120 0 0,1 361.77,206 Z" fill="url(#tealGrad)"/>
+    <path d="M 256,256 L 361.77,206 A 120,120 0 0,1 226.86,362.93 Z" fill="url(#orangeGrad)"/>
+    <path d="M 256,256 L 226.86,362.93 A 120,120 0 0,1 256,136 Z" fill="url(#pinkGrad)"/>
+  </g>
+</svg>

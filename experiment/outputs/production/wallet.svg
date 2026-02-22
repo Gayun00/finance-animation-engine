@@ -1,0 +1,52 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="walletGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#A1887F"/>
+      <stop offset="100%" stop-color="#5D4037"/>
+    </radialGradient>
+    <radialGradient id="cardGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#64B5F6"/>
+      <stop offset="100%" stop-color="#1976D2"/>
+    </radialGradient>
+    <radialGradient id="billGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#A5D6A7"/>
+      <stop offset="100%" stop-color="#388E3C"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <g filter="url(#glow)">
+    <!-- Wallet back -->
+    <ellipse cx="256" cy="280" rx="120" ry="90" fill="url(#walletGrad)"/>
+    
+    <!-- Wallet front -->
+    <ellipse cx="256" cy="260" rx="110" ry="80" fill="url(#walletGrad)"/>
+    
+    <!-- Wallet fold line -->
+    <ellipse cx="256" cy="260" rx="110" ry="8" fill="#6D4C41"/>
+    
+    <!-- Bills peeking out -->
+    <rect x="180" y="190" width="60" height="35" rx="8" fill="url(#billGrad)" opacity="0.9"/>
+    <rect x="190" y="180" width="60" height="35" rx="8" fill="url(#billGrad)"/>
+    <rect x="200" y="170" width="60" height="35" rx="8" fill="url(#billGrad)" opacity="0.8"/>
+    
+    <!-- Cards peeking out -->
+    <rect x="280" y="200" width="45" height="30" rx="6" fill="url(#cardGrad)" opacity="0.9"/>
+    <rect x="285" y="190" width="45" height="30" rx="6" fill="url(#cardGrad)"/>
+    <rect x="290" y="180" width="45" height="30" rx="6" fill="url(#cardGrad)" opacity="0.8"/>
+    
+    <!-- Wallet opening -->
+    <ellipse cx="256" cy="220" rx="90" ry="15" fill="#1B2838" opacity="0.5"/>
+    
+    <!-- Wallet interior -->
+    <ellipse cx="256" cy="215" rx="85" ry="12" fill="#3E2723"/>
+  </g>
+</svg>

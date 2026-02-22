@@ -1,0 +1,47 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="bulbGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FFF9C4"/>
+      <stop offset="100%" stop-color="#FFD54F"/>
+    </radialGradient>
+    <radialGradient id="baseGrad" cx="0.3" cy="0.3">
+      <stop offset="0%" stop-color="#FFB74D"/>
+      <stop offset="100%" stop-color="#FFD54F"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="512" height="512" fill="#1B2838"/>
+  
+  <!-- Top rays -->
+  <ellipse cx="256" cy="120" rx="4" ry="24" fill="#FFB74D" filter="url(#glow)"/>
+  <ellipse cx="320" cy="140" rx="20" ry="4" fill="#FFB74D" filter="url(#glow)" transform="rotate(45 320 140)"/>
+  <ellipse cx="192" cy="140" rx="20" ry="4" fill="#FFB74D" filter="url(#glow)" transform="rotate(-45 192 140)"/>
+  
+  <!-- Side rays -->
+  <ellipse cx="140" cy="200" rx="4" ry="20" fill="#FFB74D" filter="url(#glow)" transform="rotate(90 140 200)"/>
+  <ellipse cx="372" cy="200" rx="4" ry="20" fill="#FFB74D" filter="url(#glow)" transform="rotate(90 372 200)"/>
+  
+  <!-- Bottom diagonal rays -->
+  <ellipse cx="180" cy="280" rx="16" ry="4" fill="#FFB74D" filter="url(#glow)" transform="rotate(-30 180 280)"/>
+  <ellipse cx="332" cy="280" rx="16" ry="4" fill="#FFB74D" filter="url(#glow)" transform="rotate(30 332 280)"/>
+  
+  <!-- Main bulb -->
+  <ellipse cx="256" cy="220" rx="70" ry="85" fill="url(#bulbGrad)" filter="url(#glow)"/>
+  
+  <!-- Glass highlight -->
+  <ellipse cx="240" cy="200" rx="25" ry="30" fill="#FFF9C4" opacity="0.6"/>
+  
+  <!-- Bulb base/screw -->
+  <rect x="236" y="295" width="40" height="20" rx="4" fill="url(#baseGrad)" filter="url(#glow)"/>
+  <rect x="238" y="315" width="36" height="16" rx="4" fill="#FFB74D"/>
+  
+  <!-- Base connection -->
+  <rect x="240" y="331" width="32" height="12" rx="6" fill="#FFD54F"/>
+</svg>
