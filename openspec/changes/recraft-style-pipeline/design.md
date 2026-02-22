@@ -59,7 +59,21 @@ body: { style: "vector_illustration", images: [file1, file2, ...] }
 - 골드 스탠다드 이미지를 레퍼런스로 붙여서 "얼마나 같은 느낌인가?" 한 문장이면 충분
 - 보조 항목은 Pass/Fail로 단순화
 
-### 4. QA는 Recraft 생성 + Claude 채점
+### 4. 빌더 내 에셋 검수 UI
+
+**결정**: Scene Builder에 "에셋 검수" 탭을 추가하여 레퍼런스 관리 + 트라이얼 검수를 UI 안에서 수행
+
+**이유**:
+- Phase 0(레퍼런스 수집)과 Phase 1(사람 검수)이 파일시스템 직접 조작 → 비효율
+- 빌더에 탭 하나 추가하면 업로드/삭제/승인/거부/피드백을 한 곳에서 처리 가능
+- 검수 결과가 `review.json`으로 저장되어 후속 Phase에서 자동 참조 가능
+
+**구현**:
+- `builder/src/components/AssetReview.tsx` — 레퍼런스 그리드 + 트라이얼 검수 UI
+- `builder/vite.config.ts` — 7개 API 엔드포인트 (이미지 목록/서빙/업로드/삭제/검수 저장·로드)
+- Gate 판정: 80% 승인 기준 자동 PASS/FAIL 표시
+
+### 5. QA는 Recraft 생성 + Claude 채점
 
 **결정**: 생성은 Recraft, 채점은 Claude Vision (변경 없음)
 

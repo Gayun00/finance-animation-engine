@@ -9,7 +9,11 @@
 
 ### 0-A. 레퍼런스 수집 (사람)
 
-- [ ] 0.1 원하는 톤의 레퍼런스 에셋 5~10장 수집
+> **도구**: 빌더 UI 에셋 검수 탭 (`http://localhost:3100` → "에셋 검수" 탭 → 레퍼런스 섹션)
+> - 드래그앤드롭 / 파일선택으로 업로드, 삭제 가능
+> - `experiment/reference/collected/` 자동 관리
+
+- [x] 0.1 원하는 톤의 레퍼런스 에셋 5~10장 수집 → **29장 수집 완료**
   - Kurzgesagt 영상 프레임, 외부 아이콘, 기존 실험 결과 중 마음에 드는 것
   - 형식 무관 (PNG, SVG, 스크린샷 등)
   - `experiment/reference/collected/` 에 저장
@@ -50,6 +54,11 @@
 - [ ] 1.3 배경 통제 확인 — 안 되면 remove_background + replace_background 후처리
 
 ### 1-B. 사람 검수 (Gate)
+
+> **도구**: 빌더 UI 에셋 검수 탭 (`http://localhost:3100` → "에셋 검수" 탭 → 트라이얼 검수 섹션)
+> - 각 아이콘에 승인/거부 토글 + 피드백 텍스트 입력
+> - 상단에 승인 현황 + Gate 판정(PASS/FAIL) 자동 표시
+> - "검수 결과 저장" 버튼으로 `experiment/outputs/trial/review.json`에 영속 저장
 
 - [ ] 1.4 **사람이 트라이얼 5장 검수**
   - 각 아이콘: 승인 ✅ / 거부 ❌ + 피드백
