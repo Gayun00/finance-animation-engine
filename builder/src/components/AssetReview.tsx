@@ -55,8 +55,8 @@ export const AssetReview: React.FC = () => {
   const loadCharacters = useCallback(async () => {
     const res = await fetch("/api/review/characters");
     const all: CharacterFile[] = await res.json();
-    // character-style-info.json 등 비-Lottie 메타 파일 제외
-    setCharacters(all.filter((c) => c.type !== "json" || c.filename.startsWith("char_")));
+    // 메타 파일 제외 (character-style-info.json 등)
+    setCharacters(all.filter((c) => c.type !== "json" || !c.filename.includes("style-info")));
   }, []);
 
   const loadReview = useCallback(async () => {
